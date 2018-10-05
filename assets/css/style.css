@@ -1,36 +1,19 @@
 
-
-
-/* Slider color - Intelligence */
-#intel-slider .slider-selection {
-	background: red;
+body{
+       width: 100%;
+       background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVwEeJEXryWizmlEluz3DUcN2HfC9cCpicslDQ-9XW9n_x-stAQ);
+       background-size: contain;
 }
 
-/* Slider color - Strength */
-#stren-slider .slider-selection {
-	background: red;
+.card{
+    background-color: lightgrey;
+    text-align: center;
 }
-
-/* Slider color - Speed */
-#speed-slider .slider-selection {
-	background: red;
+.jumbotron{  
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQg6b_xoEYG0KQ1tNPhXHd-oE7siAhJp0NeSVM0p0-0nzWQof-Zw);
+    background-size: 25%;
 }
-
-/* Slider color - Durability */
-#durab-slider .slider-selection {
-	background: red;
-}
-
-/* Slider color - Power */
-#power-slider .slider-selection {
-	background: red;
-}
-
-/* Slider color - Combat */
-#combat-slider .slider-selection {
-	background: red;
-}
-
-#user-input{
-    font-weight: bold;
+h1{
+    text-align: center;
+    font-style: antiquewhite;
 }
