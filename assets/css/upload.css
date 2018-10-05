@@ -1,0 +1,48 @@
+/*legend {
+    background-color: #000;
+    color: #fff;
+    padding: 3px 6px;
+}*/
+
+.output {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+label {
+    /*margin-top: 1rem;*/
+    display: block;
+    font-size: .8rem;
+}
+#submit-image {
+    /*margin-top: 10px;*/
+  }
+.field-set{
+    border:1px solid black;
+    padding-left: 20%;
+   padding-right: 20%;
+    padding-bottom: 10%;
+    overflow:hidden;
+    display: inline-block;
+}
+#image-input{
+    /*overflow:hidden;*/
+    /*height:0;*/
+    display:none;
+}
+.image-input-wrapper{
+    overflow:hidden;
+    height:auto;
+}
+form{
+    margin-right: 50px;
+}
+/*input[type='file'] {
+    color: transparent;
+  }*/
+
+ /* #hide {
+    display: inline-block;
+  }
+  #hide input[type=file] {
+    display:none;
+  }*/
