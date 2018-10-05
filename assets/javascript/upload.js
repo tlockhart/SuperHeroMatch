@@ -4,6 +4,7 @@ var secret = "i4yY2sL2dg8cOxpUYTN8AZ4pKMHGP2lV";
 
 var input = document.querySelector('#image-input');
 var preview = document.querySelector('.preview');
+var error= document.querySelector('.error');
 var fileTypes = [
     'image/jpeg',
     'image/pjpeg',
@@ -23,21 +24,44 @@ var faceToken;
 //const
 var imageMin = 48;
 var imageMax = 4096;
+var maxKB = 2;
 
 /*input.style.opacity = 0;*/
 $("#submit-image").on("click", function(event) {
     // Don't refresh the page!
     event.preventDefault();
 
+    //Check Image Dimensions
     if (imageWidth >= imageMin && imageWidth <= imageMax && imageHeight >= imageMin && imageHeight <= imageMax) {
         isInputValid = true;
     }
     else{
         isInputValid = false;
     }
+
+    //Check File Size
+    var unit = fileSize.slice(-2);
+    var fileSizeNumber = fileSize.replace(/[^\d.-]/g, '');
+    console.log("FILESIZE = "+fileSizeNumber+"Unit = "+unit);
+    if (unit === 'MB')
+    {
+      if(fileSizeNumber <= maxKB)
+      {
+        isInputValid = true;
+      }
+      else{
+        isInputValid = false;
+      }
+    }
+    
     //If input is not valid do not accept image and do nothing
     if (!isInputValid){
         console.log ("Image is not acceptable!");
+        var error = document.createElement("p");
+        var node = document.createTextNode("File not accepted.");
+        error.appendChild(node);
+        preview.appendChild(error);
+        document.getElementById("submit-image").disabled = true;
         return;
     }
     else 
@@ -50,7 +74,7 @@ $("#submit-image").on("click", function(event) {
          *It will take 10 sec depending on photo size
         ***********************************************************/
         convertImageFromUrlToBase64String(imageUrl, function (base64Str) {
-            console.log('Base 64 String', base64Str);
+            //console.log('Base 64 String', base64Str);
             var query = "https://api-us.faceplusplus.com/facepp/v3/detect";
             var queryParameters = [
             "api_key=" + key,
@@ -81,7 +105,7 @@ $("#submit-image").on("click", function(event) {
             }).then(function(response) {
             // Create CODE HERE to Log the queryURL
             // Create CODE HERE to log the resulting object
-            console.log(response);
+            //console.log(response);
             parseToken(response);
             });
         });//convertImageFromUrlToBase64String
@@ -156,14 +180,13 @@ function isFileTypeValid(file) {
           fileName = curFiles[i].name;
           fileSize = returnFileSize(curFiles[i].size);
           console.log(curFiles[i]);
-          //console.log('WIDTH = '+imageWidth+' HEIGHT = '+imageHeight);
           image = document.createElement('img');
           image.src = window.URL.createObjectURL(curFiles[i]);
           image.style.width = '200px';
   
           listItem.appendChild(image);
           //listItem.appendChild(para);
-  
+          document.getElementById("submit-image").disabled = false;
         } 
         //Else print out file is not valid
         else {
@@ -172,6 +195,7 @@ function isFileTypeValid(file) {
           para.textContent = 'File name ' + curFiles[i].name + ': File type not valid. Please select an image.';
           //listItem.appendChild(brake);
           listItem.appendChild(para);
+          document.getElementById("submit-image").disabled = true;
         }
   
         //list.appendChild(listItem);
@@ -187,8 +211,6 @@ function isFileTypeValid(file) {
     if ((file = this.files[0])) {
         img = new Image();
         img.onload = function() {
-           // alert(this.width + " " + this.height);
-            //console.log('WIDTH = '+this.width+' HEIGHT = '+this.height);
             imageWidth = this.width;
             imageHeight = this.height;
             para = document.createTextNode('File Name: ' + fileName + ', File Size: ' + fileSize + ', Width: '+imageWidth+', Height: '+imageHeight);
@@ -197,12 +219,19 @@ function isFileTypeValid(file) {
             list.appendChild(listItem);
 
             //Insert break before paragraph:
-            listItem.insertBefore(br, para)
-           //console.log(para);            
+            listItem.insertBefore(br, para)           
         };
         img.onerror = function() {
             //alert( "not a valid file: " + file.type);
             console.log('NOT A Valid File: '+file.type);
+            //para.textContent = 'Not a valid file: '+file.type;
+
+            var error = document.createElement("p");
+            var node = document.createTextNode('Not a valid file: '+file.type);
+            error.appendChild(node);
+            preview.appendChild(error);
+            document.getElementById("submit-image").disabled = true;
+            //preview.appendChild(para);
         };
         img.src = _URL.createObjectURL(file);
     }//if
