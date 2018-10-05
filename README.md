@@ -1,6 +1,5 @@
 # Roots-of-the-Earth-Project-1
 GATech Coding Bootcamp: Roots-of-the-Earth-Project-1
-<<<<<<< HEAD
 
 Team Members: Komal Batra, Tony Lockhart, Mary Nguyen-Choi, and Shemika Williams
 Group Name: Roots-of-the-Earth-Project-1
@@ -50,6 +49,3 @@ Design Acceptance Criteria:
 4. Form should be removed after input submitted.
 5. Results screen should be displayed with superhero picture along with common user and hero traits.
 6. User name, superhero match, and traits should be stored in firebase database and displayed for all users.
-=======
-*Demo
->>>>>>> 144f5f91aacf535f6581f5cb7e92f58992abef71
