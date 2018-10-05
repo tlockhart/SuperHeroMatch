@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Who are you?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <!-- Bootstrap Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Bootstrap Slider Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/css/bootstrap-slider.min.css" integrity="sha256-MopPr/VZnVTfUaSUkXEIk2AJt6Fa5WdNaYDbFLwVnBA=" crossorigin="anonymous" />
+    <!-- Favicon -->
+    <link rel="icon" type="favicon.ico" href="assets/images/icon3.png"/>
+</head>
+<body>
+    <!-- START OF SLIDERS -->
+    <!-- intelligence slider -->
+    <div class="form-group">
+        <label for="formControlRange">How intelligent do you think you are?</label>
+        0
+        <input
+        id="intel-input"
+        data-slider-id = "intel-slider"
+        type="text"
+        data-provide="slider"
+        data-slider-min="0"
+        data-slider-max="100"
+        data-slider-step="1"
+        data-slider-value= "50"
+        data-slider-tooltip= "always"
+        tooltip_position = "bottom"
+        data-slider-handle="round" 
+        >
+        100
+        <p id="user-input">Your Intelligence Stats: <span id="intel-value"></span></p>
+    </div>
+
+    <!-- Strength slider -->
+    <div class="form-group">
+        <label for="formControlRange">How Strong do you think you are?</label>
+        0
+        <input
+        id="stren-input"
+        data-slider-id = "stren-slider"
+        type="text"
+        data-provide="slider"
+        data-slider-min="0"
+        data-slider-max="100"
+        data-slider-step="1"
+        data-slider-value= "50"
+        data-slider-tooltip= "always"
+        tooltip_position = "bottom"
+        data-slider-handle="round" 
+        >
+        100
+        <p id="user-input" >Your Strength Stats: <span id="stren-value"></span></p>
+    </div>
+    
+    <!-- Speed Slider -->
+    <div class="form-group">
+        <label for="formControlRange">How fast do you think you are?</label>
+        0
+        <input
+        id="speed-input"
+        data-slider-id = "speed-slider"
+        type="text"
+        data-provide="slider"
+        data-slider-min="0"
+        data-slider-max="100"
+        data-slider-step="1"
+        data-slider-value= "50"
+        data-slider-tooltip= "always"
+        tooltip_position = "bottom"
+        data-slider-handle="round" 
+        >
+        100
+        <p id="user-input">Your Speed Stats: <span id="speed-value"></span></p>
+    </div>
+
+    <!-- Durability Slider -->
+    <div class="form-group">
+        <label for="formControlRange">How durable do you think you are?</label>
+        0
+        <input
+        id="durab-input"
+        data-slider-id = "durab-slider"
+        type="text"
+        data-provide="slider"
+        data-slider-min="0"
+        data-slider-max="100"
+        data-slider-step="1"
+        data-slider-value= "50"
+        data-slider-tooltip= "always"
+        tooltip_position = "bottom"
+        data-slider-handle="round" 
+        >
+        100
+        <p id="user-input">Your Durability Stats: <span id="durab-value"></span></p>
+    </div>
+
+    <!-- Power Slider -->
+    <div class="form-group">
+        <label for="formControlRange">How much Power do you think you have?</label>
+        0
+        <input
+        id="power-input"
+        data-slider-id = "power-slider"
+        type="text"
+        data-provide="slider"
+        data-slider-min="0"
+        data-slider-max="100"
+        data-slider-step="1"
+        data-slider-value= "50"
+        data-slider-tooltip= "always"
+        tooltip_position = "bottom"
+        data-slider-handle="round" 
+        >
+        100
+        <p id="user-input">Your Power Stats: <span id="power-value"></span></p>
+    </div>
+
+    <!-- Combat Slider -->
+    <div class="form-group">
+        <label for="formControlRange">How much Combat do you think you have?</label>
+        0
+        <input
+        id="combat-input"
+        data-slider-id = "combat-slider"
+        type="text"
+        data-provide="slider"
+        data-slider-min="0"
+        data-slider-max="100"
+        data-slider-step="1"
+        data-slider-value= "50"
+        data-slider-tooltip= "always"
+        tooltip_position = "bottom"
+        data-slider-handle="round" 
+        >
+        100
+        <p id="user-input">Your Combat Stats: <span id="combat-value"></span></p>
+    </div>
+    <!-- END OF ALL SLIDERS -->
+    
+
+    <!-- jQuery Link -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- My javascript file -->
+    <script src="assets/javascript/app.js"></script>
+
+    <!-- Bootstrap Slider JS link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.min.js" integrity="sha256-rjNVc4p9W5ytzudhfdvmen38QnQTPHD6izDAF9nA95w=" crossorigin="anonymous"></script>
+    
+</body>
+</html>

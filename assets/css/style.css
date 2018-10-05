@@ -1,0 +1,36 @@
+
+
+
+/* Slider color - Intelligence */
+#intel-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Strength */
+#stren-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Speed */
+#speed-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Durability */
+#durab-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Power */
+#power-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Combat */
+#combat-slider .slider-selection {
+	background: red;
+}
+
+#user-input{
+    font-weight: bold;
+}
