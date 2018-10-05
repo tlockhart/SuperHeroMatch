@@ -2,20 +2,18 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <!--meta http-equiv="X-UA-Compatible" content="IE=edge"-->
     <title>Project #1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        
-        
+    <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+
     <!-- CSS Style -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/upload.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/upload.css">
+
+    <!-- Bootstrap CDN-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 
 </head>
 
@@ -48,8 +46,8 @@
                 </div> -->
                 <div class = "col-6">
                         <fieldset class="field-set">
-                            <legend style="width:auto;">Image Upload</legend>
-                            
+                            <legend style="width:auto;"></legend><!--Image Upload-->
+                            <h5 class = "text-center">Image Upload</h5>
                                 <!--div>
                                     <label for="name">User Name:</label>
                                     <input type="file" id="file" name="file" multiple>
@@ -59,7 +57,7 @@
                             
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="name-input">User Name</label>
+                                    <label for="name-input"><b>User Name</b></label>
                                     <input class="form-control" id="name-input" type="text">
                                     <p id="name-error"></p>
                                 </div>
@@ -85,7 +83,7 @@
                                     <!--label>Browse</label-->
                                 </div>
                                 <div class="preview">
-                                    <p>No file currently selected for upload</p>
+                                    <p id="error">No file currently selected for upload</p>
                                 </div>
                                 <button class="btn btn-primary" id="submit-image" type="submit">Submit</button>
                                 <div>
@@ -121,8 +119,11 @@
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
-    <!-- JQuery -->
+    <!--JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- Javascript -->
     <script src="assets/javascript/app.js"></script>
     <!-- Custom JavaScript -->
