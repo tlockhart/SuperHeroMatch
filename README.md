@@ -6,9 +6,9 @@ Group Name: Roots-of-the-Earth-Project-1
 
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
 
-    * Komal: Responsible for finding and integrating the personality API and Superhero API into the application, personality and superhero mapping and frontend HTML/CSS support
+    * Komal: Responsible for finding and integrating the personality API and Superhero API into the application, personality and superhero mapping and frontend HTML/CSS support, created the slider bars
     * Tony: Responsible for integrating the Face Plus Plus API to the app and Firebase
-    * Mary: Responsible for finding and integrating the personality API and Superhero API into the application, personality and superhero mapping and managing the repository
+    * Mary: Responsible for finding and integrating the personality API and Superhero API into the application, personality and superhero mapping, managing the repository, created the Results integration (HTML, CSS, JQuery)
     * Shemika: Responsible for HTML, CSS, and JQuery DOM manipulation.  Responsible for mocking-up the app.
 
 In keeping with the superheroes theme for some of our team members, we thought it would be fun and challenging to create an application that allows the user to answer the ultimate question:

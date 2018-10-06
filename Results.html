@@ -17,7 +17,7 @@
 <div class="container">
     <!-- Div for Heroes to populate -->
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">Your Matched Heroes:</div>   
 
@@ -26,24 +26,74 @@
                 </div>
             </div>
         </div>
-    
-        <!-- Div for Villians to populate -->
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">Your Matched Villians:</div>   
-
-                <div class="card-body">
-                    <div id="villians-pics-div" class="row text-center"></div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid ">
     <!-- Div for friend's results to populate-->
+    <div class="row mx-auto">
+        <div id='friend-results' class="col-sm-12"></div>
+    </div>
+</div>
+     
+<!-- Added link to the jQuery Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/javascript/results.js"></script> 
+
+</body>
+</html>
+
+<!-- Code Graveyard 
+
+// Div for Villians to populate
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">Your Matched Villians:</div>   
+
+            <div class="card-body">
+                <div id="villians-pics-div" class="row text-center"></div>
+            </div>
+        </div>
+    </div>
+
+
+// Friend Cards Not in grid (what want to be)
+<div class="card">
+                <img class="card-img-top" src="assets/images/id1_sample.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Friend 1</h5>
+                    <h6 class="card-text">Top Matched Heroes:</h6>
+                        <ol class="list">
+                            <li id="li-1" class="card-text">Wonder Woman</li>
+                            <li id="li-2" class="card-text">Super Man</li>
+                            <li id="li-3" class="card-text">Bat Man</li>
+                        </ol> 
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+        
+            <div id="friends-card" class="card">
+                    <img id="hero-top-image" class="card-img-top" src="assets/images/id1_sample.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Friend 1</h5>
+                        <h6 class="card-text">Top Matched Heroes:</h6>
+                            <ol class="list">
+                                <li class="card-text">Wonder Woman</li>
+                                <li class="card-text">Super Man</li>
+                                <li class="card-text">Bat Man</li>
+                            </ol> 
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+
+
+// Bootstrap Friends' Cards grid
     <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div id="friends" class="card">
                     <img class="card-img-top" src="assets/images/huntress_sample.png" alt="Card image cap">
                     <div class="card-body">
@@ -56,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
             <div id="friends" class="card">
                     <img class="card-img-top" src="assets/images/batman_sample.png" alt="Card image cap">
                     <div class="card-body">
@@ -69,7 +119,7 @@
                   </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div id="friends" class="card">
                     <img class="card-img-top" src="assets/images/jean_grey_sample.png" alt="Card image cap">
                     <div class="card-body">
@@ -83,7 +133,7 @@
             </div>
             
       
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                   <div id="friends" class="card">
                           <img class="card-img-top border-primary" src="assets/images/superman_sample.jpeg" alt="Card image cap">
                           <div class="card-body">
@@ -96,18 +146,3 @@
                     </div>
             </div>
         </div>
-    
-
-            
-
-            
-    
-    
-</div>
-     
-<!-- Added link to the jQuery Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="assets/javascript/app.js"></script> 
-
-</body>
-</html>
