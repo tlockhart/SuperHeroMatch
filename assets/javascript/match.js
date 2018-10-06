@@ -24,16 +24,6 @@ $(document).ready(function () {
     var heroMatchId = 0;
     /********************************************************/
     //database reference
-    // Step1:  Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBwSQPKaSMnZcJiHZs-jiyLOheDUheFx4U",
-        authDomain: "hero-79706.firebaseapp.com",
-        databaseURL: "https://hero-79706.firebaseio.com",
-        projectId: "hero-79706",
-        storageBucket: "hero-79706.appspot.com",
-        messagingSenderId: "153308607337"
-    };
-    firebase.initializeApp(config);
 
     //Step2: Create a variable to reference the database
     var database = firebase.database();

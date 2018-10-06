@@ -1,6 +1,47 @@
 $(document).ready(function(){
 
-    function createFriendResults() {
+    var database = firebase.database();
+
+    // This will happen once when the page first loads
+    // this is where we will call "createCards(records)"
+    database.ref().once("value", function(snapshot){
+        var records = snapshot.val();
+        console.log('All Records ', records);
+        // createCards(records);
+        createFriendResults(records);
+    });
+
+    database.ref().on("child_added", function (snapshot) {
+        record = snapshot.val();//one record
+        console.log("The record = ", record);
+        //create reference to the db record's key
+        //var key = snapshot.ref.key
+        //Step: Pull data directly from DB, not the reinitialized Global Variables, to populate the table
+        /*userName = record.userNameDb;
+        userAge = record.userAgeDb;
+        userGender =  record.userGenderDb;
+        heroMatchName = record.heroMatchNameDb;
+        heroMatchPhoto = record.heroMatchPhotoDb;
+        heroMatchInt = record.heroMatchIntDb;
+        heroMatchStr = record.heroMatchStrDb;
+        heroMatchSpd = record.heroMatchSpdDb;
+        heroMatchDur = record.heroMatchDurDb;
+        heroMatchPow = record.heroMatchPowDb;
+        heroMatchCmb = record.heroMatchCmbDb;*/
+        createCard(record);
+    });
+
+    // Take individual data record and turn it into a card
+    // This way we can append it to the DOM
+    function createCard (dbRecord) {
+        console.log('createCard', dbRecord);
+    }
+
+    // Take multiple records from the database and render them as cards
+    // this function should call createCard forEach dbRecord
+    // rename to createCards
+    function createFriendResults(dbRecords) {
+        console.log('createCards', dbRecords);
         // Variables from FireBase
         var playerName = 'Mary';
         var friendHero1 = 'One';
