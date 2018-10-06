@@ -9,6 +9,23 @@ body{
     background-color: lightgrey;
     text-align: center;
 }
+
+.card-body {
+    background-color: white
+}
+
+.card-text {
+    text-align: left;
+}
+
+ol {
+    padding-left: 10px;
+}
+
+.row {
+    margin-bottom: 25px;
+}
+
 .jumbotron{  
     background: url("../images/header2.jpg");
     background-size: 100%;
@@ -16,7 +33,7 @@ body{
     font-weight: black 900;
     color: #fff; 
 }
-h1{
+h1 {
     text-align: center;
     font-style: antiquewhite;
     font-weight: bolder;
@@ -101,3 +118,20 @@ h1{
     color: #4781a6;
     font-size: 30px;
 } */
+
+
+h6 {
+    font-weight: bold;
+}
+
+.card-img-top {
+    width: 100%;
+    max-height: 100%;
+}
+
+#friends-card {
+    width: 300px;  
+    float: left;
+    margin-right: 25px;
+    margin-bottom: 25px;
+}
