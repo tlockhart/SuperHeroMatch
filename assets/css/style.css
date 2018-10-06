@@ -13,6 +13,14 @@ body {
     background-color: white
 }
 
+.card-text {
+    text-align: left;
+}
+
+ol {
+    padding-left: 10px;
+}
+
 .row {
     margin-bottom: 25px;
 }
@@ -26,7 +34,18 @@ h1 {
     font-style: antiquewhite;
 }
 
+h6 {
+    font-weight: bold;
+}
+
 .card-img-top {
     width: 100%;
     max-height: 100%;
+}
+
+#friends-card {
+    width: 300px;  
+    float: left;
+    margin-right: 25px;
+    margin-bottom: 25px;
 }
