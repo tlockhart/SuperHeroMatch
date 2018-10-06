@@ -33,10 +33,15 @@ ol {
     font-weight: black 900;
     color: #fff; 
 }
-h1 {
+h1{
     text-align: center;
     font-style: antiquewhite;
     font-weight: bolder;
+}
+
+.submit-results {
+    font-family: 'IM Fell English', serif;
+    text-align: center;
 }
 
 #intro-text {
@@ -119,9 +124,16 @@ h1 {
     font-size: 30px;
 } */
 
-
+/* Mery - this was from your merged changes - not sure where we are using h6? */
 h6 {
     font-weight: bold;
+}
+
+#results-title{
+    font-family: 'IM Fell English', serif;
+    font-size: 20px;
+    background: #4781a6;
+    color: #fff;
 }
 
 .card-img-top {
