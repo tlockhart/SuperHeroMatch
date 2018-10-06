@@ -25,14 +25,13 @@
         <h1 class="display-4">Find your inner Super Hero!</h1>
     </div>
 
-    <div class="container">
+    <div class="container first-page"> <!--giving the conntainer class of "first-page" to help with hiding after results are submitted -->
         <!-- Row for Introduction Text -->
         <div class="row justify-content-lg-center">
             <div class="col-lg-10 intro">
             <h5 id="intro-text"> This test will show you which super hero or super villain you are most like.
             <br>This test only indicates your potential to be a super hero (or villain), and will not give you any super power!</h5>
             <br>
-            <!-- <h4>This is a 2-step assessment.</h4> -->
             </div>
         </div>
 
@@ -243,9 +242,9 @@
             </div>
         </div>
 
-        <div class="row justify-content-lg-center">
+        <div class="row justify-content-lg-center submit-results">
             <div class="col-lg-4">
-                <h4>Ready to Submit?</h4>  
+                <h4>Ready to Submit and know your results?</h4>  
                 <form>
                     <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
                 </form>
@@ -253,8 +252,7 @@
             </div>
         </div>
 
-
-    <!-- <div class="row">
+        <!-- <div class="row">
                 <div class="col-sm-6">
                   <div class="card">
                     <div class="card-body">
@@ -284,12 +282,43 @@
               <a href="#" class="card-link">Another link</a>
             </div>
     </div> -->
+    </div> <!--KB: "first page" container DIV close-->
 
-
-
-
-
-    </div> <!--KB: container DIV close-->
+    <!-- Results Page - should be hidden and will be displayed when user clicks submit -->
+    <div class="container results-page">
+        <!-- Div for Heroes to populate -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- card for matched superhero name -->
+                <div class="card">
+                    <div class="card-header" id="results-title">Your Matched Heroes:
+                    </div>   
+                    <div class="card-body">
+                        <div id="heroes-pics-div" class="row text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CHart results card -->
+            <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header" id="results-title">Chart goes here:
+                        </div>   
+                        <div class="card-body">
+                            <div id="heroes-pics-div" class="row text-center">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid ">
+        <!-- Div for friend's results to populate-->
+        <div class="row mx-auto">
+            <div id='friend-results' class="col-sm-12"></div>
+        </div>
+    </div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
