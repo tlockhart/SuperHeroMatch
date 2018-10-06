@@ -1,10 +1,11 @@
-body {
-       width: 100%;
-       background-image: url();
-       background-size: contain;
-}
 
-.card {
+body{
+    font-family: 'IM Fell English', serif;
+}
+       /* width: 100%; */
+       /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVwEeJEXryWizmlEluz3DUcN2HfC9cCpicslDQ-9XW9n_x-stAQ); */
+       /* background-size: contain; */
+.card{
     background-color: lightgrey;
     text-align: center;
 }
@@ -26,16 +27,113 @@ ol {
 }
 
 .jumbotron{  
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQg6b_xoEYG0KQ1tNPhXHd-oE7siAhJp0NeSVM0p0-0nzWQof-Zw);
-    background-size: 25%;
+    background: url("../images/header2.jpg");
+    background-size: 100%;
+    font-family: 'IM Fell English', serif;
+    font-weight: black 900;
+    color: #fff; 
 }
-h1 {
+h1{
     text-align: center;
     font-style: antiquewhite;
+    font-weight: bolder;
 }
 
+.submit-results {
+    font-family: 'IM Fell English', serif;
+    text-align: center;
+}
+
+#intro-text {
+    font-family: 'IM Fell English', serif;
+    text-align: center;
+    color: whitesmoke;
+    background: #4781a6;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow:10px 10px 10px grey;  
+}
+
+.steps-stuff {
+    font-family: 'IM Fell English', serif;
+    font-size: 20px;
+    color: #4781a6;
+    font-weight: bold;
+}
+
+.form-group {
+    font-family: 'IM Fell English', serif;
+    font-size: 25px;
+}
+
+/* .sliders-area {
+    background-color:#444a5a;
+    border-radius: 15px;
+} */
+
+#question{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Slider color - Intelligence */
+#intel-slider .slider-selection {
+    background: red;
+}
+
+/* Slider color - Strength */
+#stren-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Speed */
+#speed-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Durability */
+#durab-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Power */
+#power-slider .slider-selection {
+	background: red;
+}
+
+/* Slider color - Combat */
+#combat-slider .slider-selection {
+	background: red;
+}
+
+.intro {
+    font-family: 'IM Fell English', serif;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#user-input{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'IM Fell English', serif;
+}
+
+/* span{
+    color: #4781a6;
+    font-size: 30px;
+} */
+
+/* Mery - this was from your merged changes - not sure where we are using h6? */
 h6 {
     font-weight: bold;
+}
+
+#results-title{
+    font-family: 'IM Fell English', serif;
+    font-size: 20px;
+    background: #4781a6;
+    color: #fff;
 }
 
 .card-img-top {
