@@ -8,7 +8,7 @@ $(document).ready(function(){
         var friendHero3 = 'Three';
         var friendHero4 = 'Four';
         var friendHero5 = 'Five';
-        var timeStamp = 'Time';
+        var dateStamp = moment().format("MMM Do YY"); 
         var heroTopImage = 'assets/images/id1_sample.jpg'
 
         // From Moment.js
@@ -59,8 +59,13 @@ createFriendResults ();
 createFriendResults ();
 createFriendResults ();
 
+//var testDate = 'Sep 26 18';
+//var relativeDate = moment(testDate).diff(momentcalendar();
+//console.log(relativeDate);
 
 });
+
+
 
 
 
