@@ -1,18 +1,32 @@
-body{
+body {
        width: 100%;
-       background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVwEeJEXryWizmlEluz3DUcN2HfC9cCpicslDQ-9XW9n_x-stAQ);
+       background-image: url();
        background-size: contain;
 }
 
-.card{
+.card {
     background-color: lightgrey;
     text-align: center;
 }
+
+.card-body {
+    background-color: white
+}
+
+.row {
+    margin-bottom: 25px;
+}
+
 .jumbotron{  
     background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQg6b_xoEYG0KQ1tNPhXHd-oE7siAhJp0NeSVM0p0-0nzWQof-Zw);
     background-size: 25%;
 }
-h1{
+h1 {
     text-align: center;
     font-style: antiquewhite;
+}
+
+.card-img-top {
+    width: 100%;
+    max-height: 100%;
 }
