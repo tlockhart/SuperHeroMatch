@@ -1,3 +1,14 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBwSQPKaSMnZcJiHZs-jiyLOheDUheFx4U",
+    authDomain: "hero-79706.firebaseapp.com",
+    databaseURL: "https://hero-79706.firebaseio.com",
+    projectId: "hero-79706",
+    storageBucket: "hero-79706.appspot.com",
+    messagingSenderId: "153308607337"
+  };
+  firebase.initializeApp(config);
+
 $(document).ready(function(){
 
     function createFriendResults() {
