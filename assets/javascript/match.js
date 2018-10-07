@@ -1,67 +1,73 @@
-$(document).ready(function () {
+$(document).ready(function(){
 
     // This is our API key. Add your own API key between the ""
     var accessToken = "2622992407714821";
-    var heroSearchId = "0";
     var cors = "https://cors-anywhere.herokuapp.com/";
     var userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput;
-    var userGender = 'male';
-    var userAge = 17;
+    var userGender;
+    var userAge;
     var heroScores = [];
 
     var heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
 
-
-    //widen score range if no hero found
-    /*************************************/
+    /*************************************
+     *widen score range if no hero found
+     *************************************/
     var scoreRange = 5;
     var testResponseLength = 10; //test data, change in prod
-    /*************************************/
+    
 
-    /********************************************************/
-    //if no herMatchId is found it will return the first one in the list
-    /********************************************************/
+    /******************************************************************
+    **if no herMatchId is found it will return the first one in the list
+    *********************************************************************/
     var heroMatchId = 0;
     /********************************************************/
-    //database reference
 
     //Step2: Create a variable to reference the database
     var database = firebase.database();
 
-    //enable submit-survey button
-    $('#submit-survey').prop('disabled', false);
-
-    $('#submit-survey').on('click', function (event) {
+    $('#submit-btn').on('click', function (event) {
+        //disable submit-btn button
+    $('#submit-btn').prop('disabled', true);
         // Don't refresh the page!
         event.preventDefault();
 
+        /***********************************************************************
+         * Gender and Age can not be click until the submit button is clicked
+         *8**********************************************************************/
+        userGender = faceGender;
+        //console.log ("FaceGender = "+faceGender);
+        userAge = faceAge;
+        /* **********************************************************************/
+        
+
         // Create CODE HERE to Log the slider values
         userName = $('#name-input').val();
-        console.log("Value 0 = " + userName);
+        //console.log("Value 0 = " + userName);
 
-        $('#int-value').html($('#int-input').val());
-        userIntInput = parseInt($('#int-input').val());
-        console.log("Value 1 = " + userIntInput);
+        //$('#intel-value').html($('#int-input').val());
+        userIntInput = parseInt($('#intel-value').text());
+        //console.log("Value 1 = " + userIntInput);
 
-        $('#str-value').html($('#str-input').val());
-        userStrInput = parseInt($('#str-input').val());
-        console.log("Value 2 = " + userStrInput);
+        //$('#stren-value').html($('#str-input').val());
+        userStrInput = parseInt($('#stren-value').text());
+        //console.log("Value 2 = " + userStrInput);
 
-        $('#spd-value').html($('#spd-input').val());
-        userSpdInput = parseInt($('#spd-input').val());
-        console.log("Value 3 = " + userSpdInput);
+        //$('#spd-value').html($('#spd-input').val());
+        userSpdInput = parseInt($('#speed-value').text());
+        //console.log("Value 3 = " + userSpdInput);
 
-        $('#dur-value').html($('#dur-input').val());
-        userDurInput = parseInt($('#dur-input').val());
-        console.log("Value 4 = " + userDurInput);
+        //$('#dur-value').html($('#dur-input').val());
+        userDurInput = parseInt($('#durab-value').text());
+        //console.log("Value 4 = " + userDurInput);
 
-        $('#pow-value').html($('#pow-input').val());
-        userPowInput = parseInt($('#pow-input').val());
-        console.log("Value 5 = " + userPowInput);
+        //$('#pow-value').html($('#pow-input').val());
+        userPowInput = parseInt($('#power-value').text());
+        //console.log("Value 5 = " + userPowInput);
 
-        $('#cmb-value').html($('#cmb-input').val());
-        userCmbInput = parseInt($('#cmb-input').val());
-        console.log("Value 6 = " + userCmbInput);
+        //$('#cmb-value').html($('#cmb-input').val());
+        userCmbInput = parseInt($('#combat-value').text());
+        //console.log("Value 6 = " + userCmbInput);
 
         //disable button
         $('#submit-survey').prop('disabled', true);
@@ -76,19 +82,20 @@ $(document).ready(function () {
 
     // We then created an AJAX call
     /*******************************************************/
-    function loadHeroData(callback) {
+    //function loadHeroData(callback) {
+        function loadHeroData(callback) {
         $.ajax({
             type: 'GET',
             url: 'assets/data/heros.json', // js is lowercase!
             dataType: 'json'
             /*success: function(data) {
-              console.log('success',data);*/
+              //console.log('success',data);*/
         }).then(function (response) {
-            console.log(response);
+            //console.log(response);
             /*var id = response[0].id;
-            console.log("ID = "+id);
+            //console.log("ID = "+id);
             id = response[102].id;
-            console.log("ID = "+id);
+            //console.log("ID = "+id);
             var heroGender = response[0].appearance.gender.toLowerCase();
             var heroID = reponse[].id;*/
 
@@ -96,26 +103,26 @@ $(document).ready(function () {
 
             for (var i = 0; i < /*response.length*/testResponseLength; i++) {
                 var heroGender = response[i].appearance.gender.toLowerCase();
-                console.log("Hero gender = " + heroGender);
+                //console.log("Hero gender = " + heroGender);
 
                 var heroId = response[i].id;
-                console.log("Hero ID = " + heroId);
+                //console.log("Hero ID = " + heroId);
 
                 var heroGender = response[i].appearance.gender.toLowerCase();
                 var heroInt = response[i].powerstats.intelligence;
-                console.log("Hero Intelligence = " + heroInt);
+                //console.log("Hero Intelligence = " + heroInt);
                 var heroStr = response[i].powerstats.strength;
-                console.log("Hero Strength = " + heroStr);
+                //console.log("Hero Strength = " + heroStr);
                 var heroSpd = response[i].powerstats.speed;
-                console.log("Hero Speed = " + heroSpd);
+                //console.log("Hero Speed = " + heroSpd);
                 var heroDur = response[i].powerstats.durability;
-                console.log("Hero Durability = " + heroDur);
+                //console.log("Hero Durability = " + heroDur);
                 var heroPow = response[i].powerstats.power;
-                console.log("Hero Power = " + heroPow);
+                //console.log("Hero Power = " + heroPow);
                 var heroCmb = response[i].powerstats.combat;
-                console.log("Hero Combat = " + heroCmb);
+                //console.log("Hero Combat = " + heroCmb);
 
-                console.log("Hero Gender = " + heroGender);
+                //console.log("Hero Gender = " + heroGender);
                 if (userGender === heroGender) {
                     //calculate hero match score
                     var heroScore = calculateHeroScore(parseInt(heroInt), parseInt(heroStr), parseInt(heroSpd), parseInt(heroDur), parseInt(heroPow), parseInt(heroCmb));
@@ -127,24 +134,28 @@ $(document).ready(function () {
                     // var userMatch = returnHeroMatchID();
                 }//if
             }//for
-            //for(var i = 0; i < heroScores.length; i++)
-            //{
-            console.log('Hero Scores ' + i + ' = ' + heroScores);
+            for(var j = 0; j < heroScores.length; j++)
+            {
+                //console.log("HEROSCORESARRAY = "+j+" "+heroScores[j]);
+            }
+            //console.log('Hero Scores ' + i + ' = ' + heroScores);
             /*************************************************************
              *Step3:traverse hero array and find index with highest score
             **************************************************************/
             var maxScore = Math.max.apply(null, heroScores);
+            //console.log("MAX SCORE = "+maxScore);
             var maxScoreIndex = heroScores.indexOf(maxScore);
             /********************************************************
              * STEP4: INCREMENT INDEX VALUE TO GET HERO ID
              ********************************************************/
+            //console.log("MAXSCOREINDEX = "+maxScoreIndex);//return -1 not found
             heroMatchId = maxScoreIndex + 1;
-            console.log("Hero Match ID = " + heroMatchId);
-            heroSearchId = heroMatchId;
+            //console.log("Hero Match ID = " + heroMatchId);
+            var heroSearchId = heroMatchId;
             /********************************************************
              * Step5: pull Hero data
              *********************************************************/
-            pullHeroData();
+            pullHeroData(heroSearchId);
 
             //Step6: Store in firebase db occurs in pullHeroData
             //Step7: After hero Data is pulled update display:
@@ -204,7 +215,6 @@ $(document).ready(function () {
 
         //calculate total
         var heroTotalScore = heroStrScore + heroSpdScore + heroDurScore + heroPowScore + heroCmbScore;
-        //console.log('Hero Score = '+heroTotalScore);
         return heroTotalScore;
 
     }
@@ -232,7 +242,7 @@ $(document).ready(function () {
     }
     /*******************************************************/
     //Only necessary to fullfill requirements:
-    function pullHeroData() {
+    function pullHeroData(heroSearchId) {
         // Here we are building the URL we need to query the database
         var queryById = cors + "http://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
         $.ajax({
@@ -241,11 +251,10 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
 
-            //console.log("The queryURL = "+queryURL);
             // Create CODE HERE to log the resulting object
-            console.log(response);
+            //console.log(response);
             heroMatchName = response.name;
-            console.log("Matching Hero Name = " + heroMatchName);
+            //console.log("Matching Hero Name = " + heroMatchName);
             heroMatchPhoto = response.image.url;
             heroMatchInt = response.powerstats.intelligence;
             heroMatchStr = response.powerstats.strength;
@@ -270,41 +279,6 @@ $(document).ready(function () {
 
     //Store to Firebase:
     function storeMatchData() {
-
-
-        /***************************************************
-        *START Update TImer
-        ****************************************************/
-        //Timer variables
-        var updateTimerId;
-        var updateTimerRunning = false;
-
-        //Step4: Set Global Calculated Variables
-        //var arrival = 0; 
-        //var minutesAway = 0; 
-        //var invalidTimeMsg = "Please enter a valid value."
-        // var $displayfirstTimeError = $("#first-time-input").attr('is-error');
-        //console.log("**firstTimeError = "+$displayfirstTimeError);
-
-        /*var displayUpdateTimer = {
-          timeLimit :60,//60s equal 1 min
-          stop: function(){
-              // DONE: Use clearInterval to stop the count here and set the clock to not be running.
-                  clearInterval(updateTimerId);
-                  updateTimerRunning = false;
-          },
-          start: function(){
-              if (!updateTimerRunning) {
-                  updateTimerId = setInterval(updateDisplay,  1000 * displayUpdateTimer.timeLimit);
-                  updateTimerRunning = true;
-              }//if
-          }
-        }*/
-
-        //Start timer for DB updates
-        //displayUpdateTimer.start();
-        /**********************************************************/
-
         database.ref().push({
             userNameDb: userName,
             userAgeDb: userAge,
@@ -318,19 +292,6 @@ $(document).ready(function () {
             heroMatchPowDb: heroMatchPow,
             heroMatchCmbDb: heroMatchCmb
         });//database Push
-        console.log("Completed StoreMatchData");
+        //console.log("Completed StoreMatchData");
     }//StoreMatchData
-    //call this once
-    function updateDisplay() {
-        //Step: Empty out all the Table elements before appending new data
-        //$('#results-display').empty();
-        /*appendTRElement(
-            record.userNameDb, 
-            record.userAgeDb, 
-            record.userGenderDb, 
-            record.heroMatchNameDb, 
-            record.heroMatchPhotoDb
-          ); */
-        console.log("UpdateDisplay: User Name = " + userName + " Age = " + userAge + " Gender = " + userGender + " HeroName = " + heroMatchName + " Photo " + heroMatchPhoto);
-    }//updateDisplay
 });
