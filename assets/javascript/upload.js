@@ -26,10 +26,25 @@ var imageMin = 48;
 var imageMax = 4096;
 var maxKB = 2;
 
-/*input.style.opacity = 0;*/
-$("#submit-image").on("click", function(event) {
+$('#select-btn').on("click", function(){
+  //select button isn't a button, its a label
+    //event.preventDefault();
+    $('#select-btn').hide();
+});
+$("#submit-image").on("click", function() {
     // Don't refresh the page!
     event.preventDefault();
+    /*********************************************************************
+    *Enable/Disable Button for Error Handling
+    ***********************************************************************/
+    $('#select-btn').attr('disabled', 'disabled');
+
+    //disable submit-image (Upload Image Button)
+    $('#submit-image').prop('disabled', true);
+
+    //Enable submit-btn button
+    $('#submit-btn').prop('disabled', false);
+    /***********************************************************************/
 
     //Check Image Dimensions
     if (imageWidth >= imageMin && imageWidth <= imageMax && imageHeight >= imageMin && imageHeight <= imageMax) {
@@ -42,7 +57,7 @@ $("#submit-image").on("click", function(event) {
     //Check File Size
     var unit = fileSize.slice(-2);
     var fileSizeNumber = fileSize.replace(/[^\d.-]/g, '');
-    console.log("FILESIZE = "+fileSizeNumber+"Unit = "+unit);
+    //console.log("FILESIZE = "+fileSizeNumber+"Unit = "+unit);
     if (unit === 'MB')
     {
       if(fileSizeNumber <= maxKB)
@@ -56,17 +71,23 @@ $("#submit-image").on("click", function(event) {
     
     //If input is not valid do not accept image and do nothing
     if (!isInputValid){
-        console.log ("Image is not acceptable!");
+        //console.log ("Image is not acceptable!");
         var error = document.createElement("p");
         var node = document.createTextNode("File not accepted.");
         error.appendChild(node);
         preview.appendChild(error);
         document.getElementById("submit-image").disabled = true;
+
+        //show select image:
+        $('#select-btn').show();
+
+        //disable submit-image (Upload Image Button)
+        $('#submit-image').prop('disabled', true);
         return;
     }
     else 
     {
-        console.log ("Image is acceptable, Sending to FacePlusPlus!");
+        //console.log ("Image is acceptable, Sending to FacePlusPlus!");
         var imageUrl = image.src;
         /*********************************************************
          *This is a call to the function above, it accepts the 
@@ -74,7 +95,6 @@ $("#submit-image").on("click", function(event) {
          *It will take 10 sec depending on photo size
         ***********************************************************/
         convertImageFromUrlToBase64String(imageUrl, function (base64Str) {
-            //console.log('Base 64 String', base64Str);
             var query = "https://api-us.faceplusplus.com/facepp/v3/detect";
             var queryParameters = [
             "api_key=" + key,
@@ -86,7 +106,7 @@ $("#submit-image").on("click", function(event) {
             "return_attributes=gender,age"
             ].join('&');
         
-            console.log("The queryURL = " + query);
+            //console.log("The queryURL = " + query);
         
             $.ajax({
             url: query,
@@ -105,12 +125,10 @@ $("#submit-image").on("click", function(event) {
             }).then(function(response) {
             // Create CODE HERE to Log the queryURL
             // Create CODE HERE to log the resulting object
-            //console.log(response);
             parseToken(response);
             });
         });//convertImageFromUrlToBase64String
     }//else
-
 });//submit-Image on click
 
 /********************************************
@@ -118,7 +136,7 @@ $("#submit-image").on("click", function(event) {
  * ******************************************/
 function parseToken(faceObj){
   faceToken = faceObj.faces[0].face_token;
-  console.log(faceToken);
+  //console.log(faceToken);
 
   //Call FaceAPI to Analyze data
   analyzeFace();
@@ -163,7 +181,6 @@ function isFileTypeValid(file) {
 
     //If no file was selected Output message to preview
     if(curFiles.length === 0) {
-      //para = document.createElement('p');
       para.textContent = 'No image currently selected for upload';
       preview.appendChild(para);
     } 
@@ -173,32 +190,24 @@ function isFileTypeValid(file) {
       preview.appendChild(list);
       for(var i = 0; i < curFiles.length; i++) {
         listItem = document.createElement('li');
-        //para = document.createElement('p');
+
         //Print the image name and file size if the file type matches the accepted types
         if(isFileTypeValid(curFiles[i])) {
-          //para.textContent = 'File name ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size);
           fileName = curFiles[i].name;
           fileSize = returnFileSize(curFiles[i].size);
-          console.log(curFiles[i]);
+          //console.log(curFiles[i]);
           image = document.createElement('img');
           image.src = window.URL.createObjectURL(curFiles[i]);
           image.style.width = '200px';
-  
           listItem.appendChild(image);
-          //listItem.appendChild(para);
           document.getElementById("submit-image").disabled = false;
         } 
         //Else print out file is not valid
         else {
-          //var brake;
-          //brake = document.createElement('<br>');
           para.textContent = 'File name ' + curFiles[i].name + ': File type not valid. Please select an image.';
-          //listItem.appendChild(brake);
           listItem.appendChild(para);
           document.getElementById("submit-image").disabled = true;
         }
-  
-        //list.appendChild(listItem);
       }
     }
   }//updateImageDisplay
@@ -222,16 +231,12 @@ function isFileTypeValid(file) {
             listItem.insertBefore(br, para)           
         };
         img.onerror = function() {
-            //alert( "not a valid file: " + file.type);
-            console.log('NOT A Valid File: '+file.type);
-            //para.textContent = 'Not a valid file: '+file.type;
-
+            //console.log('NOT A Valid File: '+file.type);
             var error = document.createElement("p");
             var node = document.createTextNode('Not a valid file: '+file.type);
             error.appendChild(node);
             preview.appendChild(error);
             document.getElementById("submit-image").disabled = true;
-            //preview.appendChild(para);
         };
         img.src = _URL.createObjectURL(file);
     }//if
