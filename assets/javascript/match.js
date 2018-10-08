@@ -361,5 +361,16 @@ $(document).ready(function(){
             heroMatchCmbDb: heroMatchCmb
         });//database Push
         //console.log("Completed StoreMatchData");
+        //get records to display in Hero Match Card
+
+        $('#lock-btn').attr('hero-name-data', heroMatchName);
+        $('#lock-btn').attr('hero-photo-data', heroMatchPhoto);
+        $('#lock-btn').attr('hero-int-data', heroMatchInt);
+        $('#lock-btn').attr('hero-str-data', heroMatchStr);
+        $('#lock-btn').attr('hero-spd-data', heroMatchSpd);
+        $('#lock-btn').attr('hero-dur-data', heroMatchDur);
+        $('#lock-btn').attr('hero-pow-data', heroMatchPow);
+        $('#lock-btn').attr('hero-cmb-data', heroMatchCmb);
+
     }//StoreMatchData
 });

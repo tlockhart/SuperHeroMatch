@@ -16,6 +16,9 @@ $(document).ready(function(){
     var userPowInput = parseInt($('#power-value').text());
     var userCmbInput = parseInt($('#combat-value').text());
 
+    var timerId;
+    var createUserResult;
+
     $('#lock-btn').on('click', function (event) {
         //$('#lock-btn').prop('disabled', false);
         event.preventDefault();
@@ -69,7 +72,8 @@ $(document).ready(function(){
     $('#submit-btn').on('click', function (event) {
         event.preventDefault();
         // Create User Result Card
-        createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto);
+        //createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto);
+        timerId = setTimeout(createUserResult, 5000);
 
         // Create Chart.js Results
         createChartJS(userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput);
@@ -112,9 +116,29 @@ $(document).ready(function(){
     };
 
     // Function to create user Match and append to DOM
-    function createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto) {
-        console.log('userMatch', dbRecord);
-        
+    //function createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto) {
+       creatUserResult = function(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto){
+         console.log('userMatch', dbRecord);
+        /**********************************************
+         * PULL HERO RESULTS FROM lock-btn
+         **********************************************/
+        var $heroName = $('#lock-btn').attr('hero-name-data');
+        console.log("Hero Name = "+$heroName);
+        var $heroPhoto = $('#lock-btn').attr('hero-photo-data');
+        console.log("Hero PHOTO = "+$heroPhoto);
+        var $heroIntValue = $('#lock-btn').attr('hero-int-data');
+        console.log("Hero INT = "+$heroIntValue);
+        var $heroStrValue = $('#lock-btn').attr('hero-str-data');
+        console.log("Hero STR = "+$heroStrValue);
+        var $heroSpdValue = $('#lock-btn').attr('hero-spd-data');
+        console.log("Hero SPD = "+$heroSpdValue);
+        var $heroDurValue = $('#lock-btn').attr('hero-dur-data');
+        console.log("Hero DUR = "+$heroDurValue);
+        var $heroPowValue = $('#lock-btn').attr('hero-pow-data');
+        console.log("Hero POW = "+$heroPowValue);
+        var $heroCmbValue = $('#lock-btn').attr('hero-cmb-data');
+        console.log("Hero CMB = "+$heroCmbValue);
+        /*********************************************/
         // Creating Card Elements
         var resultsBody = $('<div>', {id:'results-body', class:'card-body row'});
         var heroesPicsDiv = $('<img>', {id:'heroes-pics-div', class:'text-center'});
@@ -144,7 +168,10 @@ $(document).ready(function(){
         resultsBody.append(heroesPicsDiv, matchedStatsDiv);
         matchedStatsDiv.append(ol);
         ol.append(li1, li2, li3, li4, li5, li6);
-    };
+
+        //clear timer
+        clearInterval(timerId);
+    }
     
 
     // Function to create friend cards and append to DOM
