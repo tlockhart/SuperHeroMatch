@@ -45,7 +45,7 @@ $(document).ready(function () {
 
 // ChartJS function
 function createChartJS (userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput) {
-	var ctx = $("#canvas")[0].getContext('2d');
+	var ctx = document.getElementById("myChart").getContext('2d');
 	var myRadarChart = new Chart(ctx, {
     type: 'radar',
     data: {
@@ -77,7 +77,7 @@ function createChartJS (userIntInput, userStrInput, userSpdInput, userDurInput, 
         }
     }
 });
-}
+};
 
 // Function to create user Match and append to DOM
 function createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto) {
