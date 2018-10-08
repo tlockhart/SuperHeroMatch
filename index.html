@@ -268,23 +268,19 @@
         <div class="row">
             <div class="col-lg-8">
                 <!-- card for matched superhero name -->
-                <div class="card">
-                    <div class="card-header" id="results-title">Your Matched Heroes:
-                    </div>   
-                    <div class="card-body">
-                        <div id="heroes-pics-div" class="row text-center">
-                        </div>
-                    </div>
+                <div id="matched-hero" class="card">
+                    <div id="results-title" class="card-header">Your Matched Hero:</div>
+
+                    <!--Card Body is created in results.js file-->
                 </div>
             </div>
-            <!-- CHart results card -->
+            <!-- Chart results card -->
             <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header" id="results-title">Chart goes here:
                         </div>   
                         <div class="card-body">
-                            <div id="heroes-pics-div" class="row text-center">
-                            </div>
+                            
                         </div>
                     </div>
             </div>
@@ -311,7 +307,9 @@
 
     <!-- Javascript -->
     <script src="assets/javascript/app.js"></script>
-    <!-- Custom JavaScript -->
+    <script src="assets/javascript/results.js"></script>
+
+    <!-- Custom FacePlusPlus JavaScript -->
     <!--face.js must be loaded before load.js-->
     <script src="assets/javascript/face.js"></script>
     <script src="assets/javascript/upload.js"></script>

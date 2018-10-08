@@ -124,7 +124,6 @@ h1{
     font-size: 30px;
 } */
 
-/* Mery - this was from your merged changes - not sure where we are using h6? */
 h6 {
     font-weight: bold;
 }
@@ -138,7 +137,7 @@ h6 {
 
 .card-img-top {
     width: 100%;
-    max-height: 100%;
+    max-height: 397.33px;
 }
 
 #friends-card {
