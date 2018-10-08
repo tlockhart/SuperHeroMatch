@@ -67,7 +67,7 @@ $(document).ready(function(){
 
         //$('#intel-value').html($('#int-input').val());
         userIntInput = parseInt($('#intel-value').text());
-        console.log("Value 1 = " + userIntInput);
+        //console.log("Value 1 = " + userIntInput);
         if (!$('#intel-value').text()){
             $('.intel-input').css({'color':'red'});
         }
