@@ -26,6 +26,7 @@ $(document).ready(function(){
         createFriendCard(dbRecord);
     });
 
+    /*
     // Function to create user Match and append to DOM
     function createUserResult(dbRecord) {
         console.log('userMatch', dbRecord);
@@ -59,7 +60,8 @@ $(document).ready(function(){
         resultsBody.append(heroesPicsDiv, matchedStatsDiv);
         matchedStatsDiv.append(ol);
         ol.append(li1, li2, li3, li4, li5, li6);
-    }
+    };
+    */
 
     // Function to create card and append to DOM
     function createFriendCard(dbRecord) {
