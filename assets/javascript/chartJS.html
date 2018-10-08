@@ -14,10 +14,31 @@
 </head>
 <body>
 
-<div class="container">
-    <canvas id="myChart" width="100" height="100"></canvas>
-
-</div>
+        <div class="container">
+                <div class="container results-page">
+                        <!-- Div for Heroes to populate -->
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <!-- card for matched superhero name -->
+                                <div id="matched-hero" class="card">
+                                    <div id="results-title" class="card-header">Your Matched Hero:</div>
+                
+                                    <!--Card Body is created in results.js file-->
+                                </div>
+                            </div>
+                            <!-- Chart results card -->
+                            <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header" id="results-title">Chart goes here:
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="myChart" width="100" height="100"></canvas>                       
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -45,9 +66,7 @@ var myRadarChart = new Chart(ctx, {
             pointBorderColor: 'rgba(255, 0, 0, 1)',
             pointBorderWidth: 1,
             pointRadius: 1,
-
         }]
-        
     },
     options: {
         scales: {

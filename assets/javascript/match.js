@@ -12,9 +12,7 @@ $(document).ready(function(){
 
     var heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
 
-    var dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
-    console.log(dbRecord);
-
+    
     /*************************************
      *widen score range if no hero found
      *************************************/
@@ -81,45 +79,15 @@ $(document).ready(function(){
 
         //load Hero data and find matching hero id:
         loadHeroData();
-        createUserResult(dbRecord);
-
-        // Function to create user Match and append to DOM
-        function createUserResult(dbRecord) {
-            console.log('userMatch', dbRecord);
-            
-            // Creating Card Elements
-            var resultsBody = $('<div>', {id:'results-body', class:'card-body row'});
-            var heroesPicsDiv = $('<img>', {id:'heroes-pics-div', class:'text-center'});
-            var matchedStatsDiv = $('<div>', {id:'matched-stats-div'});
-            var ol = $('<ol>', {class:'list'});
-            var li1 = $('<li>', {id:'li-1', class:'card-text'});
-            var li2 = $('<li>', {id:'li-2', class:'card-text'});
-            var li3 = $('<li>', {id:'li-3', class:'card-text'});
-            var li4 = $('<li>', {id:'li-4', class:'card-text'});
-            var li5 = $('<li>', {id:'li-5', class:'card-text'});
-            var li6 = $('<li>', {id:'li-6', class:'card-text'});
-
-            // Adding data and attributes to card
-            $('#results-title').attr('friend-name', userName);
-            $('#results-title').text('Your Matched Hero: ' + heroMatchName);
-            heroesPicsDiv.attr('src', heroMatchPhoto);
-
-            li1.text('Intelligence: ' + heroMatchInt);
-            li2.text('Strength: ' + heroMatchStr);
-            li3.text('Speed: ' + heroMatchSpd);
-            li4.text('Durability: ' + heroMatchDur);
-            li5.text('Power: ' + heroMatchPow);
-            li6.text('Combat: ' + heroMatchCmb);
-
-            // Append card to DOM
-            $('#matched-hero').append(resultsBody);
-            resultsBody.append(heroesPicsDiv, matchedStatsDiv);
-            matchedStatsDiv.append(ol);
-            ol.append(li1, li2, li3, li4, li5, li6);
-        };
-
+        
         //update display:
         //updateDisplay()
+
+        // Create User Result Card
+        createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto);
+
+        // Create Chart.js Results
+        createChartJS(userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput);
 
     });//submit button
 
