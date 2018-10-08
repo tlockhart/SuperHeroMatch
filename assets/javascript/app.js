@@ -42,3 +42,6 @@ $(document).ready(function () {
 		$("#combat-value").text(slideEvt.value);
 	});
 });
+
+
+
