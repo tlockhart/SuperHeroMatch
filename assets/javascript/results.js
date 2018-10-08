@@ -2,6 +2,39 @@ $(document).ready(function(){
 
     var database = firebase.database();
 
+    var userName = $('#name-input').val();
+    var userIntInput = parseInt($('#intel-value').text());
+    var userStrInput = parseInt($('#stren-value').text());
+    var userSpdInput = parseInt($('#speed-value').text());
+    var userDurInput = parseInt($('#durab-value').text());
+    var userPowInput = parseInt($('#power-value').text());
+    var userCmbInput = parseInt($('#combat-value').text());
+
+    $('#lock-btn').on('click', function (event) {
+        //$('#lock-btn').prop('disabled', false);
+        event.preventDefault();
+
+        // Log input values
+        userName = $('#name-input').val();
+        userIntInput = parseInt($('#intel-value').text());
+        userStrInput = parseInt($('#stren-value').text());
+        userSpdInput = parseInt($('#speed-value').text());
+        userDurInput = parseInt($('#durab-value').text());
+        userPowInput = parseInt($('#power-value').text());
+        userCmbInput = parseInt($('#combat-value').text());
+
+
+        console.log("User Name = " + userName);
+        console.log("Int = " + userIntInput);
+        console.log("Str = " + userStrInput);
+        console.log("Spd = " + userSpdInput);
+        console.log("Dur = " + userDurInput);
+        console.log("Pow 5 = " + userPowInput);
+        console.log("Com 6 = " + userCmbInput);
+
+        //$('#lock-btn').prop('disabled', true);
+    });
+
     database.ref().on("child_added", function (snapshot) {
         record = snapshot.val();//one record
         console.log("The record = ", record);
@@ -26,9 +59,54 @@ $(document).ready(function(){
         createFriendCard(dbRecord);
     });
 
-    /*
+    // Render results on Submit
+    $('#submit-btn').on('click', function (event) {
+        event.preventDefault();
+        // Create User Result Card
+        createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto);
+
+        // Create Chart.js Results
+        createChartJS(userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput);
+    });
+
+    // ChartJS function
+    function createChartJS (userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput) {
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ["Intelligence", "Strength", "Speed", "Durability", "Power", "Combat"],
+            datasets: [{
+                label: 'Category Scores',
+                data: [userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput],
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 0, 0, 1)',
+                ],
+                borderWidth: 4,
+                pointStyle: 'circle',
+                pointBackgroundColor: 'rgba(255, 0, 0, 1)',
+                pointBorderColor: 'rgba(255, 0, 0, 1)',
+                pointBorderWidth: 1,
+                pointRadius: 1,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    };
+
     // Function to create user Match and append to DOM
-    function createUserResult(dbRecord) {
+    function createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto) {
         console.log('userMatch', dbRecord);
         
         // Creating Card Elements
@@ -48,12 +126,12 @@ $(document).ready(function(){
         $('#results-title').text('Your Matched Hero: ' + heroMatchName);
         heroesPicsDiv.attr('src', heroMatchPhoto);
 
-        li1.text('Intelligence: ' + heroMatchInt);
-        li2.text('Strength: ' + heroMatchStr);
-        li3.text('Speed: ' + heroMatchSpd);
-        li4.text('Durability: ' + heroMatchDur);
-        li5.text('Power: ' + heroMatchPow);
-        li6.text('Combat: ' + heroMatchCmb);
+        li1.text('Intelligence: ' + userIntInput);
+        li2.text('Strength: ' + userStrInput);
+        li3.text('Speed: ' + userSpdInput);
+        li4.text('Durability: ' + userDurInput);
+        li5.text('Power: ' + userPowInput);
+        li6.text('Combat: ' + userCmbInput);
 
         // Append card to DOM
         $('#matched-hero').append(resultsBody);
@@ -61,9 +139,9 @@ $(document).ready(function(){
         matchedStatsDiv.append(ol);
         ol.append(li1, li2, li3, li4, li5, li6);
     };
-    */
+    
 
-    // Function to create card and append to DOM
+    // Function to create friend cards and append to DOM
     function createFriendCard(dbRecord) {
         console.log('createCards', dbRecord);
         
@@ -107,13 +185,6 @@ $(document).ready(function(){
         ol.append(li1, li2, li3, li4, li5, li6);
         cardFooter.append(dateFooter);
     };
-
-    
-//var testDate = 'Sep 26 18';
-//var relativeDate = moment(testDate).diff(momentcalendar();
-//console.log(relativeDate);
-
-
 });
 
 /* Graveyard
@@ -166,10 +237,8 @@ Mary's code:
         var friendGender = snapshot.val().userGenderDb;
         var friendName = snapshot.val().userNameDb; 
 
+var testDate = 'Sep 26 18';
+var relativeDate = moment(testDate).diff(momentcalendar();
+console.log(relativeDate);
+
 */
-
-
-
-
-
-

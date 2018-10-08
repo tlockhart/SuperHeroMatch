@@ -83,12 +83,7 @@ $(document).ready(function(){
         //update display:
         //updateDisplay()
 
-        // Create User Result Card
-        createUserResult(userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, heroMatchName, heroMatchPhoto);
-
-        // Create Chart.js Results
-        createChartJS(userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput);
-
+        
     });//submit button
 
     // We then created an AJAX call
