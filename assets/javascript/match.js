@@ -150,43 +150,27 @@ $(document).ready(function(){
     /*******************************************************/
     //function loadHeroData(callback) {
         function loadHeroData(callback) {
-        $.ajax({
-            type: 'GET',
-            url: 'assets/data/heros.json', // js is lowercase!
-            dataType: 'json'
-            /*success: function(data) {
-              //console.log('success',data);*/
-        }).then(function (response) {
-            //console.log(response);
-            /*var id = response[0].id;
-            //console.log("ID = "+id);
-            id = response[102].id;
-            //console.log("ID = "+id);
-            var heroGender = response[0].appearance.gender.toLowerCase();
-            var heroID = reponse[].id;*/
-
             //loop through hero data
-
-            for (var i = 0; i < /*response.length*/testResponseLength; i++) {
-                var heroGender = response[i].appearance.gender.toLowerCase();
+            for (var i = 0; i < testResponseLength; i++) {
+                var heroGender = data[i].appearance.gender.toLowerCase();
                 //console.log("Hero gender = " + heroGender);
 
-                var heroId = response[i].id;
+                var heroId = data[i].id;
                 //console.log("Hero ID = " + heroId);
 
-                var heroGender = response[i].appearance.gender.toLowerCase();
+                var heroGender = data[i].appearance.gender.toLowerCase();
                 //console.log("Hero Gender = "+heroGender);
-                var heroInt = response[i].powerstats.intelligence;
+                var heroInt = data[i].powerstats.intelligence;
                 //console.log("Hero Intelligence = " + heroInt);
-                var heroStr = response[i].powerstats.strength;
+                var heroStr = data[i].powerstats.strength;
                 //console.log("Hero Strength = " + heroStr);
-                var heroSpd = response[i].powerstats.speed;
+                var heroSpd = data[i].powerstats.speed;
                 //console.log("Hero Speed = " + heroSpd);
-                var heroDur = response[i].powerstats.durability;
+                var heroDur = data[i].powerstats.durability;
                 //console.log("Hero Durability = " + heroDur);
-                var heroPow = response[i].powerstats.power;
+                var heroPow = data[i].powerstats.power;
                 //console.log("Hero Power = " + heroPow);
-                var heroCmb = response[i].powerstats.combat;
+                var heroCmb = data[i].powerstats.combat;
                 //console.log("Hero Combat = " + heroCmb);
 
                 //console.log("Hero Gender = " + heroGender);
@@ -196,9 +180,6 @@ $(document).ready(function(){
 
                     //Step2: store hero score and ID in an Array
                     heroScores.push(heroScore);
-
-
-                    // var userMatch = returnHeroMatchID();
                 }//if
             }//for
             for(var j = 0; j < heroScores.length; j++)
@@ -241,11 +222,6 @@ $(document).ready(function(){
             //console.log("Super Hero Search ID"+heroSearchId);
 
             //Step6: Store in firebase db occurs in pullHeroData
-            //Step7: After hero Data is pulled update display:
-            //To be handled in Results
-            /*updateDisplay();*/
-
-        });
     }
     /*******************************************************/
     function calculateHeroScore(heroIntRef, heroStrRef, heroSpdRef, heroDurRef, heroPowRef, heroCmbRef) {
