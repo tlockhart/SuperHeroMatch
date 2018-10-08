@@ -220,13 +220,14 @@ function isFileTypeValid(file) {
       preview.appendChild(list);
       for(var i = 0; i < curFiles.length; i++) {
         listItem = document.createElement('li');
-
+        listItem.setAttribute('id', 'li-id');
         //Print the image name and file size if the file type matches the accepted types
         if(isFileTypeValid(curFiles[i])) {
           fileName = curFiles[i].name;
           fileSize = returnFileSize(curFiles[i].size);
           //console.log(curFiles[i]);
           image = document.createElement('img');
+          image.setAttribute('id', 'image-id');
           image.src = window.URL.createObjectURL(curFiles[i]);
           image.style.width = '200px';
           listItem.appendChild(image);

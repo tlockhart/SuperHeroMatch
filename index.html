@@ -65,7 +65,7 @@
                 <!-- intelligence slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How <strong>smart</strong> do you think you are?</p>
+                        <p id="question" class = "intel-input">How <strong>smart</strong> do you think you are?</p>
                     </label>
                     0
                     <input id="intel-input" data-slider-id="intel-slider" type="text" data-provide="slider"
@@ -79,7 +79,7 @@
                 <!-- Strength slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How strong do you think you are?</p>
+                        <p id="question" class = "stren-input">How strong do you think you are?</p>
                     </label>
                     0
                     <input id="stren-input" data-slider-id="stren-slider" type="text" data-provide="slider"
@@ -93,7 +93,7 @@
                 <!-- Speed Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How fast do you think you are?</p>
+                        <p id="question" class = "speed-input">How fast do you think you are?</p>
                     </label>
                     0
                     <input id="speed-input" data-slider-id="speed-slider" type="text" data-provide="slider"
@@ -107,7 +107,7 @@
                 <!-- Durability Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How adaptable do you think you are?</p>
+                        <p id="question" class = "durab-input">How adaptable do you think you are?</p>
                     </label>
                     0
                     <input id="durab-input" data-slider-id="durab-slider" type="text" data-provide="slider"
@@ -121,7 +121,7 @@
                 <!-- Power Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How much power do you think you have?</p>
+                        <p id="question" class = "power-input">How much power do you think you have?</p>
                     </label>
                     0
                     <input id="power-input" data-slider-id="power-slider" type="text" data-provide="slider"
@@ -135,7 +135,7 @@
                 <!-- Combat Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How competitive do you think you are?</p>
+                        <p id="question" class = "combat-input">How competitive do you think you are?</p>
                     </label>
                     0
                     <input id="combat-input" data-slider-id="combat-slider" type="text" data-provide="slider"
@@ -200,6 +200,7 @@
                 <div class="row steps-stuff">
                     <img id="step-4" src="assets/images/step4.png" alt="Step 4" width="50px" height="50px">
                     <p id="steps">Click Submit to see your results</p>
+                    <p id="form-msg"></p>
                     <button type="submit" class="btn btn-primary btn-lg" disabled="disabled" id="submit-btn">Submit</button>
                 </div>
             </div>
@@ -262,6 +263,7 @@
 
         <!--face.js must be loaded before load.js-->
         <!--script src="assets/javascript/face.js"></script-->
+        <script src="assets/data/heros.js"></script>
         <script src="assets/javascript/upload.js"></script>
         <script src="assets/javascript/match.js"></script>
 
