@@ -43,7 +43,7 @@
             <div class="col-lg-4 form-inline">
                 <div class="form-group form-group-lg">
                     <label for="name-input">
-                    <img id="step-1" src = "assets/images/icon-question01.png" alt = "Step 1" width ="50px" height="50px">
+                    <img id="step-1" src = "assets/images/step1.png" alt = "Step 1" width ="50px" height="50px">
                     <h4><b>Let's get started! Tell us your name:</b></h4></label>
                     <input class="form-control" id="name-input" type="text" placeholder="Your Name">
                     <p id="name-error"></p>
@@ -52,27 +52,28 @@
         </div>
         <!-- </div> -->
         <br>
-
-
         <!-- Row for Sliders & Image Upload -->
-        <div class="row steps-stuff">
-            <img id="step-2" src="assets/images/step-2.png" alt="Step 2" width="50px" height="50px">
-            <p id="steps">Rate yourself on a scale of 0 to 100</p>
-        </div>
-        <div class="row mw-50 justify-content-lg-center sliders-area">
-            <div class="col-lg-9">
+        <div class="row">
+            <div class="col-lg-4 name-container">
+                <img id="step-2" src = "assets/images/step2.png" alt = "Step 2" width ="50px" height="50px">
+                <h4><b>Rate yourself on a scale of 1 to 100:</b></h4></label>
+            </div>
+        
+            <div class="col-lg-8 sliders-area">
+
                 <!-- KB: START OF SLIDERS -->
                 <!-- intelligence slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question">How smart do you think you are?</p>
+                        <p id="question">How <strong>smart</strong> do you think you are?</p>
                     </label>
                     0
                     <input id="intel-input" data-slider-id="intel-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
                     100
-                    <span id="user-input">You Selected: <span id="intel-value"></span></span>
+                    <br>
+                    <span id="user-input">You selected: <span id="intel-value"></span></span>
                 </div>
 
                 <!-- Strength slider -->
@@ -85,6 +86,7 @@
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
                     100
+                    <br>
                     <span id="user-input">You selected: <span id="stren-value"></span></span>
                 </div>
 
@@ -98,6 +100,7 @@
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
                     100
+                    <br>
                     <span id="user-input">You selected: <span id="speed-value"></span></span>
                 </div>
 
@@ -111,6 +114,7 @@
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
                     100
+                    <br>
                     <span id="user-input">You selected: <span id="durab-value"></span></span>
                 </div>
 
@@ -124,6 +128,7 @@
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
                     100
+                    <br>
                     <span id="user-input">You selected: <span id="power-value"></span></span>
                 </div>
 
@@ -137,24 +142,24 @@
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
                     100
+                    <br>
                     <span id="user-input">You selected: <span id="combat-value"></span></span>
                 </div>
                 <!-- END OF ALL SLIDERS -->
             </div>
         </div>
         <!--Div closes row-->
-
-        <div class="row steps-stuff">
-            <img id="step-3" src="assets/images/step-3.png" alt="Step 3" width="50px" height="50px">
-            <p id="steps">Upload your image</p>
-        </div>
-
         <!-- Image upload input -->
-        <div class="row justify-content-lg-center">
-            <!-- <div class = "col-lg-4"> -->
+        <div class="row ">
+                
+                        <div class="col-lg-4 name-container">
+                            <img id="step-3" src = "assets/images/step3.png" alt = "Step 3" width ="50px" height="50px">
+                            <h4><b>Upload your Image</b></h4></label>
+                        </div>
+            <div class = "col-lg-4 name-container">
                 <fieldset class="field-set">
                     <legend style="width:auto;"></legend><!--Image Upload-->
-                        <h5 class = "text-center">Image Upload</h5>                        
+                                               
                     <form method="post" enctype="multipart/form-data">
                         <div class="image-input-wrapper">
                             <!--label for="user-image">Select Image:</label-->
@@ -163,34 +168,39 @@
                                 <b>Requirements:</b> <br>
                                 <li><b>Filesize:</b> &#60; 2MB</li>
                                 <li><b>Dimensions: </b>
-                                    <ol>
-                                        <li>Min: 48, Max: 800</li>
-                                    </ol>
+                                   Min: 48, Max: 800
                             </ol>
                             <!--Input field is hiddent due to default display-->
                             <input type="file" id="image-input" name="image-input" accept=".png, .jpeg, .jpg"/>                            
                             <!--label>Browse</label-->
                         </div>
-                        <div class="preview">
-                            <p id="error">No file currently selected for upload</p>
+
+                        <!-- <div class="preview">
+                            <p id="error">No file currently selected for upload</p> -->
                             <!--p id="face"></p-->
-                        </div>
+                        <!-- </div> -->
                         <button class="btn btn-primary" disabled ="disabled" id="submit-image" type="submit">Upload Image</button>
                         <div>
                             <!--WHAT IS THIS EMPTY DIV FOR?  -->
                         </div>
                     </form>
                 </fieldset>
+            </div>
+            <div class = "col-lg-4 name-container"> 
+            <div class="preview">
+                <h4>Image Preview</h4>
+                    <p id="error">No file currently selected for upload</p>
+                    <!--p id="face"></p-->
+            </div>
+            </div>
         </div>
 
-        <div class=" row justify-content-lg-center submit-results">
-            <div class="col-lg-4">
+        <div class=" row justify-content-lg-center submit-results name-container">
+            <div class="col-lg-12">
                 <div class="row steps-stuff">
-                    <img id="step-4" src="assets/images/step-4.png" alt="Step 3" width="50px" height="50px">
+                    <img id="step-4" src="assets/images/step4.png" alt="Step 4" width="50px" height="50px">
                     <p id="steps">Click Submit to see your results</p>
-                    <form>
-                        <button type="submit" class="btn btn-primary btn-lg" disabled="disabled" id="submit-btn">Submit</button>
-                    </form>
+                    <button type="submit" class="btn btn-primary btn-lg" disabled="disabled" id="submit-btn">Submit</button>
                 </div>
             </div>
         </div>

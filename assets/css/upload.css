@@ -1,5 +1,5 @@
 .output {
-    font: 1rem 'Fira Sans', sans-serif;
+    font-family: 'IM Fell English', serif;
 }
 
 label {
@@ -10,8 +10,8 @@ label {
 }
 #submit-image {
     /*margin-top: 10px;*/
-  }
-.field-set{
+}
+/* .field-set{
     border:1px solid black;
     border-radius: 5px;
     padding-left: 20%;
@@ -20,7 +20,8 @@ label {
     overflow:hidden;
     display: inline-block;
     background-color : white;
-}
+} */
+
 #image-input{
     /*overflow:hidden;*/
     /*height:0;*/

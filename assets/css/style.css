@@ -70,7 +70,7 @@ h1{
     color:black;
     background:#EAEAEA;
     border-radius: 15px;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .form-group {
@@ -131,6 +131,11 @@ h1{
     font-family: 'IM Fell English', serif;
 }
 
+#intel-value, #stren-value, #speed-value, #durab-value, #power-value, #combat-value {
+    color: #356991;
+    font-size: 36px;
+    font-weight: bold;
+}
 /* span{
     color: #4781a6;
     font-size: 30px;
