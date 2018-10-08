@@ -12,9 +12,6 @@ $(document).ready(function(){
 
     var heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
 
-    var dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
-    console.log(dbRecord);
-
     /*************************************
      *widen score range if no hero found
      *************************************/
@@ -33,9 +30,19 @@ $(document).ready(function(){
 
     $('#submit-btn').on('click', function (event) {
         //disable submit-btn button
-    $('#submit-btn').prop('disabled', true);
+    //$('#submit-btn').prop('disabled', true);
         // Don't refresh the page!
         event.preventDefault();
+
+        //clear error handling:
+        $('#form-msg').text('').css({'color': ''});
+        $('#name-input').css({'border':''});
+        $('.intel-input').css({'color':''});
+        $('.stren-input').css({'color':''});
+        $('.speed-input').css({'color':''});
+        $('.durab-input').css({'color':''});
+        $('.power-input').css({'color':''});
+        $('.combat-input').css({'color':''});
 
         /***********************************************************************
          * Gender and Age can not be click until the submit button is clicked
@@ -51,78 +58,93 @@ $(document).ready(function(){
         // Create CODE HERE to Log the slider values
         userName = $('#name-input').val();
         //console.log("Value 0 = " + userName);
+        if (!userName){
+            $('#form-msg').text('Please complete all fields').css({'color': 'red'});
+            $('#name-input').css({'border':'solid 1px red'});
+         }
+         
+        
 
         //$('#intel-value').html($('#int-input').val());
         userIntInput = parseInt($('#intel-value').text());
-        //console.log("Value 1 = " + userIntInput);
+        console.log("Value 1 = " + userIntInput);
+        if (!$('#intel-value').text()){
+            $('.intel-input').css({'color':'red'});
+        }
 
         //$('#stren-value').html($('#str-input').val());
         userStrInput = parseInt($('#stren-value').text());
         //console.log("Value 2 = " + userStrInput);
+        if (!$('#stren-value').text()){
+            $('.stren-input').css({'color':'red'});
+        }
 
         //$('#spd-value').html($('#spd-input').val());
         userSpdInput = parseInt($('#speed-value').text());
         //console.log("Value 3 = " + userSpdInput);
+        if (!$('#speed-value').text()){
+            $('.speed-input').css({'color':'red'});
+        }
 
         //$('#dur-value').html($('#dur-input').val());
         userDurInput = parseInt($('#durab-value').text());
         //console.log("Value 4 = " + userDurInput);
+        if (!$('#durab-value').text()){
+            $('.durab-input').css({'color':'red'});
+        }
 
         //$('#pow-value').html($('#pow-input').val());
         userPowInput = parseInt($('#power-value').text());
         //console.log("Value 5 = " + userPowInput);
+        if (!$('#power-value').text()){
+            $('.power-input').css({'color':'red'});
+        }
 
         //$('#cmb-value').html($('#cmb-input').val());
         userCmbInput = parseInt($('#combat-value').text());
         //console.log("Value 6 = " + userCmbInput);
-
+        if (!$('#combat-value').text()){
+            $('.combat-input').css({'color':'red'});
+        }
+        if (!userName || 
+            !$('#intel-value').text() || 
+            !$('#stren-value').text() || 
+            !$('#speed-value').text() || 
+            !$('#durab-value').text() ||
+            !$('#power-value').text() ||
+            !$('#combat-value').text())
+            {
+                $('#form-msg').text('Please complete all fields').css({'color': 'red'});  
+                return; 
+             }
         //disable button
         $('#submit-survey').prop('disabled', true);
 
         //load Hero data and find matching hero id:
         loadHeroData();
-        createUserResult(dbRecord);
 
-        // Function to create user Match and append to DOM
-        function createUserResult(dbRecord) {
-            console.log('userMatch', dbRecord);
-            
-            // Creating Card Elements
-            var resultsBody = $('<div>', {id:'results-body', class:'card-body row'});
-            var heroesPicsDiv = $('<img>', {id:'heroes-pics-div', class:'text-center'});
-            var matchedStatsDiv = $('<div>', {id:'matched-stats-div'});
-            var ol = $('<ol>', {class:'list'});
-            var li1 = $('<li>', {id:'li-1', class:'card-text'});
-            var li2 = $('<li>', {id:'li-2', class:'card-text'});
-            var li3 = $('<li>', {id:'li-3', class:'card-text'});
-            var li4 = $('<li>', {id:'li-4', class:'card-text'});
-            var li5 = $('<li>', {id:'li-5', class:'card-text'});
-            var li6 = $('<li>', {id:'li-6', class:'card-text'});
-
-            // Adding data and attributes to card
-            $('#results-title').attr('friend-name', userName);
-            $('#results-title').text('Your Matched Hero: ' + heroMatchName);
-            heroesPicsDiv.attr('src', heroMatchPhoto);
-
-            li1.text('Intelligence: ' + heroMatchInt);
-            li2.text('Strength: ' + heroMatchStr);
-            li3.text('Speed: ' + heroMatchSpd);
-            li4.text('Durability: ' + heroMatchDur);
-            li5.text('Power: ' + heroMatchPow);
-            li6.text('Combat: ' + heroMatchCmb);
-
-            // Append card to DOM
-            $('#matched-hero').append(resultsBody);
-            resultsBody.append(heroesPicsDiv, matchedStatsDiv);
-            matchedStatsDiv.append(ol);
-            ol.append(li1, li2, li3, li4, li5, li6);
-        };
+        //clear input values:
+        clearInput();
 
         //update display:
         //updateDisplay()
 
     });//submit button
 
+    function clearInput(){
+        $('#name-input').val('');
+        $('#intel-value').text('');
+        $('#stren-value').text('');
+        $('#speed-value').text('');
+        $('#durab-value').text('');
+        $('#power-value').text('');
+        $('#combat-value').text('');
+       // $('#image-id').src('');
+       $('#li-id').remove();
+       $('#face').remove();
+       $('#select-btn').show();
+       $('#submit-btn').prop('disabled', true);
+    }
     // We then created an AJAX call
     /*******************************************************/
     //function loadHeroData(callback) {
@@ -326,7 +348,7 @@ $(document).ready(function(){
             heroMatchCmb = response.powerstats.combat;
 
             //Step6: Store in firebase db
-            //10/07/2018
+            //10/08/2018
             /******************************************************/
             storeMatchData()
             /******************************************************/
