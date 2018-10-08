@@ -7,6 +7,8 @@ $(document).ready(function(){
     var userGender;
     var userAge;
     var heroScores = [];
+    var defaultMaleHeroId = '72';
+    var defaultFemaleHeroId = '97';
 
     var heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
 
@@ -14,7 +16,7 @@ $(document).ready(function(){
      *widen score range if no hero found
      *************************************/
     var scoreRange = 5;
-    var testResponseLength = 10; //test data, change in prod
+    var testResponseLength = 470; //test data, change in prod
     
 
     /******************************************************************
@@ -34,10 +36,12 @@ $(document).ready(function(){
 
         /***********************************************************************
          * Gender and Age can not be click until the submit button is clicked
-         *8**********************************************************************/
-        userGender = faceGender;
-        //console.log ("FaceGender = "+faceGender);
-        userAge = faceAge;
+         ***********************************************************************/
+        //userGender = faceGender;
+        userGender = $('#face').attr('gender');
+        //console.log ("FaceGender = "+userGender);
+        userAge = $('#face').attr('age');
+        //console.log("Face Age = "+userAge);
         /* **********************************************************************/
         
 
@@ -109,6 +113,7 @@ $(document).ready(function(){
                 //console.log("Hero ID = " + heroId);
 
                 var heroGender = response[i].appearance.gender.toLowerCase();
+                //console.log("Hero Gender = "+heroGender);
                 var heroInt = response[i].powerstats.intelligence;
                 //console.log("Hero Intelligence = " + heroInt);
                 var heroStr = response[i].powerstats.strength;
@@ -152,10 +157,26 @@ $(document).ready(function(){
             heroMatchId = maxScoreIndex + 1;
             //console.log("Hero Match ID = " + heroMatchId);
             var heroSearchId = heroMatchId;
+
+            /*********************************************
+             * Handle error if no match is found:
+             **********************************************/
+            if (heroSearchId == 0 && userGender === 'male')
+            {
+                heroSearchId = defaultMaleHeroId; //BattleStar
+            }
+            else if (heroSearchId == 0 && userGender == 'female')
+            {
+                heroSearchId = defaultFemaleHeroId;//Black Canary
+            }
             /********************************************************
-             * Step5: pull Hero data
+             * Step5: pull Hero data from Super SuperHeroAPI
              *********************************************************/
-            pullHeroData(heroSearchId);
+            //10/07/2018
+            /*****************************************/
+             pullHeroData(heroSearchId);
+            /* ***************************************/
+            //console.log("Super Hero Search ID"+heroSearchId);
 
             //Step6: Store in firebase db occurs in pullHeroData
             //Step7: After hero Data is pulled update display:
@@ -243,6 +264,7 @@ $(document).ready(function(){
     /*******************************************************/
     //Only necessary to fullfill requirements:
     function pullHeroData(heroSearchId) {
+        //console.log("Hero Search ID =" +heroSearchId);
         // Here we are building the URL we need to query the database
         var queryById = cors + "http://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
         $.ajax({
@@ -252,6 +274,7 @@ $(document).ready(function(){
         }).then(function (response) {
 
             // Create CODE HERE to log the resulting object
+            
             //console.log(response);
             heroMatchName = response.name;
             //console.log("Matching Hero Name = " + heroMatchName);
@@ -264,6 +287,7 @@ $(document).ready(function(){
             heroMatchCmb = response.powerstats.combat;
 
             //Step6: Store in firebase db
+            //10/07/2018
             /******************************************************/
             storeMatchData()
             /******************************************************/
