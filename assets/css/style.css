@@ -1,6 +1,7 @@
 
 body{
-    font-family: 'IM Fell English', serif;
+    font-family: 'IM Fell English', serif!important;
+    background: #444a5a!important;
 }
        /* width: 100%; */
        /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVwEeJEXryWizmlEluz3DUcN2HfC9cCpicslDQ-9XW9n_x-stAQ); */
@@ -27,12 +28,14 @@ ol {
 }
 
 .jumbotron{  
-    background: url("../images/header2.jpg");
+    background: url("../images/header3.jpg");
     background-size: 100%;
     font-family: 'IM Fell English', serif;
     font-weight: black 900;
     color: #fff; 
+    
 }
+
 h1{
     text-align: center;
     font-style: antiquewhite;
@@ -45,20 +48,29 @@ h1{
 }
 
 #intro-text {
-    font-family: 'IM Fell English', serif;
+    /* font-family: 'IM Fell English', serif; */
+    margin-top: -32px;
     text-align: center;
-    color: whitesmoke;
-    background: #4781a6;
-    border-radius: 15px;
+    color: white;
+    background: #000018;
+    width: 100%;
+    border-radius: 0px 0px 15px 15px;
     padding: 10px;
-    box-shadow:10px 10px 10px grey;  
+    box-shadow:5px 5px 5px grey;  
 }
 
 .steps-stuff {
-    font-family: 'IM Fell English', serif;
-    font-size: 20px;
-    color: #4781a6;
-    font-weight: bold;
+    /* font-family: 'IM Fell English', serif; */
+    font-size: 30px;
+    /* color: #4781a6; */
+    font-weight: bolder;
+}
+
+.name-container {
+    color:black;
+    background:#EAEAEA;
+    border-radius: 15px;
+    /* padding: 10px; */
 }
 
 .form-group {
@@ -66,10 +78,10 @@ h1{
     font-size: 25px;
 }
 
-/* .sliders-area {
-    background-color:#444a5a;
+.sliders-area {
+    background:#EAEAEA;
     border-radius: 15px;
-} */
+}
 
 #question{
     font-size: 20px;
@@ -78,40 +90,40 @@ h1{
 
 /* Slider color - Intelligence */
 #intel-slider .slider-selection {
-    background: red;
+    background:#356991;
 }
 
 /* Slider color - Strength */
 #stren-slider .slider-selection {
-	background: red;
+	background: #356991;
 }
 
 /* Slider color - Speed */
 #speed-slider .slider-selection {
-	background: red;
+	background:#356991;
 }
 
 /* Slider color - Durability */
 #durab-slider .slider-selection {
-	background: red;
+	background: #356991;
 }
 
 /* Slider color - Power */
 #power-slider .slider-selection {
-	background: red;
+	background: #356991;
 }
 
 /* Slider color - Combat */
 #combat-slider .slider-selection {
-	background: red;
+	background: #356991;
 }
 
-.intro {
+/* .intro {
     font-family: 'IM Fell English', serif;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-}
+} */
 
 #user-input{
     font-weight: bold;
@@ -119,6 +131,11 @@ h1{
     font-family: 'IM Fell English', serif;
 }
 
+#intel-value, #stren-value, #speed-value, #durab-value, #power-value, #combat-value {
+    color: #356991;
+    font-size: 36px;
+    font-weight: bold;
+}
 /* span{
     color: #4781a6;
     font-size: 30px;
