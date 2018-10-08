@@ -156,36 +156,35 @@
         <!-- Image upload input -->
         <div class="row justify-content-lg-center">
             <!-- <div class = "col-lg-4"> -->
-            <fieldset class="field-set">
-                <legend style="width:auto;"></legend>
-                <!--Image Upload-->
-                <h5 class="text-center">Image Upload</h5>
-                <form method="post" enctype="multipart/form-data">
-                    <div class="image-input-wrapper">
-                        <!--label for="user-image">Select Image:</label-->
-                        <label class="btn btn-primary upload-btn" id="select-btn" for="image-input">Select image (PNG,
-                            JPG)</label>
-                        <ol>
-                            <b>Requirements:</b> <br>
-                            <li><b>Filesize:</b> &#60; 2MB</li>
-                            <li><b>Dimensions: </b>
-                                <ol>
-                                    <li>Min: 48, Max: 4096</li>
-                                </ol>
-                        </ol>
-                        <!--Input field is hiddent due to default display-->
-                        <input type="file" id="image-input" name="image-input" accept=".png, .jpeg, .jpg" />
-                        <!--label>Browse</label-->
-                    </div>
-                    <div class="preview">
-                        <p id="error">No file currently selected for upload</p>
-                    </div>
-                    <button class="btn btn-primary" disabled="disabled" id="submit-image" type="submit">Upload Image</button>
-                    <div>
-                        <!--WHAT IS THIS EMPTY DIV FOR?  -->
-                    </div>
-                </form>
-            </fieldset>
+                <fieldset class="field-set">
+                    <legend style="width:auto;"></legend><!--Image Upload-->
+                        <h5 class = "text-center">Image Upload</h5>                        
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="image-input-wrapper">
+                            <!--label for="user-image">Select Image:</label-->
+                            <label class = "btn btn-primary upload-btn" id="select-btn" for="image-input">Select image (PNG, JPG)</label>
+                            <ol>
+                                <b>Requirements:</b> <br>
+                                <li><b>Filesize:</b> &#60; 2MB</li>
+                                <li><b>Dimensions: </b>
+                                    <ol>
+                                        <li>Min: 48, Max: 800</li>
+                                    </ol>
+                            </ol>
+                            <!--Input field is hiddent due to default display-->
+                            <input type="file" id="image-input" name="image-input" accept=".png, .jpeg, .jpg"/>                            
+                            <!--label>Browse</label-->
+                        </div>
+                        <div class="preview">
+                            <p id="error">No file currently selected for upload</p>
+                            <!--p id="face"></p-->
+                        </div>
+                        <button class="btn btn-primary" disabled ="disabled" id="submit-image" type="submit">Upload Image</button>
+                        <div>
+                            <!--WHAT IS THIS EMPTY DIV FOR?  -->
+                        </div>
+                    </form>
+                </fieldset>
         </div>
 
         <div class=" row justify-content-lg-center submit-results">
@@ -233,7 +232,6 @@
             </div>
         </div>
 
-
         <!-- Firebase Reference -->
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
         <!--JQuery-->
@@ -249,19 +247,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.min.js" integrity="sha256-rjNVc4p9W5ytzudhfdvmen38QnQTPHD6izDAF9nA95w="
             crossorigin="anonymous"></script>
 
-        <!-- Javascript -->
+         <!-- Javascript -->
         <script src="assets/javascript/app.js"></script>
         <script src="assets/javascript/results.js"></script>
 
         <!--face.js must be loaded before load.js-->
-        <script src="assets/javascript/face.js"></script>
+        <!--script src="assets/javascript/face.js"></script-->
         <script src="assets/javascript/upload.js"></script>
         <script src="assets/javascript/match.js"></script>
-        
-        <!-- <script src="assets/javascript/results.js"></script> -->
-
-
 
 </body>
-
 </html>

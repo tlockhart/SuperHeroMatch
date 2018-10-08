@@ -1,4 +1,5 @@
-//FacePlusPlus API:
+$(document).ready(function(){
+  //FacePlusPlus API:
 var key = "o5qW4trQcuO1e8ElIJEIDnecHNILHOSu";
 var secret = "i4yY2sL2dg8cOxpUYTN8AZ4pKMHGP2lV";  
 
@@ -23,27 +24,40 @@ var faceToken;
 
 //const
 var imageMin = 48;
-var imageMax = 4096;
+var imageMax = 800;
 var maxKB = 2;
 
 $('#select-btn').on("click", function(){
   //select button isn't a button, its a label
     //event.preventDefault();
     $('#select-btn').hide();
+
+    //enable submit-image (Upload Image Button)
+    $('#submit-image').prop('disabled', false);
+
+    var $ptag = $('.preview #file-msg').text();
 });
+  
+function enableSubmitBtn(){
+    var $ptag = $('.preview #file-msg').text();
+    if ($ptag === 'File not accepted.')
+    {
+      //disable submit-btn
+      $('#submit-btn').prop('disabled', true);
+      //console.log("Image not processed");
+    }
+}
 $("#submit-image").on("click", function() {
     // Don't refresh the page!
     event.preventDefault();
     /*********************************************************************
-    *Enable/Disable Button for Error Handling
+    *Enablesubmit Button for Error Handling
     ***********************************************************************/
     $('#select-btn').attr('disabled', 'disabled');
-
-    //disable submit-image (Upload Image Button)
-    $('#submit-image').prop('disabled', true);
-
-    //Enable submit-btn button
-    $('#submit-btn').prop('disabled', false);
+      $('#submit-image').prop('disabled', true);
+      //face++ timer to give results time to return
+      enableSubmitBtn();
+    
     /***********************************************************************/
 
     //Check Image Dimensions
@@ -72,11 +86,20 @@ $("#submit-image").on("click", function() {
     //If input is not valid do not accept image and do nothing
     if (!isInputValid){
         //console.log ("Image is not acceptable!");
-        var error = document.createElement("p");
-        var node = document.createTextNode("File not accepted.");
-        error.appendChild(node);
-        preview.appendChild(error);
-        document.getElementById("submit-image").disabled = true;
+        var fileMsg = document.getElementById("file-msg");
+        //console.log ("IS FILEMSG CREATED = "+fileMsg);
+        if(fileMsg){
+          document.getElementById("file-msg").innerHTML= "File not accepted.";
+        }
+        else{
+          var error = document.createElement("p");
+          error.setAttribute("id", "file-msg");
+          var node = document.createTextNode("File not accepted.");
+          error.appendChild(node);
+          preview.appendChild(error);
+        }
+        
+        document.getElementById("submit-btn").disabled = true;
 
         //show select image:
         $('#select-btn').show();
@@ -84,6 +107,12 @@ $("#submit-image").on("click", function() {
         //disable submit-image (Upload Image Button)
         $('#submit-image').prop('disabled', true);
         return;
+
+        //Disable submit-btn button
+        //$('#submit-btn').attr('disabled', 'disabled');
+        //disable submit-btn
+        //$('#submit-btn').prop('disabled', true);
+        document.getElementById("submit-btn").disabled = true;
     }
     else 
     {
@@ -95,7 +124,8 @@ $("#submit-image").on("click", function() {
          *It will take 10 sec depending on photo size
         ***********************************************************/
         convertImageFromUrlToBase64String(imageUrl, function (base64Str) {
-            var query = "https://api-us.faceplusplus.com/facepp/v3/detect";
+          //var cors = "https://cors-anywhere.herokuapp.com/";
+            var query = /*cors+*/"https://api-us.faceplusplus.com/facepp/v3/detect";
             var queryParameters = [
             "api_key=" + key,
             "api_secret=" + secret,
@@ -241,3 +271,74 @@ function isFileTypeValid(file) {
         img.src = _URL.createObjectURL(file);
     }//if
 }//setDimensions
+//function to do the conversion of an image (received as url argument) and return and call a call back function
+function convertImageFromUrlToBase64String(url, callbackFn) {
+  var img = new Image();
+  img.crossOrigin = "Anonymous";
+  img.onload = function () {
+    var canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0);
+    var dataUrl = canvas.toDataURL('image/jpg');
+    if (dataUrl && typeof callbackFn === 'function') {
+      // look for "data: image/png;base64,"
+      // or look for "data: image/jpg;base64,"
+      // or look for "data: image/jpeg;base64,"
+      //The Call back function, passes it the dataURL (base64 image) as an argument
+      callbackFn(dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""));
+    }
+  };
+  img.src = url;//url is the img src
+}//convertImage
+function analyzeFace(){
+  var url = "https://api-us.faceplusplus.com/facepp/v3/face/analyze";
+  var queryParams = [
+    "api_key=" + key,
+    "api_secret=" + secret,
+    "face_tokens="+faceToken,
+    "return_landmark=1",
+    "return_attributes=gender,age,emotion,ethnicity,beauty,glass,skinstatus,facequality"
+  ].join('&');
+  var query = url + '?' + queryParams;
+  //console.log("The queryURL = "+query);
+  $.ajax({
+        url: query,
+        method: "POST"
+      }).then(function(response) {
+        //console.log(response);
+        var faceAge = response.faces[0].attributes.age.value;
+        var faceGender = (response.faces[0].attributes.gender.value).toLowerCase();
+        var faceEthnicity = (response.faces[0].attributes.ethnicity.value).toLowerCase();
+        var faceBType = faceGender+'_score';
+        var faceBRequest = 'response.faces[0].attributes.beauty.'+faceBType;
+        var faceBeauty = faceBRequest;
+        var faceEmotions = response.faces[0].attributes.emotion;
+
+        
+        //$faceMsg.text('');
+        var $facePara = $('#face');
+        if ($facePara.length === 0)
+        {
+          var $faceMsg = $('<p>');
+          $faceMsg.attr('id', 'face');
+          $faceMsg.text("Image processed!");
+          $faceMsg.attr('age', faceAge);
+          $faceMsg.attr('gender', faceGender);
+          $('.preview').append($faceMsg);
+
+          //Enable submit button  when response from face++ received
+          $('#submit-btn').prop('disabled', false);
+
+         // console.log("Image has been processed!"+"Gender = "+faceGender+" Age = "+faceAge);
+        }
+        else{
+         $faceMsg.text("Image not processed!");
+          //console.log("Image has been processed!"+"Gender = "+faceGender+" Age = "+faceAge);
+          //console.log("face id is not null");
+        }        
+      });
+  }//analyzeFace
+}); //document ready
