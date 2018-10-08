@@ -1,6 +1,12 @@
 $(document).ready(function(){
 
+    //decalre local variables
+    var userAge, userGender, heroMatchName, 
+    heroMatchPhoto, heroMatchInt, heroMatchStr, 
+    heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
+
     var database = firebase.database();
+    var dbRecord;
 
     var userName = $('#name-input').val();
     var userIntInput = parseInt($('#intel-value').text());
@@ -37,7 +43,7 @@ $(document).ready(function(){
 
     database.ref().on("child_added", function (snapshot) {
         record = snapshot.val();//one record
-        console.log("The record = ", record);
+        //console.log("The record = ", record);
       
         // Pulling data from Db 
         userName = record.userNameDb;
@@ -143,7 +149,7 @@ $(document).ready(function(){
 
     // Function to create friend cards and append to DOM
     function createFriendCard(dbRecord) {
-        console.log('createCards', dbRecord);
+        //console.log('createCards', dbRecord);
         
         // Creating Card Elements
         var friendsCard = $('<div>', {id:'friends-card', class:'card'});

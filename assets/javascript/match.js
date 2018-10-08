@@ -17,6 +17,7 @@ $(document).ready(function(){
      *************************************/
     var scoreRange = 5;
     var testResponseLength = 470; //test data, change in prod
+    //var testResponseLength = 20;
     
 
     /******************************************************************
@@ -49,7 +50,7 @@ $(document).ready(function(){
          ***********************************************************************/
         //userGender = faceGender;
         userGender = $('#face').attr('gender');
-        //console.log ("FaceGender = "+userGender);
+        //console.log ("User FaceGender = "+userGender);
         userAge = $('#face').attr('age');
         //console.log("Face Age = "+userAge);
         /* **********************************************************************/
@@ -151,7 +152,7 @@ $(document).ready(function(){
     //function loadHeroData(callback) {
         function loadHeroData(callback) {
             //loop through hero data
-            for (var i = 0; i < testResponseLength; i++) {
+            for (var i = 0; i < testResponseLength/*data.length*/; i++) {
                 var heroGender = data[i].appearance.gender.toLowerCase();
                 //console.log("Hero gender = " + heroGender);
 
@@ -173,14 +174,19 @@ $(document).ready(function(){
                 var heroCmb = data[i].powerstats.combat;
                 //console.log("Hero Combat = " + heroCmb);
 
+                var isGenderEqual = userGender === heroGender;
                 //console.log("Hero Gender = " + heroGender);
-                if (userGender === heroGender) {
+                if (isGenderEqual) {
                     //calculate hero match score
+                    //console.log("Gender EQUAL: UserGender = "+userGender+"HeroGender = "+heroGender+" Do gender match: "+isGenderEqual);
                     var heroScore = calculateHeroScore(parseInt(heroInt), parseInt(heroStr), parseInt(heroSpd), parseInt(heroDur), parseInt(heroPow), parseInt(heroCmb));
 
                     //Step2: store hero score and ID in an Array
                     heroScores.push(heroScore);
                 }//if
+                else{
+                    //console.log("Gender NOT Equal: UserGender = "+userGender+"HeroGender = "+heroGender+" Do gender match: "+isGenderEqual);
+                }
             }//for
             for(var j = 0; j < heroScores.length; j++)
             {
