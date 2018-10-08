@@ -129,6 +129,7 @@ $(document).ready(function(){
         //update display:
         //updateDisplay()
 
+        
     });//submit button
 
     function clearInput(){
