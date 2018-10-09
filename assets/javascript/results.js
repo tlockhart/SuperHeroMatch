@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.results-page').hide();
     $('.card-deck').hide();
-    $('#lock-btn').prop('disabled', false);
+    $('#lock-btn').prop('disabled', false);//enable
 
     //decalre local variables
     var userAge, userGender, heroMatchName, 
@@ -19,8 +19,13 @@ $(document).ready(function(){
     var userPowInput = parseInt($('#power-value').text());
     var userCmbInput = parseInt($('#combat-value').text());
 
+    var $heroName, $heroPhoto, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue;
+
+
     var timerId;
+    var chartTimerId;
     var createUserResult;
+    var createChartJS;
     
     /******************************************************
      * ERROR HANDLING
@@ -70,7 +75,8 @@ $(document).ready(function(){
             !$('#power-value').text() ||
             !$('#combat-value').text())
             {
-                $('#steps').text('Please complete all selections, then Lock them in.').css({'color': 'red'});  
+                $('#steps').text('Please complete all selections, then Lock them in.').css({'color': 'red'});
+                $('#lock-btn').prop('disabled', false); //enable 
                 return; 
              }
              /****************************************************/
@@ -84,6 +90,7 @@ $(document).ready(function(){
             userPowInput = parseInt($('#power-value').text());
             userCmbInput = parseInt($('#combat-value').text());
 
+            $('#steps').text('Your selections are locked in.').css({'color': ''});                  
             console.log("User Name = " + userName);
             console.log("Int = " + userIntInput);
             console.log("Str = " + userStrInput);
@@ -91,10 +98,8 @@ $(document).ready(function(){
             console.log("Dur = " + userDurInput);
             console.log("Pow 5 = " + userPowInput);
             console.log("Com 6 = " + userCmbInput);
+            $('#lock-btn').prop('disabled', true);//disable
         }
-        
-
-        $('#lock-btn').prop('disabled', true);
     });
 
     /******************************************************/
@@ -107,10 +112,18 @@ $(document).ready(function(){
         $('.results-page').show();
 	    $('.card-deck').show();
 
-        timerId = setTimeout(createUserResult, 5000);
+        //Pull user data if results are locked in
+        var $steps = $('#steps').text();
+        if ($steps != 'Your selections are locked in.') {  
+                return;
+        }
+        else{
+            timerId = setTimeout(createUserResult, 8000);
+        }
+        
 
         // Create Chart.js Results
-        createChartJS(userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput);
+        //chartTimerId = setTimeout(createChartJS, 6000);
 
         /******************************************************/
         // Database Listener and creating Friend Cards
@@ -145,22 +158,32 @@ $(document).ready(function(){
     createUserResult = function(userName, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue, $heroName, $heroPhoto){
         
         // PULL HERO RESULTS FROM lock-btn
-        var $heroName = $('#lock-btn').attr('hero-name-data');
+        $heroName = $('#lock-btn').attr('hero-name-data');
         console.log("Hero Name = "+ $heroName);
-        var $heroPhoto = $('#lock-btn').attr('hero-photo-data');
+        $heroPhoto = $('#lock-btn').attr('hero-photo-data');
         console.log("Hero PHOTO = "+ $heroPhoto);
-        var $heroIntValue = $('#lock-btn').attr('hero-int-data');
+        $heroIntValue = $('#lock-btn').attr('hero-int-data');
         console.log("Hero INT = "+ $heroIntValue);
-        var $heroStrValue = $('#lock-btn').attr('hero-str-data');
+        $heroStrValue = $('#lock-btn').attr('hero-str-data');
         console.log("Hero STR = "+ $heroStrValue);
-        var $heroSpdValue = $('#lock-btn').attr('hero-spd-data');
+        $heroSpdValue = $('#lock-btn').attr('hero-spd-data');
         console.log("Hero SPD = "+ $heroSpdValue);
-        var $heroDurValue = $('#lock-btn').attr('hero-dur-data');
+        $heroDurValue = $('#lock-btn').attr('hero-dur-data');
         console.log("Hero DUR = "+ $heroDurValue);
-        var $heroPowValue = $('#lock-btn').attr('hero-pow-data');
+        $heroPowValue = $('#lock-btn').attr('hero-pow-data');
         console.log("Hero POW = "+ $heroPowValue);
-        var $heroCmbValue = $('#lock-btn').attr('hero-cmb-data');
+        $heroCmbValue = $('#lock-btn').attr('hero-cmb-data');
         console.log("Hero CMB = "+ $heroCmbValue);
+        
+        //clear old heroes
+        var $oldResultBody = $('#results-body');
+        var $oldList = $('.list');
+        if ($oldResultBody.length){
+            $('#results-body').remove();
+        }
+        if ($oldList.length){
+            $oldList.remove();
+        }
         
         // Creating Card Elements
         var resultsBody = $('<div>', {id:'results-body', class:'card-body row'});
@@ -267,11 +290,22 @@ $(document).ready(function(){
         cardBody.append(cardTitle, cardText, ol);
         ol.append(li1, li2, li3, li4, li5, li6);
         cardFooter.append(dateFooter);
-    };
+    }
 
     /******************************************************/
     // ChartJS function
-    function createChartJS (userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue) {
+    /*createChartJS = function(userIntInput, 
+        userStrInput, 
+        userSpdInput, 
+        userDurInput, 
+        userPowInput, 
+        userCmbInput, 
+        $heroIntValue, 
+        $heroStrValue, 
+        $heroSpdValue, 
+        $heroDurValue, 
+        $heroPowValue, 
+        $heroCmbValue) {
         var ctx = document.getElementById("myChart").getContext('2d');
         var myRadarChart = new Chart(ctx, {
         type: 'radar',
@@ -289,6 +323,7 @@ $(document).ready(function(){
                 }]
             },
         });
-    };
+        clearInterval(chartTimerId);
+    };//createChart*/
 
 });

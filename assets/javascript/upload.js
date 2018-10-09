@@ -211,7 +211,7 @@ function isFileTypeValid(file) {
 
     //If no file was selected Output message to preview
     if(curFiles.length === 0) {
-      para.textContent = 'No image currently selected for upload';
+      para.textContent = 'No file currently selected for upload';
       preview.appendChild(para);
     } 
     //If files selected loop through the files
