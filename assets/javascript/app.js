@@ -10,9 +10,6 @@ var config = {
 firebase.initializeApp(config);
 	
 $(document).ready(function () {
-	$('.results-page').hide();
-	$('.card-deck').hide();
-
 	// SLIDER EVENTS
 
 	// Slider event for intelligence
@@ -47,6 +44,3 @@ $(document).ready(function () {
 
 		
 });
-
-
-
