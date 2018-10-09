@@ -22,28 +22,77 @@ $(document).ready(function(){
     var timerId;
     var createUserResult;
     
-    /******************************************************/
+    /******************************************************
+     * ERROR HANDLING
+     * ****************************************************/
     // Lock button Click
     $('#lock-btn').on('click', function (event) {
-        
+        var userName = $('#name-input').val();
         event.preventDefault();
 
-        // Log input values
-        userName = $('#name-input').val();
-        userIntInput = parseInt($('#intel-value').text());
-        userStrInput = parseInt($('#stren-value').text());
-        userSpdInput = parseInt($('#speed-value').text());
-        userDurInput = parseInt($('#durab-value').text());
-        userPowInput = parseInt($('#power-value').text());
-        userCmbInput = parseInt($('#combat-value').text());
+        //clear error handling:
+        $('#steps').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': ''});
+        $('#name-input').css({'border':''});
+        $('.intel-input').css({'color':''});
+        $('.stren-input').css({'color':''});
+        $('.speed-input').css({'color':''});
+        $('.durab-input').css({'color':''});
+        $('.power-input').css({'color':''});
+        $('.combat-input').css({'color':''});
 
-        console.log("User Name = " + userName);
-        console.log("Int = " + userIntInput);
-        console.log("Str = " + userStrInput);
-        console.log("Spd = " + userSpdInput);
-        console.log("Dur = " + userDurInput);
-        console.log("Pow 5 = " + userPowInput);
-        console.log("Com 6 = " + userCmbInput);
+        if (!userName){
+            /*$('.modal-1').modal();*/
+            $('#name-input').css({'border':'solid 1px red'});
+         }
+        if (!$('#intel-value').text()){
+            $('.intel-input').css({'color':'red'});
+        }
+        if (!$('#stren-value').text()){
+            $('.stren-input').css({'color':'red'});
+        }
+        if (!$('#speed-value').text()){
+            $('.speed-input').css({'color':'red'});
+        }
+        if (!$('#durab-value').text()){
+            $('.durab-input').css({'color':'red'});
+        }
+        if (!$('#power-value').text()){
+            $('.power-input').css({'color':'red'});
+        }
+        if (!$('#combat-value').text()){
+            $('.combat-input').css({'color':'red'});
+        }       
+        if (!userName || 
+            !$('#intel-value').text() || 
+            !$('#stren-value').text() || 
+            !$('#speed-value').text() || 
+            !$('#durab-value').text() ||
+            !$('#power-value').text() ||
+            !$('#combat-value').text())
+            {
+                $('#steps').text('Please complete all selections, then Lock them in.').css({'color': 'red'});  
+                return; 
+             }
+             /****************************************************/
+        else{
+            // Log input values
+            userName = $('#name-input').val();
+            userIntInput = parseInt($('#intel-value').text());
+            userStrInput = parseInt($('#stren-value').text());
+            userSpdInput = parseInt($('#speed-value').text());
+            userDurInput = parseInt($('#durab-value').text());
+            userPowInput = parseInt($('#power-value').text());
+            userCmbInput = parseInt($('#combat-value').text());
+
+            console.log("User Name = " + userName);
+            console.log("Int = " + userIntInput);
+            console.log("Str = " + userStrInput);
+            console.log("Spd = " + userSpdInput);
+            console.log("Dur = " + userDurInput);
+            console.log("Pow 5 = " + userPowInput);
+            console.log("Com 6 = " + userCmbInput);
+        }
+        
 
         $('#lock-btn').prop('disabled', true);
     });
