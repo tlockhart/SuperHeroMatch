@@ -155,7 +155,7 @@ $(document).ready(function(){
         $('#submit-btn').prop('disabled', true);
         heroScores = [];
         heroIds = [];
-        //$('#lock-btn').prop('disabled', false);
+        $('#lock-btn').prop('disabled', false);
         $('.lock-text').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': 'maroon'});
         $('#error').text('No file currently selected for upload');
     }

@@ -78,6 +78,7 @@ $(document).ready(function(){
                 //console.log("In results.js check");
                 $('.lock-text').text('Please complete all selections, then Lock them in.').css({'color': 'red'});
                 return; 
+                $('#lock-btn').prop('disabled', false); //enable
              }
              /****************************************************/
         else{
@@ -91,16 +92,16 @@ $(document).ready(function(){
             userCmbInput = parseInt($('#combat-value').text());
 
             $('.lock-text').text('Your selections are locked in.').css({'color': ''});                  
-            console.log("User Name = " + userName);
+            /*console.log("User Name = " + userName);
             console.log("Int = " + userIntInput);
             console.log("Str = " + userStrInput);
             console.log("Spd = " + userSpdInput);
             console.log("Dur = " + userDurInput);
             console.log("Pow 5 = " + userPowInput);
-            console.log("Com 6 = " + userCmbInput);
+            console.log("Com 6 = " + userCmbInput);*/
             $('#lock-btn').prop('disabled', true);//disable
         }
-        $('#lock-btn').prop('disabled', false); //enable 
+         
     });
 
     /******************************************************/
@@ -119,7 +120,7 @@ $(document).ready(function(){
                 return;
         }
         else if ($steps === 'Your selections are locked in.'){
-            timerId = setTimeout(createUserResult, 8000);
+            timerId = setTimeout(createUserResult, 10000);
         }
         
 
@@ -129,7 +130,7 @@ $(document).ready(function(){
         /******************************************************/
         // Database Listener and creating Friend Cards
         database.ref().on("child_added", function (snapshot) {
-            record = snapshot.val();
+            var record = snapshot.val();
                 
             // Pulling data from Db 
             userName = record.userNameDb;
@@ -146,10 +147,11 @@ $(document).ready(function(){
             timeStamp = record.userTimeStampDb;
             
             // Take Db data and turning into card
-            dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
+            //dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
 
             // Create friend card
-            createFriendCard(dbRecord);
+            //createFriendCard(dbRecord);
+            createFriendCard(userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp);
             //console.log(timeStamp);
         });
     });
@@ -249,7 +251,7 @@ $(document).ready(function(){
     
     /******************************************************/
     // Function to create friend cards and append to DOM
-    function createFriendCard(dbRecord) {
+    function createFriendCard(userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp) {
         //console.log('createCards', dbRecord);
         $('.card-deck').show();
         // Creating Card Elements
@@ -258,7 +260,7 @@ $(document).ready(function(){
         var cardBody = $('<div>', {class:'card-body'});
         var cardTitle = $('<h5>', {class:'card-title'});
         var cardText = $('<h6>', {class:'card-text'});
-        var ol = $('<ol>', {class:'list'});
+        var ol = $('<ol>', {class:'.friends-list'});
         var li1 = $('<li>', {id:'li-1', class:'card-text'});
         var li2 = $('<li>', {id:'li-2', class:'card-text'});
         var li3 = $('<li>', {id:'li-3', class:'card-text'});
