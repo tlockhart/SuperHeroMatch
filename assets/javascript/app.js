@@ -41,6 +41,8 @@ $(document).ready(function () {
 	$("#combat-input").on("slideStop", function(slideEvt) {
 		$("#combat-value").text(slideEvt.value);
 	});
+
+		
 });
 
 

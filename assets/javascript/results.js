@@ -18,11 +18,14 @@ $(document).ready(function(){
 
     var timerId;
     var createUserResult;
+    
+        
+    
 
     /******************************************************/
     // Lock button Click
     $('#lock-btn').on('click', function (event) {
-        //$('#lock-btn').prop('disabled', false);
+        // $('#lock-btn').prop('disabled', false);
         event.preventDefault();
 
         // Log input values
