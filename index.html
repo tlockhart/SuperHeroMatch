@@ -56,22 +56,26 @@
         <div class="row">
             <div class="col-lg-4 name-container">
                 <img id="step-2" src = "assets/images/step2.png" alt = "Step 2" width ="50px" height="50px">
-                <h4><b>Rate yourself on a scale of 1 to 100:</b></h4></label>
+                <h4><b>Rate yourself:</b></h4></label>
             </div>
+            
         
             <div class="col-lg-8 sliders-area">
 
                 <!-- KB: START OF SLIDERS -->
                 <!-- intelligence slider -->
+                <br>
+                <br>
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "intel-input">How <strong>smart</strong> do you think you are?</p>
+                        <p id="question" class = "intel-input">Intelligence: Are people intimidated when they play against you at Trivial Pursuit?  </p>
                     </label>
-                    0
+                    <br>
+                    Not Intimidated
                     <input id="intel-input" data-slider-id="intel-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    Very Intimidated
                     <br>
                     <span id="user-input">You selected: <span id="intel-value"></span></span>
                 </div>
@@ -79,13 +83,14 @@
                 <!-- Strength slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "stren-input">How strong do you think you are?</p>
+                        <p id="question" class = "stren-input">Strength: Are as strong as a kitten or an ox?</p>
+
                     </label>
-                    0
+                    Kitten
                     <input id="stren-input" data-slider-id="stren-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    Ox
                     <br>
                     <span id="user-input">You selected: <span id="stren-value"></span></span>
                 </div>
@@ -93,13 +98,13 @@
                 <!-- Speed Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "speed-input">How fast do you think you are?</p>
+                        <p id="question" class = "speed-input">Speed: Are you the tortoise (slow and steady) or the hare (fast and wild)?</p>
                     </label>
-                    0
+                    Tortoise
                     <input id="speed-input" data-slider-id="speed-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    Hare
                     <br>
                     <span id="user-input">You selected: <span id="speed-value"></span></span>
                 </div>
@@ -107,13 +112,14 @@
                 <!-- Durability Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "durab-input">How adaptable do you think you are?</p>
+                        <p id="question" class = "durab-input">Durability: Can you take a lickin' and keep on tickin'?</p>
                     </label>
-                    0
+                    <div></div>
+                    Lickin
                     <input id="durab-input" data-slider-id="durab-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    Tickin
                     <br>
                     <span id="user-input">You selected: <span id="durab-value"></span></span>
                 </div>
@@ -121,13 +127,14 @@
                 <!-- Power Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "power-input">How much power do you think you have?</p>
+                        <p id="question" class = "power-input">Power: Do you usually get to watch what you want on Netflix?              </p>
                     </label>
-                    0
+                    <div></div>
+                    No Chill
                     <input id="power-input" data-slider-id="power-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    Chill
                     <br>
                     <span id="user-input">You selected: <span id="power-value"></span></span>
                 </div>
@@ -135,13 +142,14 @@
                 <!-- Combat Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "combat-input">How competitive do you think you are?</p>
+                        <p id="question" class = "combat-input"><strong>Combat</strong>Are you a lover or a fighter?</p>
                     </label>
-                    0
+                    <div></div>
+                    Lover
                     <input id="combat-input" data-slider-id="combat-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    Fighter
                     <br>
                     <span id="user-input">You selected: <span id="combat-value"></span></span>
                 </div>
@@ -152,6 +160,7 @@
                 <p id="steps">Lock in your values!</p>
                     <button id="lock-btn" type="submit" class="btn btn-primary btn-lg">Lock it in</button>
             </div>
+            <br>
         </div>
         <!--Div closes row-->
         <!-- Image upload input -->
@@ -159,7 +168,7 @@
                 
                         <div class="col-lg-4 name-container">
                             <img id="step-3" src = "assets/images/step3.png" alt = "Step 3" width ="50px" height="50px">
-                            <h4><b>Upload your Image</b></h4></label>
+                            <h4><b>Every superhero has a hidden identity - Upload your identity"</b></h4></label>
                         </div>
             <div class = "col-lg-4 name-container">
                 <fieldset class="field-set">
@@ -184,7 +193,7 @@
                             <p id="error">No file currently selected for upload</p> -->
                             <!--p id="face"></p-->
                         <!-- </div> -->
-                        <button class="btn btn-primary" disabled ="disabled" id="submit-image" type="submit">Upload Image</button>
+                        <button class="btn btn-primary" disabled ="disabled" id="submit-image" type="submit">Upload Identity</button>
                         <div>
                             <!--WHAT IS THIS EMPTY DIV FOR?  -->
                         </div>
