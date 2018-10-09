@@ -177,7 +177,7 @@ $(document).ready(function(){
     // Function to create friend cards and append to DOM
     function createFriendCard(dbRecord) {
         //console.log('createCards', dbRecord);
-        
+        $('.card-deck').show();
         // Creating Card Elements
         var friendsCard = $('<div>', {id:'friends-card', class:'card'});
         var heroTopImageDiv = $('<img>', {id:'hero-top-image', class:'card-img-top'});
@@ -212,7 +212,7 @@ $(document).ready(function(){
         dateFooter.text('date');
 
         // Append card to DOM
-        $('#friend-results').append(friendsCard);
+        $('#friend-results').prepend(friendsCard);
         friendsCard.append(heroTopImageDiv, cardBody, cardFooter);
         cardBody.append(cardTitle, cardText, ol);
         ol.append(li1, li2, li3, li4, li5, li6);

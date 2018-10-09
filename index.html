@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8" />
-    <!--meta http-equiv="X-UA-Compatible" content="IE=edge"-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Project #1</title>
-    <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSS Style -->
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/upload.css">
@@ -28,19 +28,18 @@
         <h1 class="display-4">Find your inner Super Hero!</h1>
     </div>
 
+    <!--giving the conntainer class of "first-page" to help with hiding after results are submitted -->
     <div class="container first-page">
-        <!--giving the conntainer class of "first-page" to help with hiding after results are submitted -->
         <!-- Row for Introduction Text -->
-        <div class="row mw-100">
-            <!-- <div class="col-lg-12 intro"> -->
+        <div class="row">
             <h5 id="intro-text"> This test will show you which super hero or super villain you are most like.
             <br>This test only indicates your potential to be a super hero (or villain), and will not give you any super power!</h5>
             <br>
-            <!-- </div> -->
         </div>
 
-        <div class="row name-container ">
-            <div class="col-lg-4 form-inline">
+        <div class="row name-container p-3 justify-content-lg-center">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6 p-3  kb-box">
                 <div class="form-group form-group-lg">
                     <label for="name-input">
                     <img id="step-1" src = "assets/images/step1.png" alt = "Step 1" width ="50px" height="50px">
@@ -49,126 +48,135 @@
                     <p id="name-error"></p>
                 </div>
             </div>
+            <div class="col-lg-2"></div>
         </div>
-        <!-- </div> -->
         <br>
-        <!-- Row for Sliders & Image Upload -->
-        <div class="row">
-            <div class="col-lg-4 name-container">
+        <!-- Row for Sliders -->
+        <div class="row p-3 justify-content-lg-center">
+            <div class="col-lg-2 name-container"></div>
+            <div class="col-lg-6 p-3 kb-box">
                 <img id="step-2" src = "assets/images/step2.png" alt = "Step 2" width ="50px" height="50px">
-                <h4><b>Rate yourself on a scale of 1 to 100:</b></h4></label>
+                <h4><b>Truthfully answer these 6 questions ('coz that's what superhero's do!)</b></h4></label>
             </div>
+            <div class="col-lg-2"></div>
         
-            <div class="col-lg-8 sliders-area">
+            <div class="col-lg-6 sliders-area">
 
                 <!-- KB: START OF SLIDERS -->
                 <!-- intelligence slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "intel-input">How <strong>smart</strong> do you think you are?</p>
-                    </label>
-                    0
+                        <p id="question" class = "intel-input"><b>Q1.</b> Are people initimidated when they play against you at Trivial Pursuit?</p>
+                    </label><br>
+                    <b>Not intimidated</b>
                     <input id="intel-input" data-slider-id="intel-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
-                    <br>
-                    <span id="user-input">You selected: <span id="intel-value"></span></span>
+                    <b>Very intimidated</b>
+                   <br>
+                    <span id="user-input">Your Score: <span id="intel-value"></span></span>
                 </div>
+                <hr>
 
                 <!-- Strength slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "stren-input">How strong do you think you are?</p>
-                    </label>
-                    0
+                        <p id="question" class = "stren-input"><b>Q2. </b>Are you the tortoise (slow and steady) or the hare (fast and wild)?</p>
+                    </label><br>
+                    <b>Tortoise</b>
                     <input id="stren-input" data-slider-id="stren-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    <b>Hare</b>
                     <br>
-                    <span id="user-input">You selected: <span id="stren-value"></span></span>
+                    <span id="user-input">Your Score: <span id="stren-value"></span></span>
                 </div>
+                <hr>
 
                 <!-- Speed Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "speed-input">How fast do you think you are?</p>
-                    </label>
-                    0
+                        <p id="question" class = "speed-input"><b>Q3. </b>Are you a lover or a fighter?</p>
+                    </label><br>
+                    <b>Lover</b>
                     <input id="speed-input" data-slider-id="speed-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    <b>Fighter</b>
                     <br>
-                    <span id="user-input">You selected: <span id="speed-value"></span></span>
+                    <span id="user-input">Your Score: <span id="speed-value"></span></span>
                 </div>
+                <hr>
 
                 <!-- Durability Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "durab-input">How adaptable do you think you are?</p>
-                    </label>
-                    0
+                        <p id="question" class = "durab-input"><b>Q4.</b> Can you take a lickin' and keep on tickin'?</p>
+                    </label><br>
+                    <b>Ditchin'</b>
                     <input id="durab-input" data-slider-id="durab-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    <b>Keep Tickin'</b>
                     <br>
-                    <span id="user-input">You selected: <span id="durab-value"></span></span>
+                    <span id="user-input">Your Score: <span id="durab-value"></span></span>
                 </div>
+                <hr>
 
                 <!-- Power Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "power-input">How much power do you think you have?</p>
-                    </label>
-                    0
+                        <p id="question" class = "power-input"><b>Q5.</b> Do you usually get to watch what you want on Netflix?</p>
+                    </label><br>
+                    <b>Don't care</b>
                     <input id="power-input" data-slider-id="power-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    <b>Gotta Rule</b>
                     <br>
-                    <span id="user-input">You selected: <span id="power-value"></span></span>
+                    <span id="user-input">Your Score: <span id="power-value"></span></span>
                 </div>
+                <hr>
 
                 <!-- Combat Slider -->
                 <div class="form-group">
                     <label for="formControlRange">
-                        <p id="question" class = "combat-input">How competitive do you think you are?</p>
-                    </label>
-                    0
+                        <p id="question" class = "combat-input"><b>Q6.</b> Would you punch somebody simply because you are having a bad day?</p>
+                    </label><br>
+                    <b>Totally Chilled</b>
                     <input id="combat-input" data-slider-id="combat-slider" type="text" data-provide="slider"
                         data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"
                         data-slider-tooltip="always" tooltip_position="bottom" data-slider-handle="round">
-                    100
+                    <b>Gotta Kill</b>
                     <br>
-                    <span id="user-input">You selected: <span id="combat-value"></span></span>
+                    <span id="user-input">Your Score: <span id="combat-value"></span></span>
                 </div>
+                <hr>
                 <!-- END OF ALL SLIDERS -->
 
                 <!-- Adding button to lock in values-->
 
-                <p id="steps">Lock in your values!</p>
-                    <button id="lock-btn" type="submit" class="btn btn-primary btn-lg">Lock it in</button>
+                <p id="steps">Don't zoom past this...click the button below to lock in your selection!</p>
+                <button id="lock-btn" type="submit" class="btn btn-info btn-lg btn-block">Lock Selection</button>
             </div>
         </div>
         <!--Div closes row-->
         <!-- Image upload input -->
-        <div class="row ">
-                
-                        <div class="col-lg-4 name-container">
-                            <img id="step-3" src = "assets/images/step3.png" alt = "Step 3" width ="50px" height="50px">
-                            <h4><b>Upload your Image</b></h4></label>
-                        </div>
-            <div class = "col-lg-4 name-container">
+        <div class="row name-container p-3 justify-content-lg-center">
+            <div class="col-lg-2"></div>
+                <div class="col-lg-6 p-3  kb-box">
+                    <img id="step-3" src = "assets/images/step3.png" alt = "Step 3" width ="50px" height="50px">
+                    <h4><b>Upload your Image</b></h4>
+                </div>
+                <div class="col-lg-2"></div>
+            <div class = "col-lg-4 kb-box">
                 <fieldset class="field-set">
                     <legend style="width:auto;"></legend><!--Image Upload-->
                                                
                     <form method="post" enctype="multipart/form-data">
                         <div class="image-input-wrapper">
                             <!--label for="user-image">Select Image:</label-->
-                            <label class = "btn btn-primary upload-btn" id="select-btn" for="image-input">Select image (PNG, JPG)</label>
+                            <label class = "btn btn-info upload-btn" id="select-btn" for="image-input">Select image (PNG, JPG)</label>
                             <ol>
                                 <b>Requirements:</b> <br>
                                 <li><b>Filesize:</b> &#60; 2MB</li>
@@ -180,34 +188,31 @@
                             <!--label>Browse</label-->
                         </div>
 
-                        <!-- <div class="preview">
-                            <p id="error">No file currently selected for upload</p> -->
-                            <!--p id="face"></p-->
-                        <!-- </div> -->
-                        <button class="btn btn-primary" disabled ="disabled" id="submit-image" type="submit">Upload Image</button>
+                        <button class="btn btn-info" disabled ="disabled" id="submit-image" type="submit">Upload Image</button>
                         <div>
                             <!--WHAT IS THIS EMPTY DIV FOR?  -->
                         </div>
                     </form>
                 </fieldset>
             </div>
-            <div class = "col-lg-4 name-container"> 
-            <div class="preview">
-                <h4>Image Preview</h4>
+            <div class = "col-lg-4 name-container kb-box"> 
+                <div class="preview">
+                    <h4>Image Preview</h4>
                     <p id="error">No file currently selected for upload</p>
                     <!--p id="face"></p-->
-            </div>
+                </div>
             </div>
         </div>
 
-        <div class=" row justify-content-lg-center submit-results name-container">
-            <div class="col-lg-12">
-                <div class="row steps-stuff">
+        <div class="row name-container p-3 justify-content-lg-center">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-6 p-3  kb-box">
                     <img id="step-4" src="assets/images/step4.png" alt="Step 4" width="50px" height="50px">
-                    <p id="steps">Click Submit to see your results</p>
+                    <h4><b>Click Submit to see your results!</b></h4>
                     <p id="form-msg"></p>
-                    <button type="submit" class="btn btn-primary btn-lg" disabled="disabled" id="submit-btn">Submit</button>
+                    <button type="submit" class="btn btn-info btn-lg " disabled="disabled" id="submit-btn">Submit</button>
                 </div>
+                <div class="col-lg-2"></div>
             </div>
         </div>
     </div><!--KB: "first page" container DIV close-->
@@ -226,51 +231,72 @@
             </div>
             <!-- Chart results card -->
             <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header" id="results-title">Your Personality Fingerprint
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart" width="100" height="100"></canvas>                       
-                        </div>
+                <div class="card">
+                    <div class="card-header" id="results-title">Your Personality Fingerprint
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart" width="100" height="100"></canvas>                       
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container-fluid ">
-            <!-- Div for friend's results to populate-->
-            <div class="row mx-auto">
-                <div id='friend-results' class="col-sm-12"></div>
+    
+    <div class="card-deck">
+        <!-- Div for friend's results to populate-->
+        <div class="row mx-auto">
+            <div id='friend-results' class="col-sm-12"></div>
+        </div>
+    </div>
+
+    <!-- Modal for "validating is user entered all info" -->
+    <div class="modal modal-1" id="my-modal-1" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title"><b>Error!</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            <div class="modal-body">
+                <p>Please complete all information before clicking submit!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
             </div>
         </div>
+    </div>
 
-        <!-- Firebase Reference -->
-        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-        <!--JQuery-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <!--JQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-        <!--bootstrap-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-        <!-- KB:Bootstrap Slider JS link -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.min.js" integrity="sha256-rjNVc4p9W5ytzudhfdvmen38QnQTPHD6izDAF9nA95w="
-            crossorigin="anonymous"></script>
+    <!--bootstrap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- KB:Bootstrap Slider JS link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.min.js" integrity="sha256-rjNVc4p9W5ytzudhfdvmen38QnQTPHD6izDAF9nA95w="
+        crossorigin="anonymous"></script>
 
-        <!-- Chart.js Library-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <!-- Chart.js Library-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 
-         <!-- Javascript -->
-        <script src="assets/javascript/app.js"></script>
-        <script src="assets/javascript/results.js"></script>
+        <!-- Javascript -->
+    <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/results.js"></script>
 
-        <!--face.js must be loaded before load.js-->
-        <!--script src="assets/javascript/face.js"></script-->
-        <script src="assets/data/heros.js"></script>
-        <script src="assets/javascript/upload.js"></script>
-        <script src="assets/javascript/match.js"></script>
+    <!--face.js must be loaded before load.js-->
+    <!--script src="assets/javascript/face.js"></script-->
+    <script src="assets/data/heros.js"></script>
+    <script src="assets/javascript/upload.js"></script>
+    <script src="assets/javascript/match.js"></script>
 
         
 
