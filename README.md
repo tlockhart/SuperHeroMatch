@@ -1,7 +1,8 @@
 # Roots-of-the-Earth-Project-1
-GATech Coding Bootcamp: Roots-of-the-Earth-Project-1
+### GATech Coding Bootcamp: **Roots-of-the-Earth-Project-1**
 
-Team Members: Komal Batra, Tony Lockhart, Mary Nguyen-Choi, and Shemika Williams
+Team Members: `Komal Batra`, `Tony Lockhart`, `Mary Nguyen-Choi`, and `Shemika Williams`
+
 Group Name: Roots-of-the-Earth-Project-1
 
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
@@ -23,26 +24,34 @@ We envision this app being used by super-hero and super-villain fans of all ages
 
 Now, when you’re ever asked the question of which super hero is most like you, you can point them to our app!
 
-
-1.) Who is your target audience?
+- - -
+1. Who is your target audience?
     - Superhero fans of all ages.
-2.) What is the problem that the product will address?
+2. What is the problem that the product will address?
     - People are unaware of certain aspects of their personality. This app will enable people to get to know themselves better, by identifying superheros with similiar traits (Strength, Intelligence, Gender, Physical).
-3.) What is the primary goal of the product?
+3. What is the primary goal of the product?
     - To have fun while learning about your personality.
-4.) The essential features of the Superhero application:
+4. The essential features of the Superhero application:
     - As a user, I want to identify which superhero matches my traits.
     - As a user, I want to determine which superhero characteristics I have in common.
     - As a user, I want to discover my friends/peers personality, by viewing their superhero traits.
 
-Technologies To Use:
-    - Super her API ()
-    - Face++ API
-    - Chart.JS ?
-    - Underscore or lodash
+- - -
+### Technologies Used:
+    - APIs:
+        - Super hero API ()
+        - Face++ API
+    - Libraries:
+        - Chart.JS 
+        - Bootstrap - Forms, cards, modals, sliders
+        - Bootstrap Slider Library
+        - JQuery
     - Google Firebase
+    - HTML
+    - CSS
 
-Design Acceptance Criteria:
+- - -
+### Design Acceptance Criteria:
 1. Form that displays survey questions used to identify user traits.
 2. Survey results should be used to determine the closet super hero that matches the user's traits.
 3. Optional Gamification: Ask the user what super hero he thinks he is most similiar to prior to results screen.

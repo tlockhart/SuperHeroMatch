@@ -325,7 +325,7 @@ function analyzeFace(){
         {
           var $faceMsg = $('<p>');
           $faceMsg.attr('id', 'face');
-          $faceMsg.text("Image processed!");
+          $faceMsg.text("Identity processed!");
           $faceMsg.attr('age', faceAge);
           $faceMsg.attr('gender', faceGender);
           $('.preview').append($faceMsg);
