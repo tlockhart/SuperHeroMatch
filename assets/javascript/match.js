@@ -60,7 +60,7 @@ $(document).ready(function(){
         userName = $('#name-input').val();
         //console.log("Value 0 = " + userName);
         if (!userName){
-            $('#form-msg').text('Please complete all fields').css({'color': 'red'});
+            $('.modal-1').modal();
             $('#name-input').css({'border':'solid 1px red'});
          }
          
