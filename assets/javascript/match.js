@@ -7,6 +7,7 @@ $(document).ready(function(){
     var userGender;
     var userAge;
     var heroScores = [];
+    var heroIds = [];
     var defaultMaleHeroId = '72';
     var defaultFemaleHeroId = '97';
 
@@ -16,6 +17,8 @@ $(document).ready(function(){
      *widen score range if no hero found
      *************************************/
     var scoreRange = 5;
+    var maleRange = 5;
+    var femaleRange = 10;
     var testResponseLength = 470; //test data, change in prod
     //var testResponseLength = 20;
     
@@ -23,7 +26,7 @@ $(document).ready(function(){
     /******************************************************************
     **if no herMatchId is found it will return the first one in the list
     *********************************************************************/
-    var heroMatchId = 0;
+    //var heroMatchId = 0;
     /********************************************************/
 
     //Step2: Create a variable to reference the database
@@ -63,8 +66,6 @@ $(document).ready(function(){
             $('.modal-1').modal();
             $('#name-input').css({'border':'solid 1px red'});
          }
-         
-        
 
         //$('#intel-value').html($('#int-input').val());
         userIntInput = parseInt($('#intel-value').text());
@@ -133,7 +134,8 @@ $(document).ready(function(){
         
     });//submit button
 
-    function clearInput(){
+    function clearInput() {
+        //10/08/2018
         $('#name-input').val('');
         $('#intel-value').text('');
         $('#stren-value').text('');
@@ -141,16 +143,17 @@ $(document).ready(function(){
         $('#durab-value').text('');
         $('#power-value').text('');
         $('#combat-value').text('');
-       // $('#image-id').src('');
-       $('#li-id').remove();
-       $('#face').remove();
-       $('#select-btn').show();
-       $('#submit-btn').prop('disabled', true);
+        $('#li-id').remove();
+        $('#face').remove();
+        $('#select-btn').show();
+        $('#submit-btn').prop('disabled', true);
+        heroScores = [];
+        heroIds = [];
     }
     // We then created an AJAX call
     /*******************************************************/
     //function loadHeroData(callback) {
-        function loadHeroData(callback) {
+        function loadHeroData() {
             //loop through hero data
             for (var i = 0; i < testResponseLength/*data.length*/; i++) {
                 var heroGender = data[i].appearance.gender.toLowerCase();
@@ -158,71 +161,91 @@ $(document).ready(function(){
 
                 var heroId = data[i].id;
                 //console.log("Hero ID = " + heroId);
-
                 var heroGender = data[i].appearance.gender.toLowerCase();
-                //console.log("Hero Gender = "+heroGender);
-                var heroInt = data[i].powerstats.intelligence;
-                //console.log("Hero Intelligence = " + heroInt);
-                var heroStr = data[i].powerstats.strength;
-                //console.log("Hero Strength = " + heroStr);
-                var heroSpd = data[i].powerstats.speed;
-                //console.log("Hero Speed = " + heroSpd);
-                var heroDur = data[i].powerstats.durability;
-                //console.log("Hero Durability = " + heroDur);
-                var heroPow = data[i].powerstats.power;
-                //console.log("Hero Power = " + heroPow);
-                var heroCmb = data[i].powerstats.combat;
-                //console.log("Hero Combat = " + heroCmb);
-
-                var isGenderEqual = userGender === heroGender;
+                
+                var isGenderEqual = (userGender === heroGender);
+                if (userGender === 'female')
+                {
+                    scoreRange = femaleRange;
+                }
+                else if (userGender === 'male')
+                {
+                    scoreRange = maleRange;
+                }
                 //console.log("Hero Gender = " + heroGender);
                 if (isGenderEqual) {
-                    //calculate hero match score
+                    /**************************
+                     * Check the powerstat we want for our hero
+                     *************************/
                     //console.log("Gender EQUAL: UserGender = "+userGender+"HeroGender = "+heroGender+" Do gender match: "+isGenderEqual);
-                    var heroScore = calculateHeroScore(parseInt(heroInt), parseInt(heroStr), parseInt(heroSpd), parseInt(heroDur), parseInt(heroPow), parseInt(heroCmb));
+                    //console.log("*******************************");
+                    //console.log("Hero Gender = "+heroGender);
+                    var heroInt = data[i].powerstats.intelligence;
+                    //console.log("Hero Intelligence = " + heroInt);
+                    var heroStr = data[i].powerstats.strength;
+                    //console.log("Hero Strength = " + heroStr);
+                    var heroSpd = data[i].powerstats.speed;
+                    //console.log("Hero Speed = " + heroSpd);
+                    var heroDur = data[i].powerstats.durability;
+                    //console.log("Hero Durability = " + heroDur);
+                    var heroPow = data[i].powerstats.power;
+                    //console.log("Hero Power = " + heroPow);
+                    var heroCmb = data[i].powerstats.combat;
+                    //console.log("Hero Combat = " + heroCmb);
+                    /***********************************/
+
+                    var heroScore = calculateHeroScore(
+                    parseInt(heroInt), 
+                    parseInt(heroStr), 
+                    parseInt(heroSpd), 
+                    parseInt(heroDur), 
+                    parseInt(heroPow), 
+                    parseInt(heroCmb));
 
                     //Step2: store hero score and ID in an Array
                     heroScores.push(heroScore);
+                    heroIds.push(heroId);
                 }//if
                 else{
                     //console.log("Gender NOT Equal: UserGender = "+userGender+"HeroGender = "+heroGender+" Do gender match: "+isGenderEqual);
                 }
             }//for
-            for(var j = 0; j < heroScores.length; j++)
-            {
-                //console.log("HEROSCORESARRAY = "+j+" "+heroScores[j]);
-            }
-            //console.log('Hero Scores ' + i + ' = ' + heroScores);
             /*************************************************************
              *Step3:traverse hero array and find index with highest score
             **************************************************************/
             var maxScore = Math.max.apply(null, heroScores);
             //console.log("MAX SCORE = "+maxScore);
             var maxScoreIndex = heroScores.indexOf(maxScore);
-            /********************************************************
-             * STEP4: INCREMENT INDEX VALUE TO GET HERO ID
-             ********************************************************/
-            //console.log("MAXSCOREINDEX = "+maxScoreIndex);//return -1 not found
-            heroMatchId = maxScoreIndex + 1;
-            //console.log("Hero Match ID = " + heroMatchId);
-            var heroSearchId = heroMatchId;
 
+            /*console.log("Heros Length: "+heroIds.length+ 
+            ", HeroId in Heroes = "+heroIds[0]+ 
+            ", The maxScore = "+maxScore+
+            ", arrayIndex = "+maxScoreIndex+ 
+            ", Hero ID = "+heroIds[maxScoreIndex]);*/
+
+            //console.log("Does heroIds = 0 : "+(heroIds[maxScoreIndex] === 25));
             /*********************************************
-             * Handle error if no match is found:
+             * Set Hero Search ID:
              **********************************************/
-            if (heroSearchId == 0 && userGender === 'male')
+            var heroSearchId;
+            if (maxScore == 0 && userGender === 'male')
             {
                 heroSearchId = defaultMaleHeroId; //BattleStar
             }
-            else if (heroSearchId == 0 && userGender == 'female')
+            else if (maxScore == 0 && userGender === 'female')
             {
                 heroSearchId = defaultFemaleHeroId;//Black Canary
+            }
+            else
+            {
+                heroSearchId = heroIds[maxScoreIndex];
             }
             /********************************************************
              * Step5: pull Hero data from Super SuperHeroAPI
              *********************************************************/
             //10/07/2018
             /*****************************************/
+            //console.log("Hero Search ID = "+heroSearchId);
              pullHeroData(heroSearchId);
             /* ***************************************/
             //console.log("Super Hero Search ID"+heroSearchId);
@@ -335,18 +358,15 @@ $(document).ready(function(){
             /******************************************************/
             storeMatchData()
             /******************************************************/
-
-            // Create CODE HERE to transfer content to HTML            
-            /*$(".city").html("<h1>"+response.name+ "Weather Details</h1>");
-            $(".wind").text("Wind Speed: " +response.wind.speed);
-            $(".humidity").text("Humidity: " +response.main.humidity);
-            $(".temp").text("Temperature (F): " +response.main.temp); */
-
         });//ajax then
     }//pullHeroData
 
     //Store to Firebase:
     function storeMatchData() {
+
+        var timeStamp = moment();
+        var userTimeStamp = timeStamp.format("MMM Do, YYYY hh:mm a");
+        //console.log("Time Stamp = "+timeStamp.format("MMM Do, YYYY hh:mm a"));
         database.ref().push({
             userNameDb: userName,
             userAgeDb: userAge,
@@ -358,7 +378,8 @@ $(document).ready(function(){
             heroMatchSpdDb: heroMatchSpd,
             heroMatchDurDb: heroMatchDur,
             heroMatchPowDb: heroMatchPow,
-            heroMatchCmbDb: heroMatchCmb
+            heroMatchCmbDb: heroMatchCmb,
+            userTimeStampDb: userTimeStamp
         });//database Push
         //console.log("Completed StoreMatchData");
         //get records to display in Hero Match Card
