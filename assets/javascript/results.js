@@ -163,7 +163,7 @@ $(document).ready(function(){
         console.log("Hero CMB = "+ $heroCmbValue);
         
         // Creating Card Elements
-        var resultsBody = $('<div>', {id:'results-body', class:'card-body row'});
+        var resultsBody = $('<div>', {id:'results-body', class:'card-body'});
         var heroesPicsDiv = $('<img>', {id:'heroes-pics-div', class:'text-center'});
         var matchedStatsDiv = $('<div>', {id:'matched-stats-div'});
         var ol = $('<ol>', {class:'list'});
