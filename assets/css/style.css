@@ -160,3 +160,7 @@ h6 {
 .card-title{
     font-weight: bold;
 }
+
+#matched-stats-div {
+    display: inline-grid;
+ }

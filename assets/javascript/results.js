@@ -101,6 +101,7 @@ $(document).ready(function(){
             console.log("Com 6 = " + userCmbInput);*/
             $('#lock-btn').prop('disabled', true);//disable
         }
+        //$('#friend-results').empty();
          
     });
 
@@ -190,7 +191,7 @@ $(document).ready(function(){
         
         // Creating Card Elements
         var resultsBody = $('<div>', {id:'results-body', class:'card-body'});
-        var heroesPicsDiv = $('<img>', {id:'heroes-pics-div', class:'text-center'});
+        var heroesPicsDiv = $('<img>', {id:'heroes-pics-div', class:'text-center img-fluid'});
         var matchedStatsDiv = $('<div>', {id:'matched-stats-div'});
         var ol = $('<ol>', {class:'list'});
         var li1 = $('<li>', {id:'li-1', class:'card-text'});
