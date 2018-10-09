@@ -19,9 +19,6 @@ $(document).ready(function(){
     var timerId;
     var createUserResult;
     
-        
-    
-
     /******************************************************/
     // Lock button Click
     $('#lock-btn').on('click', function (event) {
