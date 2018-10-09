@@ -31,7 +31,9 @@ $(document).ready(function(){
 
     //Step2: Create a variable to reference the database
     var database = firebase.database();
-
+    $('#refresh-btn').on('click', function (event) {
+        location.reload();
+    });
     $('#submit-btn').on('click', function (event) {
         //disable submit-btn button
     //$('#submit-btn').prop('disabled', true);
