@@ -3,9 +3,7 @@ body{
     font-family: 'IM Fell English', serif!important;
     background: #444a5a!important;
 }
-       /* width: 100%; */
-       /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVwEeJEXryWizmlEluz3DUcN2HfC9cCpicslDQ-9XW9n_x-stAQ); */
-       /* background-size: contain; */
+
 .card{
     background-color: lightgrey;
     text-align: center;
@@ -84,7 +82,7 @@ h1{
 }
 
 #question{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
 }
 
