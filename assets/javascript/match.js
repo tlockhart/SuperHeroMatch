@@ -363,6 +363,10 @@ $(document).ready(function(){
 
     //Store to Firebase:
     function storeMatchData() {
+
+        var timeStamp = moment();
+        var userTimeStamp = timeStamp.format("MMM Do, YYYY hh:mm a");
+        //console.log("Time Stamp = "+timeStamp.format("MMM Do, YYYY hh:mm a"));
         database.ref().push({
             userNameDb: userName,
             userAgeDb: userAge,
@@ -374,7 +378,8 @@ $(document).ready(function(){
             heroMatchSpdDb: heroMatchSpd,
             heroMatchDurDb: heroMatchDur,
             heroMatchPowDb: heroMatchPow,
-            heroMatchCmbDb: heroMatchCmb
+            heroMatchCmbDb: heroMatchCmb,
+            userTimeStampDb: userTimeStamp
         });//database Push
         //console.log("Completed StoreMatchData");
         //get records to display in Hero Match Card
