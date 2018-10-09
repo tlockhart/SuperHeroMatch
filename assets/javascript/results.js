@@ -36,7 +36,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         //clear error handling:
-        $('#steps').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': ''});
+        //$('.lock-text').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': ''});
         $('#name-input').css({'border':''});
         $('.intel-input').css({'color':''});
         $('.stren-input').css({'color':''});
@@ -75,8 +75,8 @@ $(document).ready(function(){
             !$('#power-value').text() ||
             !$('#combat-value').text())
             {
-                $('#steps').text('Please complete all selections, then Lock them in.').css({'color': 'red'});
-                $('#lock-btn').prop('disabled', false); //enable 
+                //console.log("In results.js check");
+                $('.lock-text').text('Please complete all selections, then Lock them in.').css({'color': 'red'});
                 return; 
              }
              /****************************************************/
@@ -90,7 +90,7 @@ $(document).ready(function(){
             userPowInput = parseInt($('#power-value').text());
             userCmbInput = parseInt($('#combat-value').text());
 
-            $('#steps').text('Your selections are locked in.').css({'color': ''});                  
+            $('.lock-text').text('Your selections are locked in.').css({'color': ''});                  
             console.log("User Name = " + userName);
             console.log("Int = " + userIntInput);
             console.log("Str = " + userStrInput);
@@ -100,6 +100,7 @@ $(document).ready(function(){
             console.log("Com 6 = " + userCmbInput);
             $('#lock-btn').prop('disabled', true);//disable
         }
+        $('#lock-btn').prop('disabled', false); //enable 
     });
 
     /******************************************************/
@@ -113,11 +114,11 @@ $(document).ready(function(){
 	    $('.card-deck').show();
 
         //Pull user data if results are locked in
-        var $steps = $('#steps').text();
+        var $steps = $('.lock-text').text();
         if ($steps != 'Your selections are locked in.') {  
                 return;
         }
-        else{
+        else if ($steps === 'Your selections are locked in.'){
             timerId = setTimeout(createUserResult, 8000);
         }
         
@@ -149,7 +150,7 @@ $(document).ready(function(){
 
             // Create friend card
             createFriendCard(dbRecord);
-            console.log(timeStamp);
+            //console.log(timeStamp);
         });
     });
 
@@ -159,21 +160,21 @@ $(document).ready(function(){
         
         // PULL HERO RESULTS FROM lock-btn
         $heroName = $('#lock-btn').attr('hero-name-data');
-        console.log("Hero Name = "+ $heroName);
+        //console.log("Hero Name = "+ $heroName);
         $heroPhoto = $('#lock-btn').attr('hero-photo-data');
-        console.log("Hero PHOTO = "+ $heroPhoto);
+        //console.log("Hero PHOTO = "+ $heroPhoto);
         $heroIntValue = $('#lock-btn').attr('hero-int-data');
-        console.log("Hero INT = "+ $heroIntValue);
+        //console.log("Hero INT = "+ $heroIntValue);
         $heroStrValue = $('#lock-btn').attr('hero-str-data');
-        console.log("Hero STR = "+ $heroStrValue);
+        //console.log("Hero STR = "+ $heroStrValue);
         $heroSpdValue = $('#lock-btn').attr('hero-spd-data');
-        console.log("Hero SPD = "+ $heroSpdValue);
+        //console.log("Hero SPD = "+ $heroSpdValue);
         $heroDurValue = $('#lock-btn').attr('hero-dur-data');
-        console.log("Hero DUR = "+ $heroDurValue);
+        //console.log("Hero DUR = "+ $heroDurValue);
         $heroPowValue = $('#lock-btn').attr('hero-pow-data');
-        console.log("Hero POW = "+ $heroPowValue);
+        //console.log("Hero POW = "+ $heroPowValue);
         $heroCmbValue = $('#lock-btn').attr('hero-cmb-data');
-        console.log("Hero CMB = "+ $heroCmbValue);
+        //console.log("Hero CMB = "+ $heroCmbValue);
         
         //clear old heroes
         var $oldResultBody = $('#results-body');
