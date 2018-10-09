@@ -1,9 +1,12 @@
 $(document).ready(function(){
+    $('.results-page').hide();
+    $('.card-deck').hide();
+    $('#lock-btn').prop('disabled', false);
 
     //decalre local variables
     var userAge, userGender, heroMatchName, 
     heroMatchPhoto, heroMatchInt, heroMatchStr, 
-    heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
+    heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
 
     var database = firebase.database();
     var dbRecord;
@@ -22,7 +25,7 @@ $(document).ready(function(){
     /******************************************************/
     // Lock button Click
     $('#lock-btn').on('click', function (event) {
-        // $('#lock-btn').prop('disabled', false);
+        
         event.preventDefault();
 
         // Log input values
@@ -42,7 +45,7 @@ $(document).ready(function(){
         console.log("Pow 5 = " + userPowInput);
         console.log("Com 6 = " + userCmbInput);
 
-        //$('#lock-btn').prop('disabled', true);
+        $('#lock-btn').prop('disabled', true);
     });
 
     /******************************************************/
@@ -52,16 +55,46 @@ $(document).ready(function(){
     $('#submit-btn').on('click', function (event) {
         event.preventDefault();
 
+        $('.results-page').show();
+	    $('.card-deck').show();
+
         timerId = setTimeout(createUserResult, 5000);
 
         // Create Chart.js Results
         createChartJS(userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput);
+
+        /******************************************************/
+        // Database Listener and creating Friend Cards
+        database.ref().on("child_added", function (snapshot) {
+            record = snapshot.val();
+                
+            // Pulling data from Db 
+            userName = record.userNameDb;
+            userAge = record.userAgeDb;
+            userGender =  record.userGenderDb;
+            heroMatchName = record.heroMatchNameDb;
+            heroMatchPhoto = record.heroMatchPhotoDb;
+            heroMatchInt = record.heroMatchIntDb;
+            heroMatchStr = record.heroMatchStrDb;
+            heroMatchSpd = record.heroMatchSpdDb;
+            heroMatchDur = record.heroMatchDurDb;
+            heroMatchPow = record.heroMatchPowDb;
+            heroMatchCmb = record.heroMatchCmbDb;
+            timeStamp = record.userTimeStampDb;
+            
+            // Take Db data and turning into card
+            dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
+
+            // Create friend card
+            createFriendCard(dbRecord);
+            console.log(timeStamp);
+        });
     });
 
+    /**********************************************/
     // Function to create user Match and append to DOM
     createUserResult = function(userName, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue, $heroName, $heroPhoto){
         
-        /**********************************************/
         // PULL HERO RESULTS FROM lock-btn
         var $heroName = $('#lock-btn').attr('hero-name-data');
         console.log("Hero Name = "+ $heroName);
@@ -142,30 +175,6 @@ $(document).ready(function(){
     };
     
     /******************************************************/
-    // Database Listener and creating Friend Cards
-    database.ref().on("child_added", function (snapshot) {
-        record = snapshot.val();//one record
-              
-        // Pulling data from Db 
-        userName = record.userNameDb;
-        userAge = record.userAgeDb;
-        userGender =  record.userGenderDb;
-        heroMatchName = record.heroMatchNameDb;
-        heroMatchPhoto = record.heroMatchPhotoDb;
-        heroMatchInt = record.heroMatchIntDb;
-        heroMatchStr = record.heroMatchStrDb;
-        heroMatchSpd = record.heroMatchSpdDb;
-        heroMatchDur = record.heroMatchDurDb;
-        heroMatchPow = record.heroMatchPowDb;
-        heroMatchCmb = record.heroMatchCmbDb;
-        
-        // Take Db data and turning into card
-        dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb;
-
-        //createUserResult(dbRecord);
-        createFriendCard(dbRecord);
-    });
-
     // Function to create friend cards and append to DOM
     function createFriendCard(dbRecord) {
         //console.log('createCards', dbRecord);
@@ -201,7 +210,7 @@ $(document).ready(function(){
         li5.text('Power: ' + heroMatchPow);
         li6.text('Combat: ' + heroMatchCmb);
 
-        dateFooter.text('date');
+        dateFooter.text('Date added: ' + timeStamp);
 
         // Append card to DOM
         $('#friend-results').prepend(friendsCard);
