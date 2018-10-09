@@ -169,7 +169,7 @@ $(document).ready(function(){
     // Function to create friend cards and append to DOM
     function createFriendCard(dbRecord) {
         //console.log('createCards', dbRecord);
-        
+        $('.card-deck').show();
         // Creating Card Elements
         var friendsCard = $('<div>', {id:'friends-card', class:'card'});
         var heroTopImageDiv = $('<img>', {id:'hero-top-image', class:'card-img-top'});
