@@ -119,6 +119,12 @@ $(document).ready(function(){
                 $('#form-msg').text('Please complete all fields').css({'color': 'red'});  
                 return; 
              }
+        var $steps = $('#steps').text();
+        if ($steps != 'Your selections are locked in.') {
+            //disable submit-btn
+            $('#form-msg').text('Please lock in your selections').css({'color': 'red'});  
+                return;
+        }
         //disable button
         $('#submit-survey').prop('disabled', true);
 
@@ -149,6 +155,9 @@ $(document).ready(function(){
         $('#submit-btn').prop('disabled', true);
         heroScores = [];
         heroIds = [];
+        $('#lock-btn').prop('disabled', false);
+        $('#steps').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': ''});
+        $('#error').text('No file currently selected for upload');
     }
     // We then created an AJAX call
     /*******************************************************/
