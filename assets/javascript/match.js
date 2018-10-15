@@ -18,7 +18,7 @@ $(document).ready(function(){
      *************************************/
     var scoreRange = 5;
     var maleRange = 5;
-    var femaleRange = 10;
+    var femaleRange = 5;//10
     var testResponseLength = 470; //test data, change in prod
     //var testResponseLength = 20;
     
@@ -166,7 +166,7 @@ $(document).ready(function(){
     //function loadHeroData(callback) {
         function loadHeroData() {
             //loop through hero data
-            for (var i = 0; i < testResponseLength/*data.length*/; i++) {
+            for (var i = 0; i < /*testResponseLength*/data.length; i++) {
                 var heroGender = data[i].appearance.gender.toLowerCase();
                 //console.log("Hero gender = " + heroGender);
 

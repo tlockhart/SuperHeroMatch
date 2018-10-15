@@ -26,12 +26,26 @@ $(document).ready(function(){
     var chartTimerId;
     var createUserResult;
     var createChartJS;
+    var $lockBtn = $('#lock-btn');
     
+    function loadData(){
+        /****************************************************
+             * Load Test Data
+             ***************************************************/
+            /*$('#name-input').val('Todd');
+            $('#intel-value').text('45');
+            $('#stren-value').text('78');
+            $('#speed-value').text('23');
+            $('#durab-value').text('45');
+            $('#power-value').text('12');
+            $('#combat-value').text('90');*/
+            /****************************************************/
+    }
     /******************************************************
      * ERROR HANDLING
      * ****************************************************/
     // Lock button Click
-    $('#lock-btn').on('click', function (event) {
+    $lockBtn.on('click', function (event) {
         var userName = $('#name-input').val();
         event.preventDefault();
 
@@ -48,6 +62,7 @@ $(document).ready(function(){
         if (!userName){
             /*$('.modal-1').modal();*/
             $('#name-input').css({'border':'solid 1px red'});
+            loadData();
          }
         if (!$('#intel-value').text()){
             $('.intel-input').css({'color':'red'});
@@ -78,7 +93,7 @@ $(document).ready(function(){
                 //console.log("In results.js check");
                 $('.lock-text').text('Please complete all selections, then Lock them in.').css({'color': 'red'});
                 return; 
-                $('#lock-btn').prop('disabled', false); //enable
+                $lockBtn.prop('disabled', false); //enable
              }
              /****************************************************/
         else{
@@ -99,7 +114,7 @@ $(document).ready(function(){
             console.log("Dur = " + userDurInput);
             console.log("Pow 5 = " + userPowInput);
             console.log("Com 6 = " + userCmbInput);*/
-            $('#lock-btn').prop('disabled', true);//disable
+            $lockBtn.prop('disabled', true);//disable
         }
         //$('#friend-results').empty();
          
@@ -162,21 +177,21 @@ $(document).ready(function(){
     createUserResult = function(userName, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue, $heroName, $heroPhoto){
         
         // PULL HERO RESULTS FROM lock-btn
-        $heroName = $('#lock-btn').attr('hero-name-data');
+        $heroName = $lockBtn.attr('hero-name-data');
         //console.log("Hero Name = "+ $heroName);
-        $heroPhoto = $('#lock-btn').attr('hero-photo-data');
+        $heroPhoto = $lockBtn.attr('hero-photo-data');
         //console.log("Hero PHOTO = "+ $heroPhoto);
-        $heroIntValue = $('#lock-btn').attr('hero-int-data');
+        $heroIntValue = $lockBtn.attr('hero-int-data');
         //console.log("Hero INT = "+ $heroIntValue);
-        $heroStrValue = $('#lock-btn').attr('hero-str-data');
+        $heroStrValue = $lockBtn.attr('hero-str-data');
         //console.log("Hero STR = "+ $heroStrValue);
-        $heroSpdValue = $('#lock-btn').attr('hero-spd-data');
+        $heroSpdValue = $lockBtn.attr('hero-spd-data');
         //console.log("Hero SPD = "+ $heroSpdValue);
-        $heroDurValue = $('#lock-btn').attr('hero-dur-data');
+        $heroDurValue = $lockBtn.attr('hero-dur-data');
         //console.log("Hero DUR = "+ $heroDurValue);
-        $heroPowValue = $('#lock-btn').attr('hero-pow-data');
+        $heroPowValue = $lockBtn.attr('hero-pow-data');
         //console.log("Hero POW = "+ $heroPowValue);
-        $heroCmbValue = $('#lock-btn').attr('hero-cmb-data');
+        $heroCmbValue = $lockBtn.attr('hero-cmb-data');
         //console.log("Hero CMB = "+ $heroCmbValue);
         
         //clear old heroes
@@ -219,7 +234,9 @@ $(document).ready(function(){
         matchedStatsDiv.append(ol);
         ol.append(li1, li2, li3, li4, li5, li6);
 
-        // Adding Chart.js to render user and hero results
+        /**************************************************
+         **Adding Chart.js to render user and hero results
+         ***************************************************/
         var ctx = document.getElementById("myChart").getContext('2d');
         var myRadarChart = new Chart(ctx, {
         type: 'radar',
@@ -295,39 +312,4 @@ $(document).ready(function(){
         ol.append(li1, li2, li3, li4, li5, li6);
         cardFooter.append(dateFooter);
     }
-
-    /******************************************************/
-    // ChartJS function
-    /*createChartJS = function(userIntInput, 
-        userStrInput, 
-        userSpdInput, 
-        userDurInput, 
-        userPowInput, 
-        userCmbInput, 
-        $heroIntValue, 
-        $heroStrValue, 
-        $heroSpdValue, 
-        $heroDurValue, 
-        $heroPowValue, 
-        $heroCmbValue) {
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myRadarChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ["Intelligence", "Strength", "Speed", "Durability", "Power", "Combat"],
-            datasets: [
-                {
-                    label: 'You',
-                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                    borderColor: 'rgba(255, 0, 0, 1)',
-                    borderWidth: 4,
-                    data: [userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput],
-                    pointRadius: 6,
-                    pointBackgroundColor: 'rgba(255, 0, 0, 1)'           
-                }]
-            },
-        });
-        clearInterval(chartTimerId);
-    };//createChart*/
-
 });
