@@ -30,7 +30,9 @@ Now, when you’re ever asked the question of which super hero is most like you,
     - As a user, I want to identify which superhero matches my traits.
     - As a user, I want to determine which superhero characteristics I have in common.
     - As a user, I want to discover my friends/peers personality, by viewing their superhero traits.
+# Demo
 
+* https://tlockhart.github.io/SuperHeroMatch/
 - - -
 ### Technologies Used:
     - APIs:
