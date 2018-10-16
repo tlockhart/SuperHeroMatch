@@ -164,3 +164,7 @@ h6 {
 #matched-stats-div {
     display: inline-grid;
  }
+ #friend-results{
+     height: auto;
+     overflow: hidden;
+ }

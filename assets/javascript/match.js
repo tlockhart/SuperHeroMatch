@@ -31,9 +31,9 @@ $(document).ready(function(){
 
     //Step2: Create a variable to reference the database
     var database = firebase.database();
-    $('#refresh-btn').on('click', function (event) {
+    /*$('#refresh-btn').on('click', function (event) {
         location.reload();
-    });
+    });*/
     $('#submit-btn').on('click', function (event) {
         //disable submit-btn button
     //$('#submit-btn').prop('disabled', true);
@@ -160,6 +160,8 @@ $(document).ready(function(){
         $('#lock-btn').prop('disabled', false);
         $('.lock-text').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': 'maroon'});
         $('#error').text('No file currently selected for upload');
+        //input.value = null;
+        //$('input[type="file"]').val(null);
     }
     // We then created an AJAX call
     /*******************************************************/
@@ -367,7 +369,7 @@ $(document).ready(function(){
             //Step6: Store in firebase db
             //10/08/2018
             /******************************************************/
-            storeMatchData()
+            storeMatchData();
             /******************************************************/
         });//ajax then
     }//pullHeroData

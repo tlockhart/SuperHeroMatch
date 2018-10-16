@@ -183,6 +183,7 @@ input.addEventListener('change', updateImageDisplay);
 function isFileTypeValid(file) {
     for(var i = 0; i < fileTypes.length; i++) {
       if(file.type === fileTypes[i]) {
+        //console.log("File Length = "+fileTypes.length);
         return true;
       }
     }
@@ -238,9 +239,15 @@ function isFileTypeValid(file) {
           para.textContent = 'File name ' + curFiles[i].name + ': File type not valid. Please select an image.';
           listItem.appendChild(para);
           document.getElementById("submit-image").disabled = true;
-        }
-      }
-    }
+        }//else
+      }//for
+    }//else
+    /******************************
+     * DISPLAY SAME PICTURE
+     * *****************************/
+    curFiles == [];
+    input.value = null;
+    /******************************/
   }//updateImageDisplay
 
   function setDimensions(){
