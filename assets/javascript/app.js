@@ -1,4 +1,4 @@
-// Step1:  Initialize Firebase
+// Step1:  Initialize Firebase and make it avalialble globally
 var config = {
 	apiKey: "AIzaSyBwSQPKaSMnZcJiHZs-jiyLOheDUheFx4U",
 	authDomain: "hero-79706.firebaseapp.com",
