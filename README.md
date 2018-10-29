@@ -5,7 +5,7 @@ Team Members: `Komal Batra`, `Tony Lockhart`, `Mary Nguyen-Choi`, and `Shemika W
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
 
     * Komal: Responsible for personality and superhero mapping and frontend HTML/CSS support, created the slider bars
-    * Tony: Responsible for developing the super hero match algorithm and integrating it with the Face Plus Plus API, and Superhero API into the application and storing the results into the Firebase Databse.
+    * Tony: Responsible for the image upload and sending to Face++ API.  Developing the super hero match algorithm and integrating it into the application with the Face++ and Superhero API and storing the results into the Firebase Databse.
     * Mary: Responsible for personality and superhero mapping, managing the repository, created the Results integration (HTML, CSS, JQuery) to display the super hero match and charting the data sets with chart.js.
     * Shemika: Responsible for HTML, CSS, and JQuery DOM manipulation.  Responsible for mocking-up the app.
 
