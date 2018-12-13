@@ -345,7 +345,7 @@ $(document).ready(function(){
     //Only necessary to fullfill requirements:
     function pullHeroData(heroSearchId) {
         //console.log("Hero Search ID =" +heroSearchId);
-        // Here we are building the URL we need to query the database
+        // Here we are building the URL we need to query the superheroapi database
         var queryById = cors + "http://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
         $.ajax({
             url: queryById,

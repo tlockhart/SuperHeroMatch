@@ -1,4 +1,5 @@
-# Super Hero Match
+<h1 align="center">Super Hero Match</h1>
+<p align="center"><kbd><img src ="./images/superhero.jpg" /></kbd></p><br/>
 
 Team Members: `Komal Batra`, `Tony Lockhart`, `Mary Nguyen-Choi`, and `Shemika Williams`
 
@@ -33,6 +34,12 @@ Now, when you’re ever asked the question of which super hero is most like you,
 # Demo
 
 * https://tlockhart.github.io/SuperHeroMatch/
+- - -
+## Setup
+In order to run the app, you will need to run the index.html file on a computer with a web browser and internet access.  After cloning the repository, you can edit the files in your IDE of choice.  The main files are:
+1. index.html
+1. assets/javascript/app.js
+1. assets/css/style.css
 - - -
 ### Technologies Used:
     - APIs:
