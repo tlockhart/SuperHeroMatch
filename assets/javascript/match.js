@@ -2,7 +2,10 @@ $(document).ready(function(){
 
     // This is our API key. Add your own API key between the ""
     var accessToken = "2622992407714821";
-    var cors = "https://cors-anywhere.herokuapp.com/";
+    //var cors = "http://cors-anywhere.herokuapp.com/";
+    var cors = "https://crossorigin.me/";
+    //var cors = "https://cryptic-headland-94862.herokuapp.com/";
+    //var cors = "94.28.57.100";
     var userName, userIntInput, userStrInput, userSpdInput, userDurInput, userPowInput, userCmbInput;
     var userGender;
     var userAge;
@@ -344,18 +347,25 @@ $(document).ready(function(){
     /*******************************************************/
     //Only necessary to fullfill requirements:
     function pullHeroData(heroSearchId) {
-        //console.log("Hero Search ID =" +heroSearchId);
+        console.log("Hero Search ID =" +heroSearchId);
         // Here we are building the URL we need to query the superheroapi database
-        var queryById = cors + "http://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
+        var queryById = /*cors +*/ "https://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
         $.ajax({
             url: queryById,
+            /*crossDomain: true,
+            headers: {
+                "Access-Control-Allow-Origin": "superheroapi.com",
+                "Access-Control-Allow-Methods": "GET, OPTIONS",
+                "Accept": "application/json"
+            },
+            dataType: "json",*/
             //url: query,
             method: "GET"
         }).then(function (response) {
 
             // Create CODE HERE to log the resulting object
             
-            //console.log(response);
+            console.log(response);
             heroMatchName = response.name;
             //console.log("Matching Hero Name = " + heroMatchName);
             heroMatchPhoto = response.image.url;
