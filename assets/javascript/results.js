@@ -19,6 +19,15 @@ $(document).ready(function(){
     var userPowInput = parseInt($('#power-value').text());
     var userCmbInput = parseInt($('#combat-value').text());
 
+    var friendsCard, heroTopImageDiv, cardBody, cardTitle, cardText, ol, li1, li2, li3 , li4, li5, li6, cardFooter, dateFooter;
+    //var  heroTopImageDiv;
+
+    var database = firebase.database();
+    var record;
+    
+    //Friendship card:
+
+
     var $heroName, $heroPhoto, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue;
 
 
@@ -194,7 +203,8 @@ $(document).ready(function(){
                 $heroPowValue, 
                 $heroCmbValue, 
                 $heroName, 
-                $heroPhoto), 10000);
+                $heroPhoto), 1000);
+                
         }
         
         //******************************************************/
@@ -207,7 +217,9 @@ $(document).ready(function(){
     /**********************************************/
     // Function to create hero card and append to DOM (results-body)
     function createUserResult(userName, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue, $heroName, $heroPhoto){
-        
+        //clear timer
+        clearInterval(timerId);
+
         // PULL HERO RESULTS FROM lock-btn
         $heroName = $lockBtn.attr('hero-name-data');
         //console.log("Hero Name = "+ $heroName);
@@ -299,57 +311,57 @@ $(document).ready(function(){
             },
         });
 
-        // Database Listener and creating Friend Cards:
+      // Database Listener and creating Friend Cards:
         /*******************************************************
          * Friendship card is dependent on data be loading to the
          * database, so it can not return, before the record has 
          * been inserted, which means, it must wait 10 seconds.
          * ******************************************************/
-
-        var database = firebase.database();
-        database.ref().on("child_added", function (snapshot) {
-            //Pulls One Record: database.ref().on("child_added", function (snapshot) {
-
-            var record = snapshot.val();
-
-            // Pulling data from Db 
-            userName = record.userNameDb;
-            userAge = record.userAgeDb;
-            userGender = record.userGenderDb;
-            heroMatchName = record.heroMatchNameDb;
-            heroMatchPhoto = record.heroMatchPhotoDb;
-            heroMatchInt = record.heroMatchIntDb;
-            heroMatchStr = record.heroMatchStrDb;
-            heroMatchSpd = record.heroMatchSpdDb;
-            heroMatchDur = record.heroMatchDurDb;
-            heroMatchPow = record.heroMatchPowDb;
-            heroMatchCmb = record.heroMatchCmbDb;
-            timeStamp = record.userTimeStampDb;
-
-            // Take Db data and turning into card
-            //dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
-
-            // Create friend card
-            //createFriendCard(dbRecord);
-            createFriendCard(
-                userName,
-                userAge,
-                userGender,
-                heroMatchName,
-                heroMatchPhoto,
-                heroMatchInt,
-                heroMatchStr,
-                heroMatchSpd,
-                heroMatchDur,
-                heroMatchPow,
-                heroMatchCmb,
-                timeStamp);
-            //console.log(timeStamp);
-        });//database listener
-        //clear timer
-        clearInterval(timerId);
+        //db listener:
+        //database.ref().on("child_added", function (snapshot) {
+            //database.ref().on("child_added", function (snapshot) {
+                database.ref().on("child_added", function (snapshot) {
+                    //Pulls One Record: database.ref().on("child_added", function (snapshot) {
+                    record = snapshot.val();
+            
+                    // Pulling data from Db 
+                    userName = record.userNameDb;
+                    userAge = record.userAgeDb;
+                    userGender = record.userGenderDb;
+                    heroMatchName = record.heroMatchNameDb;
+                    heroMatchPhoto = record.heroMatchPhotoDb;
+                    heroMatchInt = record.heroMatchIntDb;
+                    heroMatchStr = record.heroMatchStrDb;
+                    heroMatchSpd = record.heroMatchSpdDb;
+                    heroMatchDur = record.heroMatchDurDb;
+                    heroMatchPow = record.heroMatchPowDb;
+                    heroMatchCmb = record.heroMatchCmbDb;
+                    timeStamp = record.userTimeStampDb;
+                    
+                 
+            
+                        // Take Db data and turning into card
+                        //dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
+            
+                        // Create friend card
+                        //createFriendCard(dbRecord);
+                        createFriendCard(
+                            userName,
+                            userAge,
+                            userGender,
+                            heroMatchName,
+                            heroMatchPhoto,
+                            heroMatchInt,
+                            heroMatchStr,
+                            heroMatchSpd,
+                            heroMatchDur,
+                            heroMatchPow,
+                            heroMatchCmb,
+                            timeStamp);
+                        //console.log(timeStamp);
+                    });//database listener 
     }
-    
+      
     /******************************************************/
     // Function to create friend cards and append to DOM
     function createFriendCard(
@@ -383,20 +395,20 @@ $(document).ready(function(){
         $('.card-deck').show();
         // Creating Friend Card Elements
         /*********************************************/
-        var friendsCard = $('<div>', {id:'friends-card', class:'card'});
-        var heroTopImageDiv = $('<img>', {id:'hero-top-image', class:'card-img-top'});
-        var cardBody = $('<div>', {class:'card-body'});
-        var cardTitle = $('<h5>', {class:'card-title'});
-        var cardText = $('<h6>', {class:'card-text'});
-        var ol = $('<ol>', {class:'friends-list'});
-        var li1 = $('<li>', {id:'li-1', class:'card-text'});
-        var li2 = $('<li>', {id:'li-2', class:'card-text'});
-        var li3 = $('<li>', {id:'li-3', class:'card-text'});
-        var li4 = $('<li>', {id:'li-4', class:'card-text'});
-        var li5 = $('<li>', {id:'li-5', class:'card-text'});
-        var li6 = $('<li>', {id:'li-6', class:'card-text'});
-        var cardFooter = $('<div>', {class:'card-footer'});
-        var dateFooter = $('<small>', {id:'date', class:'text-muted'});
+        friendsCard = $('<div>', {id:'friends-card', class:'card'});
+        heroTopImageDiv = $('<img>', {id:'hero-top-image', class:'card-img-top'});
+        cardBody = $('<div>', {class:'card-body'});
+        cardTitle = $('<h5>', {class:'card-title'});
+        cardText = $('<h6>', {class:'card-text'});
+        ol = $('<ol>', {class:'friends-list'});
+        li1 = $('<li>', {id:'li-1', class:'card-text'});
+        li2 = $('<li>', {id:'li-2', class:'card-text'});
+        li3 = $('<li>', {id:'li-3', class:'card-text'});
+        li4 = $('<li>', {id:'li-4', class:'card-text'});
+        li5 = $('<li>', {id:'li-5', class:'card-text'});
+        li6 = $('<li>', {id:'li-6', class:'card-text'});
+        cardFooter = $('<div>', {class:'card-footer'});
+        dateFooter = $('<small>', {id:'date', class:'text-muted'});
 
         // Adding data and attributes to card
         cardTitle.attr('friend-name', userName);

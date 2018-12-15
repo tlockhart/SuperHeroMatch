@@ -124,8 +124,8 @@ $("#submit-image").on("click", function() {
          *It will take 10 sec depending on photo size
         ***********************************************************/
         convertImageFromUrlToBase64String(imageUrl, function (base64Str) {
-          //var cors = "https://cors-anywhere.herokuapp.com/";
-            var query = /*cors+*/"https://api-us.faceplusplus.com/facepp/v3/detect";
+          var cors = "https://cors-anywhere.herokuapp.com/";
+            var query = cors+"https://api-us.faceplusplus.com/facepp/v3/detect";
             var queryParameters = [
             "api_key=" + key,
             "api_secret=" + secret,

@@ -262,12 +262,14 @@ $(document).ready(function(){
             //10/07/2018
             /*****************************************/
             //console.log("Hero Search ID = "+heroSearchId);
-             pullHeroData(heroSearchId);
+             //12/1418:pullHeroData(heroSearchId);
+             getHeroFromJson (heroSearchId);
             /* ***************************************/
             //console.log("Super Hero Search ID"+heroSearchId);
 
             //Step6: Store in firebase db occurs in pullHeroData
     }
+   
     /*******************************************************/
     function calculateHeroScore(heroIntRef, heroStrRef, heroSpdRef, heroDurRef, heroPowRef, heroCmbRef) {
         //init scores
@@ -345,6 +347,29 @@ $(document).ready(function(){
         return returnScore;
     }
     /*******************************************************/
+    function getHeroFromJson(index){
+        //data[index].appearance.gender.toLowerCase();
+        heroMatchName = data[index].name;
+        // console.log("Matching Hero Name = " + heroMatchName);
+        heroMatchPhoto = data[index].images.sm;
+        //console.log("Hero Inmage= " + heroMatchPhoto);
+        heroMatchInt = data[index].powerstats.intelligence;
+        // console.log("Hero Intelligence = " + heroMatchInt);
+        heroMatchStr = data[index].powerstats.strength;
+        //console.log("Hero Strength = " + heroMatchStr);
+        heroMatchSpd = data[index].powerstats.speed;
+        //console.log("Hero Speed = " + heroMatchSpd);
+        heroMatchDur = data[index].powerstats.durability;
+        //console.log("Hero Durability = " + heroMatchDur);
+        heroMatchPow = data[index].powerstats.power;
+        //console.log("Hero Power = " + heroMatchPow);
+        heroMatchCmb = data[index].powerstats.combat;
+        //Step6: Store in firebase db
+            //10/08/2018
+            /******************************************************/
+            storeMatchData();
+
+    }//getHeroFromJson
     //Only necessary to fullfill requirements:
     function pullHeroData(heroSearchId) {
         console.log("Hero Search ID =" +heroSearchId);
