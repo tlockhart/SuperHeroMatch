@@ -371,19 +371,19 @@ $(document).ready(function(){
 
     }//getHeroFromJson
     //Only necessary to fullfill requirements:
-    function pullHeroData(heroSearchId) {
+    /*function pullHeroData(heroSearchId) {
         console.log("Hero Search ID =" +heroSearchId);
         // Here we are building the URL we need to query the superheroapi database
-        var queryById = /*cors +*/ "https://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
+        var queryById = cors + "https://superheroapi.com/api/" + accessToken + "/" + heroSearchId;
         $.ajax({
             url: queryById,
-            /*crossDomain: true,
+            crossDomain: true,
             headers: {
                 "Access-Control-Allow-Origin": "superheroapi.com",
                 "Access-Control-Allow-Methods": "GET, OPTIONS",
                 "Accept": "application/json"
             },
-            dataType: "json",*/
+            dataType: "json",
             //url: query,
             method: "GET"
         }).then(function (response) {
@@ -403,11 +403,11 @@ $(document).ready(function(){
 
             //Step6: Store in firebase db
             //10/08/2018
-            /******************************************************/
+
             storeMatchData();
-            /******************************************************/
+
         });//ajax then
-    }//pullHeroData
+    }//pullHeroData*/
 
     //Store to Firebase:
     function storeMatchData() {

@@ -203,7 +203,7 @@ $(document).ready(function(){
                 $heroPowValue, 
                 $heroCmbValue, 
                 $heroName, 
-                $heroPhoto), 10000);
+                $heroPhoto), 1000);
                 
         }
         
