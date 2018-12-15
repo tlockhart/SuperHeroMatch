@@ -1,0 +1,34 @@
+{
+  "name": "superheromatch",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">Super Hero Match</h1> <p align=\"center\"><kbd><img src =\"./images/superhero.jpg\" /></kbd></p><br/>",
+  "main": "keys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint-check": "eslint --print-config . | eslint-config-prettier-check",
+    "lint": "eslint **/*.js --quiet",
+    "fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlockhart/SuperHeroMatch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tlockhart/SuperHeroMatch/issues"
+  },
+  "homepage": "https://github.com/tlockhart/SuperHeroMatch#readme",
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "1.15.3"
+  }
+}
