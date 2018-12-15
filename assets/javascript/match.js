@@ -32,9 +32,10 @@ $(document).ready(function () {
 
   // Step2: Create a variable to reference the database
   var database = firebase.database()
-  /* $('#refresh-btn').on('click', function (event) {
-        location.reload();
-    }); */
+  $('#reset-btn').on('click', function (event) {
+    location.reload()
+    })
+
   $('#submit-btn').on('click', function (event) {
     // disable submit-btn button
     // $('#submit-btn').prop('disabled', true);
@@ -128,6 +129,8 @@ $(document).ready(function () {
     }
     // disable button
     $('#submit-survey').prop('disabled', true)
+    $('#submit-survery').hide();
+    $('#reset-btn').show();
 
     // load Hero data and find matching hero id:
     loadHeroData()
@@ -212,7 +215,7 @@ $(document).ready(function () {
         // Step2: store hero score and ID in an Array
         heroScores.push(heroScore)
         heroIds.push(heroId)
-    }// if
+      }// if
       else {
         // console.log("Gender NOT Equal: UserGender = "+userGender+"HeroGender = "+heroGender+" Do gender match: "+isGenderEqual);
       }

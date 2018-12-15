@@ -117,7 +117,7 @@ $(document).ready(function () {
         ***********************************************************/
       convertImageFromUrlToBase64String(imageUrl, function (base64Str) {
         var cors = 'https://cors-anywhere.herokuapp.com/'
-        var query = cors + 'https://api-us.faceplusplus.com/facepp/v3/detect'
+        var query = /*cors +*/ 'https://api-us.faceplusplus.com/facepp/v3/detect'
         var queryParameters = [
           'api_key=' + key,
           'api_secret=' + secret,
@@ -329,6 +329,8 @@ $(document).ready(function () {
 
         // Enable submit button  when response from face++ received
         $('#submit-btn').prop('disabled', false)
+        $('#submit-btn').show();
+        $('#reset-btn').hide();
 
         // console.log("Image has been processed!"+"Gender = "+faceGender+" Age = "+faceAge);
       } else {

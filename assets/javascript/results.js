@@ -198,7 +198,7 @@ $(document).ready(function () {
         $heroName,
         $heroPhoto), 1000)
     }
-
+    $('#submit-btn').hide();
     /*****************************************************/
   })// submit button
 
