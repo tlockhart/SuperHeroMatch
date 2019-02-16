@@ -30,15 +30,12 @@ $(document).ready(function () {
     location.reload()
   })
 
- // 2/16/2019 Update
+  // 2/16/2019 Update
   $('#lock-btn').on('click', function (event) {
-    console.log('button clicked')
     formComplete()
   })
 
   $('#submit-btn').on('click', function (event) {
-    // disable submit-btn button
-    // $('#submit-btn').prop('disabled', true);
     // Don't refresh the page!
     event.preventDefault()
 
@@ -55,24 +52,19 @@ $(document).ready(function () {
     /***********************************************************************
      * Gender and Age can not be click until the submit button is clicked
      ***********************************************************************/
-    // userGender = faceGender;
     userGender = $('#face').attr('gender')
-    // console.log ("User FaceGender = "+userGender);
     userAge = $('#face').attr('age')
-    // console.log("Face Age = "+userAge);
     /***********************************************************************/
 
     // Create CODE HERE to Log the slider values
     userName = $('#name-input').val()
-    // console.log("Value 0 = " + userName);
-    if (!userName) {
+
+    function displayModal () {
       $('.modal-1').modal()
-      $('#name-input').css({ 'border': 'solid 1px red' })
+      // $('#name-input').css({ 'border': 'solid 1px red' })
     }
 
-    // $('#intel-value').html($('#int-input').val());
     userIntInput = parseInt($('#intel-value').text())
-    // console.log("Value 1 = " + userIntInput);
     if (!$('#intel-value').text()) {
       $('.intel-input').css({ 'color': 'red' })
     }
@@ -119,7 +111,10 @@ $(document).ready(function () {
             !$('#power-value').text() ||
             !$('#combat-value').text()) {
       $('#form-msg').text('Please complete all fields').css({ 'color': 'red' })
+      // displayModal()
       return
+    } else {
+
     }
     var $steps = $('.lock-text').text()
     if ($steps !== 'Your selections are locked in.') {
@@ -155,8 +150,7 @@ $(document).ready(function () {
     $('#combat-value').text() &&
     $('#face').text() === 'Identity processed!' &&
     $('#steps').text() === 'Your selections are locked in.'
-    if (isFormComplete)
-    {
+    if (isFormComplete) {
       $('#submit-btn').show()
       $('#submit-btn').prop('disabled', false)
       $('#form-msg').text('').css({ 'color': '' })

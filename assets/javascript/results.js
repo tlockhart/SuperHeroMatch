@@ -9,9 +9,6 @@ $(document).ready(function () {
     heroMatchPhoto, heroMatchInt, heroMatchStr,
     heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp
 
-  // var database = firebase.database();
-  var dbRecord
-
   var userName = $('#name-input').val()
   var userIntInput = parseInt($('#intel-value').text())
   var userStrInput = parseInt($('#stren-value').text())
@@ -20,35 +17,37 @@ $(document).ready(function () {
   var userPowInput = parseInt($('#power-value').text())
   var userCmbInput = parseInt($('#combat-value').text())
 
-  var friendsCard, heroTopImageDiv, cardBody, cardTitle, cardText, ol, li1, li2, li3, li4, li5, li6, cardFooter, dateFooter
-  // var  heroTopImageDiv;
+  var friendsCard,
+    heroTopImageDiv,
+    cardBody,
+    cardTitle,
+    cardText,
+    ol,
+    li1,
+    li2,
+    li3,
+    li4,
+    li5,
+    li6,
+    cardFooter,
+    dateFooter
 
   var database = firebase.database()
   var record
 
   // Friendship card:
-
-  var $heroName, $heroPhoto, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue
+  var $heroName,
+    $heroPhoto,
+    $heroIntValue,
+    $heroStrValue,
+    $heroSpdValue,
+    $heroDurValue,
+    $heroPowValue,
+    $heroCmbValue
 
   var timerId
-  var chartTimerId
-  // var createUserResult;
-  var createChartJS
   var $lockBtn = $('#lock-btn')
 
-  function loadData () {
-    /****************************************************
-     *Load Test Data
-      ***************************************************/
-    /* $('#name-input').val('Todd');
-            $('#intel-value').text('45');
-            $('#stren-value').text('78');
-            $('#speed-value').text('23');
-            $('#durab-value').text('45');
-            $('#power-value').text('12');
-            $('#combat-value').text('90'); */
-    /****************************************************/
-  }
   /******************************************************
    * ERROR HANDLING
    ******************************************************/
@@ -64,7 +63,6 @@ $(document).ready(function () {
     event.preventDefault()
 
     // clear error handling:
-    // $('.lock-text').text("Don't zoom past this...click the button below to lock in your selection!").css({'color': ''});
     $('#name-input').css({ 'border': '' })
     $('.intel-input').css({ 'color': '' })
     $('.stren-input').css({ 'color': '' })
@@ -74,10 +72,9 @@ $(document).ready(function () {
     $('.combat-input').css({ 'color': '' })
 
     if (!userName) {
-      /* $('.modal-1').modal(); */
       $('#name-input').css({ 'border': 'solid 1px red' })
-      loadData()
     }
+
     if (!$('#intel-value').text()) {
       $('.intel-input').css({ 'color': 'red' })
     }
@@ -103,12 +100,9 @@ $(document).ready(function () {
             !$('#durab-value').text() ||
             !$('#power-value').text() ||
             !$('#combat-value').text()) {
-      // console.log("In results.js check");
       $('.lock-text').text('Please complete all selections, then Lock them in.').css({ 'color': 'red' })
       $lockBtn.prop('disabled', false) // enable
-    }
-    /****************************************************/
-    else {
+    } else {
       // Log input values
       userName = $('#name-input').val()
       userIntInput = parseInt($('#intel-value').text())
@@ -119,16 +113,8 @@ $(document).ready(function () {
       userCmbInput = parseInt($('#combat-value').text())
 
       $('.lock-text').text('Your selections are locked in.').css({ 'color': '' })
-      /* console.log("User Name = " + userName);
-            console.log("Int = " + userIntInput);
-            console.log("Str = " + userStrInput);
-            console.log("Spd = " + userSpdInput);
-            console.log("Dur = " + userDurInput);
-            console.log("Pow 5 = " + userPowInput);
-            console.log("Com 6 = " + userCmbInput); */
       $lockBtn.prop('disabled', true)// disable
     }
-    // $('#friend-results').empty();
   })
 
   /*************************************************
@@ -156,36 +142,30 @@ $(document).ready(function () {
       var context = item.getContext('2d')
       context.clearRect(0, 0, item.width, item.height)
       context.beginPath()
-      // console.log("Clearing canvas");
     }
 
     /******************************************************
      * Remove old friendship cards if they exist:
      ******************************************************/
     var $oldFriendResults = $('#friend-results')
-    // var $oldFriendsList = $('.friends-list');
     if ($oldFriendResults.length) {
       $oldFriendResults.empty()
     }
-    /* if ($oldFriendsList.length){
-            $oldFriendsList.remove();
-        } */
-    /*****************************************************/
+    // ****************************************************
   }
 
-  /******************************************************/
+  // ******************************************************
   // Submit button Click
-
   // Render results on Submit
   $('#submit-btn').on('click', function (event) {
     event.preventDefault()
 
     $('.results-page').show()
-	    $('.card-deck').show()
+    $('.card-deck').show()
 
     // Pull user data if results are locked in
     var $steps = $('.lock-text').text()
-    if ($steps != 'Your selections are locked in.') {
+    if ($steps !== 'Your selections are locked in.') {
 
     } else if ($steps === 'Your selections are locked in.') {
       timerId = setTimeout(createUserResult.bind(userName,
@@ -198,46 +178,34 @@ $(document).ready(function () {
         $heroName,
         $heroPhoto), 1000)
     }
-    $('#submit-btn').hide();
-    /*****************************************************/
+    $('#submit-btn').hide()
+    // *****************************************************
   })// submit button
 
-  /**********************************************/
+  // **********************************************
   // Function to create hero card and append to DOM (results-body)
-  function createUserResult (userName, $heroIntValue, $heroStrValue, $heroSpdValue, $heroDurValue, $heroPowValue, $heroCmbValue, $heroName, $heroPhoto) {
-    // clear timer
+  function createUserResult (
+    userName,
+    $heroIntValue,
+    $heroStrValue,
+    $heroSpdValue,
+    $heroDurValue,
+    $heroPowValue,
+    $heroCmbValue,
+    $heroName,
+    $heroPhoto) {
+    // Clear timer
     clearInterval(timerId)
 
     // PULL HERO RESULTS FROM lock-btn
     $heroName = $lockBtn.attr('hero-name-data')
-    // console.log("Hero Name = "+ $heroName);
     $heroPhoto = $lockBtn.attr('hero-photo-data')
-    // console.log("Hero PHOTO = "+ $heroPhoto);
     $heroIntValue = $lockBtn.attr('hero-int-data')
-    // console.log("Hero INT = "+ $heroIntValue);
     $heroStrValue = $lockBtn.attr('hero-str-data')
-    // console.log("Hero STR = "+ $heroStrValue);
     $heroSpdValue = $lockBtn.attr('hero-spd-data')
-    // console.log("Hero SPD = "+ $heroSpdValue);
     $heroDurValue = $lockBtn.attr('hero-dur-data')
-    // console.log("Hero DUR = "+ $heroDurValue);
     $heroPowValue = $lockBtn.attr('hero-pow-data')
-    // console.log("Hero POW = "+ $heroPowValue);
     $heroCmbValue = $lockBtn.attr('hero-cmb-data')
-    // console.log("Hero CMB = "+ $heroCmbValue);
-
-    /***************************************
-     * clear old heroes card
-     ***************************************/
-    /* var $oldResultBody = $('#results-body');
-        var $oldList = $('.list');
-        if ($oldResultBody.length){
-            $('#results-body').remove();
-        }
-        if ($oldList.length){
-            $oldList.remove();
-        } */
-    /***************************************/
 
     // Creating Hero Card Elements
     var resultsBody = $('<div>', { id: 'results-body', class: 'card-body' })
@@ -264,7 +232,7 @@ $(document).ready(function () {
     li6.text('Combat: ' + $heroCmbValue)
 
     // Append Hero card to DOM
-    /** ************************** */
+    // ****************************
     $('#matched-hero').append(resultsBody)
     resultsBody.append(heroesPicsDiv, heroStatsDiv)
     heroStatsDiv.append(ol)
@@ -274,6 +242,7 @@ $(document).ready(function () {
      **Adding Chart.js to render user and hero results
      ***************************************************/
     var ctx = document.getElementById('myChart').getContext('2d')
+    // eslint-disable-next-line no-unused-vars
     var myRadarChart = new Chart(ctx, {
       type: 'radar',
       data: {
@@ -301,15 +270,11 @@ $(document).ready(function () {
 
     // Database Listener and creating Friend Cards:
     /*******************************************************
-         * Friendship card is dependent on data be loading to the
-         * database, so it can not return, before the record has
-         * been inserted, which means, it must wait 10 seconds.
-         * ******************************************************/
-    // db listener:
-    // database.ref().on("child_added", function (snapshot) {
-    // database.ref().on("child_added", function (snapshot) {
+     * Friendship card is dependent on data be loading to the
+     * database, so it can not return, before the record has
+     * been inserted, which means, it must wait 10 seconds.
+     * ******************************************************/
     database.ref().on('child_added', function (snapshot) {
-      // Pulls One Record: database.ref().on("child_added", function (snapshot) {
       record = snapshot.val()
 
       // Pulling data from Db
@@ -326,11 +291,7 @@ $(document).ready(function () {
       heroMatchCmb = record.heroMatchCmbDb
       timeStamp = record.userTimeStampDb
 
-      // Take Db data and turning into card
-      // dbRecord = userName, userAge, userGender, heroMatchName, heroMatchPhoto, heroMatchInt, heroMatchStr, heroMatchSpd, heroMatchDur, heroMatchPow, heroMatchCmb, timeStamp;
-
       // Create friend card
-      // createFriendCard(dbRecord);
       createFriendCard(
         userName,
         userAge,
@@ -344,7 +305,6 @@ $(document).ready(function () {
         heroMatchPow,
         heroMatchCmb,
         timeStamp)
-      // console.log(timeStamp);
     })// database listener
   }
 
@@ -363,21 +323,8 @@ $(document).ready(function () {
     heroMatchPow,
     heroMatchCmb,
     timeStamp) {
-    /******************************************************
-     * Remove old friendship cards if they exist:
-     ******************************************************/
-    /* var $oldFriendResults = $('#friend-results');
-        var $oldFriendsList = $('.friends-list');
-        if ($oldFriendResults.length){
-            $oldFriendResults.remove();
-        }
-        if ($oldFriendsList.length){
-            $oldFriendsList.remove();
-        } */
-    /*****************************************************/
-
-    // console.log('createCards', dbRecord);
     $('.card-deck').show()
+
     // Creating Friend Card Elements
     /*********************************************/
     friendsCard = $('<div>', { id: 'friends-card', class: 'card' })

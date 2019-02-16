@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 $(document).ready(function () {
   // FacePlusPlus API:
   var key = 'o5qW4trQcuO1e8ElIJEIDnecHNILHOSu'
@@ -5,7 +6,7 @@ $(document).ready(function () {
 
   var input = document.querySelector('#image-input')
   var preview = document.querySelector('.preview')
-  var error = document.querySelector('.error')
+  // var error = document.querySelector('.error')
   var fileTypes = [
     'image/jpeg',
     'image/pjpeg',
@@ -23,7 +24,7 @@ $(document).ready(function () {
   var faceToken
 
   // const
-  var imageMin = 48
+  var imageMin = 200
   var imageMax = 800
   var maxKB = 2
 
@@ -35,7 +36,7 @@ $(document).ready(function () {
     // enable submit-image (Upload Image Button)
     $('#submit-image').prop('disabled', false)
 
-    var $ptag = $('.preview #file-msg').text()
+    // var $ptag = $('.preview #file-msg').text()
   })
 
   function enableSubmitBtn () {
@@ -100,13 +101,12 @@ $(document).ready(function () {
 
       // disable submit-image (Upload Image Button)
       $('#submit-image').prop('disabled', true)
-      return
 
       // Disable submit-btn button
       // $('#submit-btn').attr('disabled', 'disabled');
       // disable submit-btn
       // $('#submit-btn').prop('disabled', true);
-      document.getElementById('submit-btn').disabled = true
+      // document.getElementById('submit-btn').disabled = true
     } else {
       // console.log ("Image is acceptable, Sending to FacePlusPlus!");
       var imageUrl = image.src
@@ -118,17 +118,6 @@ $(document).ready(function () {
       convertImageFromUrlToBase64String(imageUrl, function (base64Str) {
         var cors = 'https://cors-anywhere.herokuapp.com/'
         var query = cors + 'https://api-us.faceplusplus.com/facepp/v3/detect'
-        var queryParameters = [
-          'api_key=' + key,
-          'api_secret=' + secret,
-          'image_base64=' + base64Str,
-          // This works:
-          // "image_url=" + imageUrl,
-          'return_landmark=1',
-          'return_attributes=gender,age'
-        ].join('&')
-
-        // console.log("The queryURL = " + query);
 
         $.ajax({
           url: query,
@@ -206,9 +195,7 @@ $(document).ready(function () {
     if (curFiles.length === 0) {
       para.textContent = 'No file currently selected for upload'
       preview.appendChild(para)
-    }
-    // If files selected loop through the files
-    else {
+    } else {
       list = document.createElement('ol')
       preview.appendChild(list)
       for (var i = 0; i < curFiles.length; i++) {
@@ -225,9 +212,7 @@ $(document).ready(function () {
           image.style.width = '200px'
           listItem.appendChild(image)
           document.getElementById('submit-image').disabled = false
-        }
-        // Else print out file is not valid
-        else {
+        } else {
           para.textContent = 'File name ' + curFiles[i].name + ': File type not valid. Please select an image.'
           listItem.appendChild(para)
           document.getElementById('submit-image').disabled = true
@@ -237,7 +222,7 @@ $(document).ready(function () {
     /******************************
      * DISPLAY SAME PICTURE
      * *****************************/
-    curFiles == []
+    curFiles = []
     input.value = null
     /******************************/
   }// updateImageDisplay
@@ -246,33 +231,27 @@ $(document).ready(function () {
     var _URL = window.URL || window.webkitURL
     var img
     var file
-    var $p = $('<p>')
+    // var $p = $('<p>')
     if ((file = this.files[0])) {
       img = new Image()
-      img.onload = function ()
-      {
+      img.onload = function () {
         imageWidth = this.width
         imageHeight = this.height
-        console.log("Width = "+imageWidth, "Height = "+imageHeight);
 
-          para = document.createTextNode('File Name: ' + fileName + ', File Size: ' + fileSize + ', Width: ' + imageWidth + ', Height: ' + imageHeight)
-          listItem.appendChild(br)
-          listItem.appendChild(para)
-          list.appendChild(listItem)
+        para = document.createTextNode('File Name: ' + fileName + ', File Size: ' + fileSize + ', Width: ' + imageWidth + ', Height: ' + imageHeight)
+        listItem.appendChild(br)
+        listItem.appendChild(para)
+        list.appendChild(listItem)
 
-          // Insert break before paragraph:
-          listItem.insertBefore(br, para)
-          if ( imageWidth <= imageMax && imageHeight <= imageMax )
-          {}
-        else
-        {
-          para = document.createTextNode
-          (
+        // Insert break before paragraph:
+        listItem.insertBefore(br, para)
+        if (imageWidth >= imageMin && imageWidth <= imageMax && imageHeight >= imageMin && imageHeight <= imageMax) {} else {
+          para = document.createTextNode(
             'File Name: ' + fileName,
             'File Size: ' + fileSize,
             'Width: ' + imageWidth,
             'Height: ' + imageHeight
-          );
+          )
 
           $('#select-btn').show()
           document.getElementById('submit-image').disabled = true
@@ -282,15 +261,15 @@ $(document).ready(function () {
       img.onerror = function () {
         // if ( imageWidth <= imageMax && imageHeight <= imageMax )
         // {
-          // console.log('NOT A Valid File: '+file.type);
-          var error = document.createElement('p')
-          var node = document.createTextNode('Not a valid file: ' + file.type)
-          error.appendChild(node)
-          preview.appendChild(error)
-          document.getElementById('submit-image').disabled = true
-          $('#select-btn').show()
+        // console.log('NOT A Valid File: '+file.type);
+        var error = document.createElement('p')
+        var node = document.createTextNode('Not a valid file: ' + file.type)
+        error.appendChild(node)
+        preview.appendChild(error)
+        document.getElementById('submit-image').disabled = true
+        $('#select-btn').show()
         // }
-      }//oneerror
+      } // oneerror
       img.src = _URL.createObjectURL(file)
     }// if
   }// setDimensions
@@ -330,11 +309,10 @@ $(document).ready(function () {
     $('#face').text() === 'Identity processed!' &&
     $('#steps').text() === 'Your selections are locked in.'
 
-    if (isFormComplete)
-    {
+    if (isFormComplete) {
       $('#submit-btn').show()
       $('#submit-btn').prop('disabled', false)
-      $('#reset-btn').hide();
+      $('#reset-btn').hide()
     }
   }
 
@@ -356,11 +334,11 @@ $(document).ready(function () {
       // console.log(response);
       var faceAge = response.faces[0].attributes.age.value
       var faceGender = (response.faces[0].attributes.gender.value).toLowerCase()
-      var faceEthnicity = (response.faces[0].attributes.ethnicity.value).toLowerCase()
-      var faceBType = faceGender + '_score'
-      var faceBRequest = 'response.faces[0].attributes.beauty.' + faceBType
-      var faceBeauty = faceBRequest
-      var faceEmotions = response.faces[0].attributes.emotion
+      // var faceEthnicity = (response.faces[0].attributes.ethnicity.value).toLowerCase()
+      // var faceBType = faceGender + '_score'
+      // var faceBRequest = 'response.faces[0].attributes.beauty.' + faceBType
+      // var faceBeauty = faceBRequest
+      // var faceEmotions = response.faces[0].attributes.emotion
 
       // $faceMsg.text('');
       var $facePara = $('#face')
