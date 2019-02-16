@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 $(document).ready(function () {
   $('.results-page').hide()
   $('.card-deck').hide()
@@ -104,7 +105,6 @@ $(document).ready(function () {
             !$('#combat-value').text()) {
       // console.log("In results.js check");
       $('.lock-text').text('Please complete all selections, then Lock them in.').css({ 'color': 'red' })
-      return
       $lockBtn.prop('disabled', false) // enable
     }
     /****************************************************/

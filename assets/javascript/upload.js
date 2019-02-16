@@ -249,25 +249,48 @@ $(document).ready(function () {
     var $p = $('<p>')
     if ((file = this.files[0])) {
       img = new Image()
-      img.onload = function () {
+      img.onload = function ()
+      {
         imageWidth = this.width
         imageHeight = this.height
-        para = document.createTextNode('File Name: ' + fileName + ', File Size: ' + fileSize + ', Width: ' + imageWidth + ', Height: ' + imageHeight)
-        listItem.appendChild(br)
-        listItem.appendChild(para)
-        list.appendChild(listItem)
+        console.log("Width = "+imageWidth, "Height = "+imageHeight);
 
-        // Insert break before paragraph:
-        listItem.insertBefore(br, para)
+          para = document.createTextNode('File Name: ' + fileName + ', File Size: ' + fileSize + ', Width: ' + imageWidth + ', Height: ' + imageHeight)
+          listItem.appendChild(br)
+          listItem.appendChild(para)
+          list.appendChild(listItem)
+
+          // Insert break before paragraph:
+          listItem.insertBefore(br, para)
+          if ( imageWidth <= imageMax && imageHeight <= imageMax )
+          {}
+        else
+        {
+          para = document.createTextNode
+          (
+            'File Name: ' + fileName,
+            'File Size: ' + fileSize,
+            'Width: ' + imageWidth,
+            'Height: ' + imageHeight
+          );
+
+          $('#select-btn').show()
+          document.getElementById('submit-image').disabled = true
+          $('#li-id').css({ 'color': 'red' })
+        }
       }
       img.onerror = function () {
-        // console.log('NOT A Valid File: '+file.type);
-        var error = document.createElement('p')
-        var node = document.createTextNode('Not a valid file: ' + file.type)
-        error.appendChild(node)
-        preview.appendChild(error)
-        document.getElementById('submit-image').disabled = true
-      }
+        // if ( imageWidth <= imageMax && imageHeight <= imageMax )
+        // {
+          // console.log('NOT A Valid File: '+file.type);
+          var error = document.createElement('p')
+          var node = document.createTextNode('Not a valid file: ' + file.type)
+          error.appendChild(node)
+          preview.appendChild(error)
+          document.getElementById('submit-image').disabled = true
+          $('#select-btn').show()
+        // }
+      }//oneerror
       img.src = _URL.createObjectURL(file)
     }// if
   }// setDimensions
@@ -293,6 +316,28 @@ $(document).ready(function () {
     }
     img.src = url// url is the img src
   }// convertImage
+
+  // 2/16/2019 Eror Handling Routine Updated
+  function formComplete () {
+    isFormComplete =
+    $('#name-input').val() &&
+    $('#intel-value').text() &&
+    $('#stren-value').text() &&
+    $('#speed-value').text() &&
+    $('#durab-value').text() &&
+    $('#power-value').text() &&
+    $('#combat-value').text() &&
+    $('#face').text() === 'Identity processed!' &&
+    $('#steps').text() === 'Your selections are locked in.'
+
+    if (isFormComplete)
+    {
+      $('#submit-btn').show()
+      $('#submit-btn').prop('disabled', false)
+      $('#reset-btn').hide();
+    }
+  }
+
   function analyzeFace () {
     var url = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze'
     var queryParams = [
@@ -328,9 +373,7 @@ $(document).ready(function () {
         $('.preview').append($faceMsg)
 
         // Enable submit button  when response from face++ received
-        $('#submit-btn').prop('disabled', false)
-        $('#submit-btn').show();
-        $('#reset-btn').hide();
+        formComplete()
 
         // console.log("Image has been processed!"+"Gender = "+faceGender+" Age = "+faceAge);
       } else {
