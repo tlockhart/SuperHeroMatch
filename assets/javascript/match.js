@@ -59,10 +59,10 @@ $(document).ready(function () {
     // Create CODE HERE to Log the slider values
     userName = $('#name-input').val()
 
-    function displayModal () {
-      $('.modal-1').modal()
-      // $('#name-input').css({ 'border': 'solid 1px red' })
-    }
+    // function displayModal () {
+    //   $('.modal-1').modal()
+    //   // $('#name-input').css({ 'border': 'solid 1px red' })
+    // }
 
     userIntInput = parseInt($('#intel-value').text())
     if (!$('#intel-value').text()) {
